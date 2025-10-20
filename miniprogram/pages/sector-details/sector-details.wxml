@@ -1,0 +1,72 @@
+<view class="sector-details-page data-v-3320a0d2">
+    <view class="card-overview data-v-3320a0d2">
+        <view class="card-info data-v-3320a0d2">
+            <text class="card-title data-v-3320a0d2">{{a}}</text>
+            <text class="card-uid data-v-3320a0d2">UID: {{b}}</text>
+        </view>
+        <view class="card-stats data-v-3320a0d2">
+            <view class="stat-item data-v-3320a0d2">
+                <text class="stat-value data-v-3320a0d2">{{c}}</text>
+                <text class="stat-label data-v-3320a0d2">可读扇区</text>
+            </view>
+            <view class="stat-item data-v-3320a0d2">
+                <text class="stat-value data-v-3320a0d2">{{d}}</text>
+                <text class="stat-label data-v-3320a0d2">总扇区</text>
+            </view>
+            <view class="stat-item data-v-3320a0d2">
+                <text class="stat-value data-v-3320a0d2">{{e}}%</text>
+                <text class="stat-label data-v-3320a0d2">成功率</text>
+            </view>
+        </view>
+        <view class="export-section data-v-3320a0d2">
+            <button bindtap="{{g}}" class="export-all-button data-v-3320a0d2">
+                <uni-icons bind:__l="__l" class="data-v-3320a0d2" uI="3320a0d2-0" uP="{{f}}" wx:if="{{f}}"></uni-icons>
+                <text class="export-text data-v-3320a0d2">导出全部数据</text>
+            </button>
+        </view>
+    </view>
+    <view class="view-mode-selector data-v-3320a0d2">
+        <view class="mode-tabs data-v-3320a0d2">
+            <view bindtap="{{i}}" class="{{['mode-tab','data-v-3320a0d2',h&&'active']}}">
+                <text class="data-v-3320a0d2">扇区视图</text>
+            </view>
+            <view bindtap="{{k}}" class="{{['mode-tab','data-v-3320a0d2',j&&'active']}}">
+                <text class="data-v-3320a0d2">统一视图</text>
+            </view>
+        </view>
+    </view>
+    <view class="unified-view data-v-3320a0d2" wx:if="{{l}}">
+        <card-data-viewer bind:__l="__l" binddataChanged="{{m}}" bindeditCancel="{{o}}" bindeditStart="{{n}}" class="data-v-3320a0d2" uI="3320a0d2-1" uP="{{p}}" wx:if="{{p}}"></card-data-viewer>
+    </view>
+    <view class="sectors-container data-v-3320a0d2" wx:else>
+        <view class="{{['sector-card','data-v-3320a0d2',sector.l&&'readable',sector.m&&'unreadable']}}" wx:for="{{q}}" wx:for-item="sector" wx:key="k">
+            <view class="sector-header data-v-3320a0d2">
+                <view class="sector-title-row data-v-3320a0d2">
+                    <text class="sector-title data-v-3320a0d2">扇区 {{sector.a}}</text>
+                    <view class="sector-status data-v-3320a0d2">
+                        <uni-icons bind:__l="__l" class="data-v-3320a0d2" uI="{{sector.b}}" uP="{{sector.c}}" wx:if="{{sector.c}}"></uni-icons>
+                        <text class="status-text data-v-3320a0d2">{{sector.d}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="sector-blocks data-v-3320a0d2" wx:if="{{sector.e}}">
+                <view class="{{['block-card','data-v-3320a0d2',block.g&&'trailer-block',block.h&&'data-block']}}" wx:for="{{sector.f}}" wx:for-item="block" wx:key="f">
+                    <view class="block-header data-v-3320a0d2">
+                        <text class="block-title data-v-3320a0d2">块 {{block.a}}</text>
+                        <text class="block-type data-v-3320a0d2">{{block.b}}</text>
+                        <button bindtap="{{block.d}}" class="copy-button data-v-3320a0d2">
+                            <uni-icons bind:__l="__l" class="data-v-3320a0d2" uI="{{block.c}}" uP="{{sector.g}}" wx:if="{{sector.g}}"></uni-icons>
+                        </button>
+                    </view>
+                    <view class="block-data data-v-3320a0d2">
+                        <text class="data-text data-v-3320a0d2">{{block.e}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="unreadable-hint data-v-3320a0d2" wx:if="{{sector.h}}">
+                <uni-icons bind:__l="__l" class="data-v-3320a0d2" uI="{{sector.i}}" uP="{{sector.j}}" wx:if="{{sector.j}}"></uni-icons>
+                <text class="hint-text data-v-3320a0d2">此扇区需要特定密钥才能读取</text>
+            </view>
+        </view>
+    </view>
+</view>

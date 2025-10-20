@@ -1,0 +1,169 @@
+<view class="connect-page data-v-b4f65ab7">
+    <view class="content data-v-b4f65ab7">
+        <view class="{{['activation-card','data-v-b4f65ab7',v&&'activated']}}" wx:if="{{a}}">
+            <view class="activation-header data-v-b4f65ab7">
+                <view class="activation-title data-v-b4f65ab7">
+                    <uni-icons bind:__l="__l" class="data-v-b4f65ab7" uI="b4f65ab7-0" uP="{{b}}" wx:if="{{b}}"></uni-icons>
+                    <text class="data-v-b4f65ab7">激活状态</text>
+                </view>
+                <view class="activation-actions-top data-v-b4f65ab7">
+                    <view class="activation-status data-v-b4f65ab7">{{c}}</view>
+                    <uni-icons bind:__l="__l" bindclick="{{d}}" class="data-v-b4f65ab7" uI="b4f65ab7-1" uP="{{e}}" wx:if="{{e}}"></uni-icons>
+                </view>
+            </view>
+            <view class="activation-info data-v-b4f65ab7" wx:if="{{f}}">
+                <view class="activation-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">激活码:</text>
+                    <view class="value-with-copy data-v-b4f65ab7">
+                        <text class="value data-v-b4f65ab7">{{g}}</text>
+                        <uni-icons bind:__l="__l" bindclick="{{h}}" class="data-v-b4f65ab7" uI="b4f65ab7-2" uP="{{i}}" wx:if="{{i}}"></uni-icons>
+                    </view>
+                </view>
+                <view class="activation-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">设备ID:</text>
+                    <view class="value-with-copy data-v-b4f65ab7">
+                        <text class="value chip-id data-v-b4f65ab7">{{j}}</text>
+                        <uni-icons bind:__l="__l" bindclick="{{k}}" class="data-v-b4f65ab7" uI="b4f65ab7-3" uP="{{l}}" wx:if="{{l}}"></uni-icons>
+                    </view>
+                </view>
+            </view>
+            <view class="activation-info data-v-b4f65ab7" wx:else>
+                <view class="activation-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">剩余试用次数:</text>
+                    <text class="value data-v-b4f65ab7">{{m}}</text>
+                </view>
+                <view class="activation-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">设备ID:</text>
+                    <view class="value-with-copy data-v-b4f65ab7">
+                        <text class="value chip-id data-v-b4f65ab7">{{n}}</text>
+                        <button bindtap="{{p}}" class="btn-copy data-v-b4f65ab7">
+                            <uni-icons bind:__l="__l" class="data-v-b4f65ab7" uI="b4f65ab7-4" uP="{{o}}" wx:if="{{o}}"></uni-icons>
+                        </button>
+                    </view>
+                </view>
+                <view class="activation-hint data-v-b4f65ab7">激活后可获得完整功能</view>
+            </view>
+            <view class="activation-actions data-v-b4f65ab7" wx:if="{{q}}">
+                <button bindtap="{{s}}" class="btn-activate data-v-b4f65ab7" disabled="{{t}}">{{r}}</button>
+            </view>
+        </view>
+        <view class="status-card data-v-b4f65ab7">
+            <view class="status-header data-v-b4f65ab7">
+                <text class="status-title data-v-b4f65ab7">连接状态</text>
+                <view class="{{['status-indicator','data-v-b4f65ab7',x]}}">
+                    <text class="status-text data-v-b4f65ab7">{{w}}</text>
+                </view>
+            </view>
+            <view class="device-info data-v-b4f65ab7" wx:if="{{y}}">
+                <view class="device-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">设备名称:</text>
+                    <text class="value data-v-b4f65ab7">{{z}}</text>
+                </view>
+                <view class="device-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">设备地址:</text>
+                    <text class="value data-v-b4f65ab7">{{A}}</text>
+                </view>
+                <view class="device-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">信号强度:</text>
+                    <text class="value data-v-b4f65ab7">{{B}} dBm</text>
+                </view>
+            </view>
+            <view class="action-buttons data-v-b4f65ab7">
+                <button bindtap="{{F}}" class="btn-primary data-v-b4f65ab7" disabled="{{E}}" wx:if="{{C}}">{{D}}</button>
+                <button bindtap="{{H}}" class="btn-danger data-v-b4f65ab7" wx:if="{{G}}">断开连接</button>
+            </view>
+        </view>
+        <view class="device-list-card data-v-b4f65ab7" wx:if="{{I}}">
+            <view class="card-header data-v-b4f65ab7">
+                <text class="card-title data-v-b4f65ab7">发现的设备，点击卡片连接</text>
+                <text class="device-count data-v-b4f65ab7">{{J}} 个设备</text>
+            </view>
+            <view class="empty-state data-v-b4f65ab7" wx:if="{{K}}">
+                <uni-icons bind:__l="__l" class="data-v-b4f65ab7" uI="b4f65ab7-5" uP="{{L}}" wx:if="{{L}}"></uni-icons>
+                <text class="empty-text data-v-b4f65ab7">暂未发现设备</text>
+                <text class="empty-hint data-v-b4f65ab7">请确保设备已开启并处于可连接状态</text>
+            </view>
+            <view class="scanning-state data-v-b4f65ab7" wx:if="{{M}}">
+                <uni-load-more bind:__l="__l" class="data-v-b4f65ab7" uI="b4f65ab7-6" uP="{{N}}" wx:if="{{N}}"></uni-load-more>
+            </view>
+            <scroll-view scrollY class="device-list data-v-b4f65ab7" scrollWithAnimation="{{true}}" wx:if="{{O}}">
+                <view bindtap="{{device.g}}" class="device-item-card data-v-b4f65ab7" wx:for="{{P}}" wx:for-item="device" wx:key="f">
+                    <view class="device-main data-v-b4f65ab7">
+                        <view class="device-info-left data-v-b4f65ab7">
+                            <text class="device-name data-v-b4f65ab7">{{device.a}}</text>
+                            <text class="device-id data-v-b4f65ab7">{{device.b}}</text>
+                        </view>
+                        <view class="device-info-right data-v-b4f65ab7">
+                            <text class="rssi data-v-b4f65ab7">{{device.c}} dBm</text>
+                            <uni-icons bind:__l="__l" class="data-v-b4f65ab7" uI="{{device.d}}" uP="{{Q}}" wx:if="{{Q}}"></uni-icons>
+                        </view>
+                    </view>
+                    <view class="device-meta data-v-b4f65ab7">
+                        <text class="last-seen data-v-b4f65ab7">最后发现: {{device.e}}</text>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="device-detail-card data-v-b4f65ab7" wx:if="{{R}}">
+            <view class="card-header data-v-b4f65ab7">
+                <text class="card-title data-v-b4f65ab7">设备详情</text>
+                <uni-icons bind:__l="__l" bindclick="{{S}}" class="data-v-b4f65ab7" uI="b4f65ab7-8" uP="{{T}}" wx:if="{{T}}"></uni-icons>
+            </view>
+            <view class="detail-list data-v-b4f65ab7">
+                <view class="detail-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">固件版本:</text>
+                    <text class="value data-v-b4f65ab7">{{U}}</text>
+                </view>
+                <view class="detail-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">设备型号:</text>
+                    <text class="value data-v-b4f65ab7">{{V}}</text>
+                </view>
+                <view class="detail-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">电池电量:</text>
+                    <text class="value data-v-b4f65ab7">{{W}}%</text>
+                </view>
+                <view class="detail-item data-v-b4f65ab7">
+                    <text class="label data-v-b4f65ab7">工作模式:</text>
+                    <text class="value data-v-b4f65ab7">{{X}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-b4f65ab7" data-c-h="{{!aj}}" uI="b4f65ab7-9" uP="{{ak}}" uR="activationPopup" uS="{{['d']}}" wx:if="{{ak}}">
+        <uni-popup-dialog bind:__l="__l" bindclose="{{af}}" bindconfirm="{{ag}}" class="data-v-b4f65ab7" uI="b4f65ab7-10,b4f65ab7-9" uP="{{ah}}" uS="{{['d']}}" wx:if="{{ah}}">
+            <view class="activation-dialog-content data-v-b4f65ab7">
+                <view class="dialog-hint data-v-b4f65ab7">
+                    <text class="data-v-b4f65ab7">请输入12位激活码</text>
+                    <text class="contact-info data-v-b4f65ab7">QQ1:334145434,QQ2:481896438</text>
+                </view>
+                <input bindinput="{{aa}}" class="activation-input data-v-b4f65ab7" disabled="{{Y}}" maxlength="12" placeholder="请输入激活码" type="text" value="{{Z}}"></input>
+                <text class="error-text data-v-b4f65ab7" wx:if="{{ab}}">{{ac}}</text>
+                <view class="loading-container data-v-b4f65ab7" wx:if="{{ad}}">
+                    <uni-load-more bind:__l="__l" class="data-v-b4f65ab7" uI="b4f65ab7-11,b4f65ab7-10" uP="{{ae}}" wx:if="{{ae}}"></uni-load-more>
+                </view>
+            </view>
+        </uni-popup-dialog>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="r data-v-b4f65ab7" uI="b4f65ab7-12" uP="{{ap}}" uR="firmwarePopup" uS="{{['d']}}" wx:if="{{ap}}">
+        <uni-popup-dialog bind:__l="__l" bindclose="{{al}}" bindconfirm="{{am}}" class="data-v-b4f65ab7" uI="b4f65ab7-13,b4f65ab7-12" uP="{{an}}" uS="{{['d']}}" wx:if="{{an}}">
+            <view class="firmware-dialog-content data-v-b4f65ab7">
+                <text class="data-v-b4f65ab7">检测到当前设备固件非轮询固件，程序不兼容使用，请先刷入自动轮询固件。</text>
+            </view>
+        </uni-popup-dialog>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="r data-v-b4f65ab7" uI="b4f65ab7-14" uP="{{av}}" uR="dfuPopup" uS="{{['d']}}" wx:if="{{av}}">
+        <uni-popup-dialog bind:__l="__l" bindclose="{{aq}}" bindconfirm="{{ar}}" class="data-v-b4f65ab7" uI="b4f65ab7-15,b4f65ab7-14" uP="{{as}}" uS="{{['d']}}" wx:if="{{as}}">
+            <view class="firmware-dialog-content data-v-b4f65ab7">
+                <text class="data-v-b4f65ab7">检测到设备处于DFU模式，固件可能已损坏。是否刷入最新固件？</text>
+            </view>
+        </uni-popup-dialog>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="r data-v-b4f65ab7" uI="b4f65ab7-16" uP="{{aD}}" uR="updatePopup" uS="{{['d']}}" wx:if="{{aD}}">
+        <uni-popup-dialog bind:__l="__l" bindclose="{{az}}" bindconfirm="{{aA}}" class="data-v-b4f65ab7" uI="b4f65ab7-17,b4f65ab7-16" uP="{{aB}}" uS="{{['d']}}" wx:if="{{aB}}">
+            <view class="firmware-dialog-content data-v-b4f65ab7">
+                <text class="data-v-b4f65ab7">检测到新版固件 ({{aw}})，是否立即更新？</text>
+                <text class="update-notes data-v-b4f65ab7" wx:if="{{ax}}">更新说明: {{ay}}</text>
+            </view>
+        </uni-popup-dialog>
+    </uni-popup>
+</view>

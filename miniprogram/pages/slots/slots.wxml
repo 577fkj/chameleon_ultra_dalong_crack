@@ -1,0 +1,147 @@
+<view class="slots-page data-v-66e607d7">
+    <view class="content data-v-66e607d7">
+        <view class="active-slot-card data-v-66e607d7" wx:if="{{a}}">
+            <view class="active-slot-header data-v-66e607d7">
+                <view class="active-badge data-v-66e607d7">
+                    <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="66e607d7-0" uP="{{b}}" wx:if="{{b}}"></uni-icons>
+                    <text class="active-text data-v-66e607d7">当前活动</text>
+                </view>
+                <text class="slot-number data-v-66e607d7">卡槽 {{c}}</text>
+            </view>
+            <view class="active-slot-content data-v-66e607d7">
+                <text class="slot-nickname data-v-66e607d7">{{d}}</text>
+                <view class="cards-overview data-v-66e607d7">
+                    <view class="card-chip hf-chip data-v-66e607d7" wx:if="{{e}}">
+                        <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="66e607d7-1" uP="{{f}}" wx:if="{{f}}"></uni-icons>
+                        <text class="chip-text data-v-66e607d7">HF: {{g}}</text>
+                    </view>
+                    <view class="card-chip lf-chip data-v-66e607d7" wx:if="{{h}}">
+                        <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="66e607d7-2" uP="{{i}}" wx:if="{{i}}"></uni-icons>
+                        <text class="chip-text data-v-66e607d7">LF: {{j}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="quick-actions-bar data-v-66e607d7">
+            <button bindtap="{{l}}" class="quick-btn data-v-66e607d7" disabled="{{m}}">
+                <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="66e607d7-3" uP="{{k}}" wx:if="{{k}}"></uni-icons>
+            </button>
+            <button bindtap="{{o}}" class="quick-btn data-v-66e607d7" disabled="{{p}}">
+                <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="66e607d7-4" uP="{{n}}" wx:if="{{n}}"></uni-icons>
+            </button>
+            <button bindtap="{{s}}" class="quick-btn refresh-btn data-v-66e607d7" disabled="{{t}}">
+                <uni-icons bind:__l="__l" class="{{['data-v-66e607d7',q&&'rotating']}}" uI="66e607d7-5" uP="{{r}}" wx:if="{{r}}"></uni-icons>
+            </button>
+        </view>
+        <view class="stats-bar data-v-66e607d7">
+            <view class="stat-item data-v-66e607d7">
+                <text class="stat-number data-v-66e607d7">{{v}}</text>
+                <text class="stat-label data-v-66e607d7">已使用</text>
+            </view>
+            <view class="stat-item data-v-66e607d7">
+                <text class="stat-number data-v-66e607d7">{{w}}</text>
+                <text class="stat-label data-v-66e607d7">空闲</text>
+            </view>
+            <view class="stat-item data-v-66e607d7">
+                <text class="stat-number data-v-66e607d7">16</text>
+                <text class="stat-label data-v-66e607d7">总计</text>
+            </view>
+        </view>
+        <view class="slots-section data-v-66e607d7">
+            <view class="loading-state data-v-66e607d7" wx:if="{{x}}">
+                <uni-load-more bind:__l="__l" class="data-v-66e607d7" uI="66e607d7-6" uP="{{y}}" wx:if="{{y}}"></uni-load-more>
+            </view>
+            <view class="slots-list data-v-66e607d7" wx:else>
+                <view bindtap="{{slot.R}}" class="{{['slot-item','data-v-66e607d7',slot.O&&'active',slot.P&&'used',slot.Q&&'disabled']}}" wx:for="{{z}}" wx:for-item="slot" wx:key="N">
+                    <view class="slot-item-header data-v-66e607d7">
+                        <view class="slot-title data-v-66e607d7">
+                            <view class="slot-number-badge data-v-66e607d7">
+                                <text class="slot-number data-v-66e607d7">{{slot.a}}</text>
+                            </view>
+                            <view class="slot-info data-v-66e607d7">
+                                <text class="slot-name data-v-66e607d7">{{slot.b}}</text>
+                                <view class="slot-status data-v-66e607d7">
+                                    <view class="status-chip active data-v-66e607d7" wx:if="{{slot.c}}">
+                                        <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="{{slot.d}}" uP="{{slot.e}}" wx:if="{{slot.e}}"></uni-icons>
+                                        <text class="status-text data-v-66e607d7">当前活动</text>
+                                    </view>
+                                    <view class="status-chip used data-v-66e607d7" wx:elif="{{slot.f}}">
+                                        <text class="status-text data-v-66e607d7">已使用</text>
+                                    </view>
+                                    <view class="status-chip empty data-v-66e607d7" wx:else>
+                                        <text class="status-text data-v-66e607d7">空闲</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view catchtap="{{slot.h}}" class="data-v-66e607d7">
+                            <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="{{slot.g}}" uP="{{A}}" wx:if="{{A}}"></uni-icons>
+                        </view>
+                    </view>
+                    <view class="frequency-section data-v-66e607d7" wx:if="{{slot.i}}">
+                        <view class="frequency-header data-v-66e607d7">
+                            <view class="frequency-info data-v-66e607d7">
+                                <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="{{slot.j}}" uP="{{slot.k}}" wx:if="{{slot.k}}"></uni-icons>
+                                <text class="frequency-label data-v-66e607d7">HF (13.56MHz)</text>
+                            </view>
+                            <view class="frequency-controls data-v-66e607d7">
+                                <view class="{{['frequency-status','data-v-66e607d7',slot.m&&'enabled',slot.n&&'disabled']}}">{{slot.l}}</view>
+                                <switch bindchange="{{slot.p}}" catchtap="{{slot.q}}" checked="{{slot.o}}" class="frequency-switch data-v-66e607d7"></switch>
+                            </view>
+                        </view>
+                        <view catchtap="{{slot.v}}" class="frequency-content data-v-66e607d7">
+                            <text class="card-name data-v-66e607d7">{{slot.r}}</text>
+                            <view class="edit-hint data-v-66e607d7">
+                                <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="{{slot.s}}" uP="{{slot.t}}" wx:if="{{slot.t}}"></uni-icons>
+                                <text class="edit-text data-v-66e607d7">点击编辑</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="frequency-section data-v-66e607d7" wx:if="{{slot.w}}">
+                        <view class="frequency-header data-v-66e607d7">
+                            <view class="frequency-info data-v-66e607d7">
+                                <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="{{slot.x}}" uP="{{slot.y}}" wx:if="{{slot.y}}"></uni-icons>
+                                <text class="frequency-label data-v-66e607d7">LF (125KHz)</text>
+                            </view>
+                            <view class="frequency-controls data-v-66e607d7">
+                                <view class="{{['frequency-status','data-v-66e607d7',slot.A&&'enabled',slot.B&&'disabled']}}">{{slot.z}}</view>
+                                <switch bindchange="{{slot.D}}" catchtap="{{slot.E}}" checked="{{slot.C}}" class="frequency-switch data-v-66e607d7"></switch>
+                            </view>
+                        </view>
+                        <view catchtap="{{slot.I}}" class="frequency-content data-v-66e607d7">
+                            <text class="card-name data-v-66e607d7">{{slot.F}}</text>
+                            <view class="edit-hint data-v-66e607d7">
+                                <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="{{slot.G}}" uP="{{slot.H}}" wx:if="{{slot.H}}"></uni-icons>
+                                <text class="edit-text data-v-66e607d7">点击编辑</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view catchtap="{{slot.M}}" class="empty-slot-hint data-v-66e607d7" wx:if="{{slot.J}}">
+                        <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="{{slot.K}}" uP="{{slot.L}}" wx:if="{{slot.L}}"></uni-icons>
+                        <text class="hint-text data-v-66e607d7">点击添加卡片</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="{{J}}" class="popup-overlay data-v-66e607d7" wx:if="{{B}}">
+        <view catchtap="{{I}}" class="settings-popup data-v-66e607d7">
+            <view class="popup-header data-v-66e607d7">
+                <text class="popup-title data-v-66e607d7">显示设置</text>
+                <button bindtap="{{D}}" class="close-btn data-v-66e607d7">
+                    <uni-icons bind:__l="__l" class="data-v-66e607d7" uI="66e607d7-14" uP="{{C}}" wx:if="{{C}}"></uni-icons>
+                </button>
+            </view>
+            <view class="popup-content data-v-66e607d7">
+                <view class="setting-row data-v-66e607d7">
+                    <text class="setting-label data-v-66e607d7">显示空卡槽</text>
+                    <switch bindchange="{{F}}" checked="{{E}}" class="data-v-66e607d7"></switch>
+                </view>
+                <view class="setting-row data-v-66e607d7">
+                    <text class="setting-label data-v-66e607d7">快速切换模式</text>
+                    <switch bindchange="{{H}}" checked="{{G}}" class="data-v-66e607d7"></switch>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

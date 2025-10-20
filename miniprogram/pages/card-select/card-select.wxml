@@ -1,0 +1,128 @@
+<view class="card-select-page data-v-63df2d62">
+    <view class="search-header data-v-63df2d62">
+        <uni-search-bar bind:__l="__l" bindclear="{{b}}" bindinput="{{a}}" bindupdateModelValue="{{c}}" class="data-v-63df2d62" uI="63df2d62-0" uP="{{d}}" wx:if="{{d}}"></uni-search-bar>
+    </view>
+    <view class="filter-bar data-v-63df2d62">
+        <scroll-view class="filter-scroll data-v-63df2d62" scrollX="true">
+            <view class="filter-tabs data-v-63df2d62">
+                <view bindtap="{{category.h}}" class="{{['data-v-63df2d62','filter-tab',category.g]}}" wx:for="{{e}}" wx:for-item="category" wx:key="f">
+                    <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="{{category.a}}" uP="{{category.b}}" wx:if="{{category.b}}"></uni-icons>
+                    <text class="filter-text data-v-63df2d62">{{category.c}}</text>
+                    <text class="filter-count data-v-63df2d62" wx:if="{{category.d}}">{{category.e}}</text>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="filter-actions data-v-63df2d62">
+            <view bindtap="{{g}}" class="action-btn data-v-63df2d62">
+                <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="63df2d62-2" uP="{{f}}" wx:if="{{f}}"></uni-icons>
+            </view>
+            <view bindtap="{{i}}" class="action-btn data-v-63df2d62">
+                <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="63df2d62-3" uP="{{h}}" wx:if="{{h}}"></uni-icons>
+            </view>
+        </view>
+    </view>
+    <view class="cards-content data-v-63df2d62">
+        <scroll-view bindscrolltolower="{{r}}" class="cards-scroll data-v-63df2d62" scrollY="true">
+            <view class="empty-state data-v-63df2d62" wx:if="{{j}}">
+                <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="63df2d62-4" uP="{{k}}" wx:if="{{k}}"></uni-icons>
+                <text class="empty-title data-v-63df2d62">暂无卡片</text>
+                <text class="empty-desc data-v-63df2d62">请先导入卡片到卡包中</text>
+                <button bindtap="{{m}}" class="empty-action data-v-63df2d62">
+                    <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="63df2d62-5" uP="{{l}}" wx:if="{{l}}"></uni-icons>去添加卡片</button>
+            </view>
+            <view class="cards-grid data-v-63df2d62" wx:elif="{{n}}">
+                <view bindlongpress="{{card.l}}" bindtap="{{card.k}}" class="card-item-grid data-v-63df2d62" wx:for="{{o}}" wx:for-item="card" wx:key="j">
+                    <view class="card-icon data-v-63df2d62" style="{{'background-color:'+card.c}}">
+                        <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="{{card.a}}" uP="{{card.b}}" wx:if="{{card.b}}"></uni-icons>
+                    </view>
+                    <view class="card-info data-v-63df2d62">
+                        <text class="card-name data-v-63df2d62">{{card.d}}</text>
+                        <text class="card-type data-v-63df2d62">{{card.e}}</text>
+                        <text class="card-uid data-v-63df2d62" wx:if="{{card.f}}">{{card.g}}</text>
+                    </view>
+                    <view class="{{['card-frequency','data-v-63df2d62',card.i]}}">{{card.h}}</view>
+                </view>
+            </view>
+            <view class="cards-list data-v-63df2d62" wx:else>
+                <view bindlongpress="{{card.o}}" bindtap="{{card.n}}" class="card-item-list data-v-63df2d62" wx:for="{{p}}" wx:for-item="card" wx:key="m">
+                    <view class="card-icon data-v-63df2d62" style="{{'background-color:'+card.c}}">
+                        <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="{{card.a}}" uP="{{card.b}}" wx:if="{{card.b}}"></uni-icons>
+                    </view>
+                    <view class="card-info data-v-63df2d62">
+                        <view class="card-header data-v-63df2d62">
+                            <text class="card-name data-v-63df2d62">{{card.d}}</text>
+                            <view class="{{['card-frequency','data-v-63df2d62',card.f]}}">{{card.e}}</view>
+                        </view>
+                        <text class="card-type data-v-63df2d62">{{card.g}}</text>
+                        <text class="card-uid data-v-63df2d62" wx:if="{{card.h}}">UID: {{card.i}}</text>
+                        <text class="card-time data-v-63df2d62">{{card.j}}</text>
+                    </view>
+                    <view class="card-actions data-v-63df2d62">
+                        <view catchtap="{{card.l}}" class="action-btn data-v-63df2d62">
+                            <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="{{card.k}}" uP="{{q}}" wx:if="{{q}}"></uni-icons>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="bottom-bar data-v-63df2d62" wx:if="{{s}}">
+        <view class="slot-info data-v-63df2d62">
+            <text class="slot-text data-v-63df2d62">目标卡槽: {{t}}</text>
+        </view>
+        <button bindtap="{{x}}" class="deploy-btn data-v-63df2d62" disabled="{{w}}">
+            <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="63df2d62-9" uP="{{v}}" wx:if="{{v}}"></uni-icons>部署到卡槽</button>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-63df2d62" uI="63df2d62-10" uP="{{C}}" uR="sortPopup" uS="{{['d']}}" wx:if="{{C}}">
+        <view class="sort-popup data-v-63df2d62">
+            <view class="popup-header data-v-63df2d62">
+                <text class="popup-title data-v-63df2d62">排序方式</text>
+                <button bindtap="{{z}}" class="popup-close data-v-63df2d62">
+                    <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="63df2d62-11,63df2d62-10" uP="{{y}}" wx:if="{{y}}"></uni-icons>
+                </button>
+            </view>
+            <view class="sort-options data-v-63df2d62">
+                <view bindtap="{{option.g}}" class="{{['data-v-63df2d62','sort-option',option.f]}}" wx:for="{{A}}" wx:for-item="option" wx:key="e">
+                    <text class="sort-text data-v-63df2d62">{{option.a}}</text>
+                    <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="{{option.c}}" uP="{{option.d}}" wx:if="{{option.b}}"></uni-icons>
+                </view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="r data-v-63df2d62" uI="63df2d62-13" uP="{{R}}" uR="detailPopup" uS="{{['d']}}" wx:if="{{R}}">
+        <view class="detail-popup data-v-63df2d62" wx:if="{{D}}">
+            <view class="detail-header data-v-63df2d62">
+                <text class="detail-title data-v-63df2d62">{{E}}</text>
+                <button bindtap="{{G}}" class="popup-close data-v-63df2d62">
+                    <uni-icons bind:__l="__l" class="data-v-63df2d62" uI="63df2d62-14,63df2d62-13" uP="{{F}}" wx:if="{{F}}"></uni-icons>
+                </button>
+            </view>
+            <view class="detail-content data-v-63df2d62">
+                <view class="detail-row data-v-63df2d62">
+                    <text class="detail-label data-v-63df2d62">类型</text>
+                    <text class="detail-value data-v-63df2d62">{{H}}</text>
+                </view>
+                <view class="detail-row data-v-63df2d62" wx:if="{{I}}">
+                    <text class="detail-label data-v-63df2d62">UID</text>
+                    <text class="detail-value data-v-63df2d62">{{J}}</text>
+                </view>
+                <view class="detail-row data-v-63df2d62">
+                    <text class="detail-label data-v-63df2d62">频率</text>
+                    <text class="detail-value data-v-63df2d62">{{K}}</text>
+                </view>
+                <view class="detail-row data-v-63df2d62">
+                    <text class="detail-label data-v-63df2d62">创建时间</text>
+                    <text class="detail-value data-v-63df2d62">{{L}}</text>
+                </view>
+                <view class="detail-row data-v-63df2d62">
+                    <text class="detail-label data-v-63df2d62">修改时间</text>
+                    <text class="detail-value data-v-63df2d62">{{M}}</text>
+                </view>
+            </view>
+            <view class="detail-actions data-v-63df2d62">
+                <button bindtap="{{N}}" class="detail-btn secondary data-v-63df2d62">取消</button>
+                <button bindtap="{{P}}" class="detail-btn primary data-v-63df2d62" wx:if="{{O}}">部署此卡片</button>
+            </view>
+        </view>
+    </uni-popup>
+</view>

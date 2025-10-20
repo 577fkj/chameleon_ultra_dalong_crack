@@ -1,0 +1,193 @@
+<view class="card-detail-container data-v-fdb5dbe3">
+    <view class="page-header data-v-fdb5dbe3">
+        <view class="header-title data-v-fdb5dbe3">{{a}}</view>
+        <view class="header-actions data-v-fdb5dbe3">
+            <view bindtap="{{d}}" class="action-btn data-v-fdb5dbe3">
+                <uni-icons bind:__l="__l" class="data-v-fdb5dbe3" uI="fdb5dbe3-0" uP="{{b}}" wx:if="{{b}}"></uni-icons>{{c}}</view>
+            <view bindtap="{{g}}" class="action-btn data-v-fdb5dbe3" wx:if="{{e}}">
+                <uni-icons bind:__l="__l" class="data-v-fdb5dbe3" uI="fdb5dbe3-1" uP="{{f}}" wx:if="{{f}}"></uni-icons>更多</view>
+        </view>
+    </view>
+    <scroll-view class="content-scroll data-v-fdb5dbe3" scrollY="true">
+        <view class="section data-v-fdb5dbe3">
+            <view class="section-header data-v-fdb5dbe3">
+                <text class="section-title data-v-fdb5dbe3">基本信息</text>
+                <view class="card-type-badge data-v-fdb5dbe3" style="{{'background-color:'+j}}" wx:if="{{h}}">{{i}}</view>
+            </view>
+            <view class="form-container data-v-fdb5dbe3">
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">卡片名称</text>
+                    <input bindinput="{{m}}" class="form-input data-v-fdb5dbe3" maxlength="50" placeholder="请输入卡片名称" value="{{l}}" wx:if="{{k}}"></input>
+                    <text class="form-value data-v-fdb5dbe3" wx:else>{{n}}</text>
+                </view>
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">卡片类型</text>
+                    <picker bindchange="{{s}}" class="data-v-fdb5dbe3" mode="selector" range="{{q}}" rangeKey="name" value="{{r}}" wx:if="{{o}}">
+                        <view class="form-picker data-v-fdb5dbe3">
+                            <text class="data-v-fdb5dbe3">{{p}}</text>
+                            <text class="picker-arrow data-v-fdb5dbe3">▼</text>
+                        </view>
+                    </picker>
+                    <text class="form-value data-v-fdb5dbe3" wx:else>{{t}}</text>
+                </view>
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">描述</text>
+                    <textarea bindinput="{{x}}" class="form-textarea data-v-fdb5dbe3" maxlength="200" placeholder="请输入卡片描述（可选）" value="{{w}}" wx:if="{{v}}"></textarea>
+                    <text class="form-value data-v-fdb5dbe3" wx:else>{{y}}</text>
+                </view>
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">标签</text>
+                    <view class="tags-editor data-v-fdb5dbe3" wx:if="{{z}}">
+                        <view class="tags-list data-v-fdb5dbe3">
+                            <view class="tag-item editable data-v-fdb5dbe3" wx:for="{{A}}" wx:for-item="tag" wx:key="c">
+                                <text class="data-v-fdb5dbe3">{{tag.a}}</text>
+                                <view bindtap="{{tag.b}}" class="tag-remove data-v-fdb5dbe3">✕</view>
+                            </view>
+                            <input bindconfirm="{{B}}" bindinput="{{D}}" class="tag-input data-v-fdb5dbe3" placeholder="添加标签" value="{{C}}"></input>
+                        </view>
+                    </view>
+                    <view class="tags-display data-v-fdb5dbe3" wx:else>
+                        <view class="tag-item data-v-fdb5dbe3" wx:for="{{E}}" wx:for-item="tag" wx:key="b">{{tag.a}}</view>
+                        <text class="empty-text data-v-fdb5dbe3" wx:if="{{F}}">无标签</text>
+                    </view>
+                </view>
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">收藏</text>
+                    <switch bindchange="{{I}}" checked="{{H}}" class="data-v-fdb5dbe3" color="#007AFF" wx:if="{{G}}"></switch>
+                    <text class="form-value data-v-fdb5dbe3" wx:else>{{J}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="section data-v-fdb5dbe3">
+            <view class="section-header data-v-fdb5dbe3">
+                <text class="section-title data-v-fdb5dbe3">卡片数据</text>
+                <view class="data-size data-v-fdb5dbe3">{{K}}</view>
+            </view>
+            <view class="card-data-container data-v-fdb5dbe3" wx:if="{{L}}">
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">UID</text>
+                    <input bindinput="{{N}}" class="form-input uid-input data-v-fdb5dbe3" placeholder="请输入UID (如: 04 12 34 56)" value="{{O}}" wx:if="{{M}}"></input>
+                    <text class="form-value uid-value data-v-fdb5dbe3" wx:else>{{P}}</text>
+                    <view class="error-text data-v-fdb5dbe3" wx:if="{{Q}}">{{R}}</view>
+                </view>
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">SAK</text>
+                    <input bindinput="{{U}}" class="form-input data-v-fdb5dbe3" placeholder="请输入SAK (如: 08)" value="{{T}}" wx:if="{{S}}"></input>
+                    <text class="form-value data-v-fdb5dbe3" wx:else>{{V}}</text>
+                </view>
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">ATQA</text>
+                    <input bindinput="{{Y}}" class="form-input data-v-fdb5dbe3" placeholder="请输入ATQA (如: 0004)" value="{{X}}" wx:if="{{W}}"></input>
+                    <text class="form-value data-v-fdb5dbe3" wx:else>{{Z}}</text>
+                </view>
+                <view class="data-section data-v-fdb5dbe3">
+                    <text class="data-label data-v-fdb5dbe3">扇区数据</text>
+                    <view class="data-editor data-v-fdb5dbe3" wx:if="{{aa}}">
+                        <textarea bindinput="{{ab}}" class="data-textarea data-v-fdb5dbe3" placeholder="请输入扇区数据 (每行一个扇区，每个扇区4个块)" value="{{ac}}" wx:if="{{r0}}"></textarea>
+                    </view>
+                    <view class="data-display data-v-fdb5dbe3" wx:else>
+                        <card-data-viewer bind:__l="__l" binddataChanged="{{ad}}" bindeditCancel="{{af}}" bindeditStart="{{ae}}" class="data-v-fdb5dbe3" uI="fdb5dbe3-2" uP="{{ag}}" wx:if="{{ag}}"></card-data-viewer>
+                    </view>
+                </view>
+            </view>
+            <view class="card-data-container data-v-fdb5dbe3" wx:elif="{{ah}}">
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">UID</text>
+                    <input bindinput="{{aj}}" class="form-input uid-input data-v-fdb5dbe3" placeholder="请输入UID (如: 1234567890)" value="{{ak}}" wx:if="{{ai}}"></input>
+                    <text class="form-value uid-value data-v-fdb5dbe3" wx:else>{{al}}</text>
+                    <view class="error-text data-v-fdb5dbe3" wx:if="{{am}}">{{an}}</view>
+                </view>
+                <view class="form-item data-v-fdb5dbe3">
+                    <text class="form-label data-v-fdb5dbe3">原始数据</text>
+                    <textarea bindinput="{{aq}}" class="form-textarea data-v-fdb5dbe3" placeholder="请输入原始数据" value="{{ap}}" wx:if="{{ao}}"></textarea>
+                    <view class="form-value data-v-fdb5dbe3" wx:else>
+                        <card-data-viewer bind:__l="__l" binddataChanged="{{ar}}" bindeditCancel="{{at}}" bindeditStart="{{as}}" class="data-v-fdb5dbe3" uI="fdb5dbe3-3" uP="{{av}}" wx:if="{{av}}"></card-data-viewer>
+                    </view>
+                </view>
+            </view>
+            <view class="card-data-container data-v-fdb5dbe3" wx:else>
+                <view class="data-section data-v-fdb5dbe3">
+                    <text class="data-label data-v-fdb5dbe3">数据内容 (JSON)</text>
+                    <view class="data-editor data-v-fdb5dbe3" wx:if="{{aw}}">
+                        <textarea bindinput="{{ax}}" class="data-textarea data-v-fdb5dbe3" placeholder="请输入JSON格式的数据" value="{{ay}}" wx:if="{{r0}}"></textarea>
+                        <view class="error-text data-v-fdb5dbe3" wx:if="{{az}}">{{aA}}</view>
+                    </view>
+                    <view class="data-display data-v-fdb5dbe3" wx:else>
+                        <card-data-viewer bind:__l="__l" binddataChanged="{{aB}}" bindeditCancel="{{aD}}" bindeditStart="{{aC}}" class="data-v-fdb5dbe3" uI="fdb5dbe3-4" uP="{{aE}}" wx:if="{{aE}}"></card-data-viewer>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="section data-v-fdb5dbe3">
+            <view class="section-header data-v-fdb5dbe3">
+                <text class="section-title data-v-fdb5dbe3">卡片信息</text>
+            </view>
+            <view class="info-list data-v-fdb5dbe3">
+                <view class="info-item data-v-fdb5dbe3">
+                    <text class="info-label data-v-fdb5dbe3">卡片ID</text>
+                    <text class="info-value data-v-fdb5dbe3">{{aF}}</text>
+                </view>
+                <view class="info-item data-v-fdb5dbe3">
+                    <text class="info-label data-v-fdb5dbe3">创建时间</text>
+                    <text class="info-value data-v-fdb5dbe3">{{aG}}</text>
+                </view>
+                <view class="info-item data-v-fdb5dbe3">
+                    <text class="info-label data-v-fdb5dbe3">修改时间</text>
+                    <text class="info-value data-v-fdb5dbe3">{{aH}}</text>
+                </view>
+                <view class="info-item data-v-fdb5dbe3">
+                    <text class="info-label data-v-fdb5dbe3">数据大小</text>
+                    <text class="info-value data-v-fdb5dbe3">{{aI}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="actions-section data-v-fdb5dbe3">
+            <view class="edit-actions data-v-fdb5dbe3" wx:if="{{aJ}}">
+                <button bindtap="{{aL}}" class="btn-secondary data-v-fdb5dbe3">
+                    <uni-icons bind:__l="__l" class="data-v-fdb5dbe3" uI="fdb5dbe3-5" uP="{{aK}}" wx:if="{{aK}}"></uni-icons>取消</button>
+                <button bindtap="{{aN}}" class="btn-primary data-v-fdb5dbe3" disabled="{{aO}}">
+                    <uni-icons bind:__l="__l" class="data-v-fdb5dbe3" uI="fdb5dbe3-6" uP="{{aM}}" wx:if="{{aM}}"></uni-icons>保存</button>
+            </view>
+            <view class="view-actions data-v-fdb5dbe3" wx:if="{{aP}}">
+                <button bindtap="{{aR}}" class="btn-outline data-v-fdb5dbe3">
+                    <uni-icons bind:__l="__l" class="data-v-fdb5dbe3" uI="fdb5dbe3-7" uP="{{aQ}}" wx:if="{{aQ}}"></uni-icons>部署</button>
+                <button bindtap="{{aT}}" class="btn-outline data-v-fdb5dbe3">
+                    <uni-icons bind:__l="__l" class="data-v-fdb5dbe3" uI="fdb5dbe3-8" uP="{{aS}}" wx:if="{{aS}}"></uni-icons>复制</button>
+                <button bindtap="{{aV}}" class="btn-outline data-v-fdb5dbe3">
+                    <uni-icons bind:__l="__l" class="data-v-fdb5dbe3" uI="fdb5dbe3-9" uP="{{aU}}" wx:if="{{aU}}"></uni-icons>导出</button>
+            </view>
+        </view>
+        <view class="bottom-spacing data-v-fdb5dbe3"></view>
+    </scroll-view>
+    <view bindtap="{{be}}" class="popup-overlay data-v-fdb5dbe3" wx:if="{{aW}}">
+        <view catchtap="{{bd}}" class="popup-content data-v-fdb5dbe3">
+            <view class="popup-header data-v-fdb5dbe3">
+                <text class="popup-title data-v-fdb5dbe3">卡片操作</text>
+                <view bindtap="{{aX}}" class="popup-close data-v-fdb5dbe3">✕</view>
+            </view>
+            <view class="menu-list data-v-fdb5dbe3">
+                <view bindtap="{{aY}}" class="menu-item data-v-fdb5dbe3">
+                    <view class="menu-icon data-v-fdb5dbe3">✏️</view>
+                    <text class="menu-text data-v-fdb5dbe3">编辑卡片</text>
+                </view>
+                <view bindtap="{{aZ}}" class="menu-item data-v-fdb5dbe3">
+                    <view class="menu-icon data-v-fdb5dbe3">📋</view>
+                    <text class="menu-text data-v-fdb5dbe3">复制卡片</text>
+                </view>
+                <view bindtap="{{ba}}" class="menu-item data-v-fdb5dbe3">
+                    <view class="menu-icon data-v-fdb5dbe3">📤</view>
+                    <text class="menu-text data-v-fdb5dbe3">导出卡片</text>
+                </view>
+                <view bindtap="{{bb}}" class="menu-item data-v-fdb5dbe3">
+                    <view class="menu-icon data-v-fdb5dbe3">📥</view>
+                    <text class="menu-text data-v-fdb5dbe3">部署到卡槽</text>
+                </view>
+                <view class="menu-divider data-v-fdb5dbe3"></view>
+                <view bindtap="{{bc}}" class="menu-item danger data-v-fdb5dbe3">
+                    <view class="menu-icon data-v-fdb5dbe3">🗑️</view>
+                    <text class="menu-text data-v-fdb5dbe3">删除卡片</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

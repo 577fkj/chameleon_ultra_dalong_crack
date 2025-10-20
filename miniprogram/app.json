@@ -1,0 +1,73 @@
+{
+  "permission": {
+    "scope.userLocation": {
+      "desc": "电子围栏功能需要获取您的位置信息用于自动切换卡槽"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "debug": true,
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#007AFF",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/connect/connect",
+        "text": "连接",
+        "iconPath": "static/icons/connect.png",
+        "selectedIconPath": "static/icons/connect-active.png"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "设备",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/slots/slots",
+        "text": "卡槽",
+        "iconPath": "static/icons/slots.png",
+        "selectedIconPath": "static/icons/slots-active.png"
+      },
+      {
+        "pagePath": "pages/cards/cards",
+        "text": "卡包",
+        "iconPath": "static/icons/cards.png",
+        "selectedIconPath": "static/icons/cards-active.png"
+      },
+      {
+        "pagePath": "pages/reader/reader",
+        "text": "读卡",
+        "iconPath": "static/icons/reader.png",
+        "selectedIconPath": "static/icons/reader-active.png"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "ChameleonUltra",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "pages": [
+    "pages/connect/connect",
+    "pages/home/home",
+    "pages/slots/slots",
+    "pages/slot-edit/slot-edit",
+    "pages/cards/cards",
+    "pages/card-detail/card-detail",
+    "pages/card-select/card-select",
+    "pages/reader/reader",
+    "pages/card-write/card-write",
+    "pages/sector-details/sector-details",
+    "pages/settings/settings",
+    "pages/firmware/firmware",
+    "pages/geofence/geofence",
+    "pages/geofence-edit/geofence-edit"
+  ]
+}

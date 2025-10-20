@@ -1,0 +1,247 @@
+<view class="slot-edit-page data-v-7f581d10">
+    <view class="content data-v-7f581d10">
+        <view class="section data-v-7f581d10">
+            <view class="section-header data-v-7f581d10">
+                <text class="section-title data-v-7f581d10">基本信息</text>
+                <button bindtap="{{b}}" class="header-btn data-v-7f581d10">
+                    <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-0" uP="{{a}}" wx:if="{{a}}"></uni-icons>从卡包选择</button>
+            </view>
+            <view class="section-content data-v-7f581d10">
+                <view class="info-row data-v-7f581d10">
+                    <text class="info-label data-v-7f581d10">卡槽编号</text>
+                    <text class="info-value data-v-7f581d10">{{c}}</text>
+                </view>
+                <view class="form-row data-v-7f581d10">
+                    <text class="form-label data-v-7f581d10">卡片名称</text>
+                    <input bindinput="{{e}}" class="{{['form-input','data-v-7f581d10',d&&'error']}}" maxlength="32" placeholder="请输入卡片名称" value="{{f}}"></input>
+                    <view class="{{['input-counter','data-v-7f581d10',h&&'counter-warning',i&&'counter-error']}}">{{g}}/32字节</view>
+                    <text class="error-text data-v-7f581d10" wx:if="{{j}}">{{k}}</text>
+                </view>
+                <view class="form-row data-v-7f581d10">
+                    <text class="form-label data-v-7f581d10">卡片类型</text>
+                    <picker bindchange="{{p}}" class="data-v-7f581d10" mode="selector" range="{{o}}" rangeKey="name" value="{{n}}">
+                        <view class="picker-display data-v-7f581d10">
+                            <text class="picker-text data-v-7f581d10">{{l}}</text>
+                            <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-1" uP="{{m}}" wx:if="{{m}}"></uni-icons>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+        <view class="section data-v-7f581d10" wx:if="{{q}}">
+            <view class="section-header data-v-7f581d10">
+                <text class="section-title data-v-7f581d10">HF卡片信息</text>
+            </view>
+            <view class="section-content data-v-7f581d10">
+                <view class="form-row data-v-7f581d10">
+                    <text class="form-label data-v-7f581d10">UID</text>
+                    <view class="hex-input-wrapper data-v-7f581d10">
+                        <input bindblur="{{t}}" bindinput="{{s}}" class="{{['form-input','hex-input','data-v-7f581d10',r&&'error']}}" placeholder="请输入UID (4/7/10字节)" value="{{v}}"></input>
+                        <view bindtap="{{y}}" class="copy-btn data-v-7f581d10" wx:if="{{w}}">
+                            <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-2" uP="{{x}}" wx:if="{{x}}"></uni-icons>
+                        </view>
+                    </view>
+                    <text class="error-text data-v-7f581d10" wx:if="{{z}}">{{A}}</text>
+                </view>
+                <view class="form-row data-v-7f581d10">
+                    <text class="form-label data-v-7f581d10">SAK</text>
+                    <view class="hex-input-wrapper data-v-7f581d10">
+                        <input bindblur="{{D}}" bindinput="{{C}}" class="{{['form-input','hex-input','data-v-7f581d10',B&&'error']}}" placeholder="请输入SAK (1字节)" value="{{E}}"></input>
+                        <view bindtap="{{H}}" class="copy-btn data-v-7f581d10" wx:if="{{F}}">
+                            <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-3" uP="{{G}}" wx:if="{{G}}"></uni-icons>
+                        </view>
+                    </view>
+                    <text class="error-text data-v-7f581d10" wx:if="{{I}}">{{J}}</text>
+                </view>
+                <view class="form-row data-v-7f581d10">
+                    <text class="form-label data-v-7f581d10">ATQA</text>
+                    <view class="hex-input-wrapper data-v-7f581d10">
+                        <input bindblur="{{M}}" bindinput="{{L}}" class="{{['form-input','hex-input','data-v-7f581d10',K&&'error']}}" placeholder="请输入ATQA (2字节)" value="{{N}}"></input>
+                        <view bindtap="{{Q}}" class="copy-btn data-v-7f581d10" wx:if="{{O}}">
+                            <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-4" uP="{{P}}" wx:if="{{P}}"></uni-icons>
+                        </view>
+                    </view>
+                    <text class="error-text data-v-7f581d10" wx:if="{{R}}">{{S}}</text>
+                </view>
+                <view class="form-row data-v-7f581d10">
+                    <text class="form-label data-v-7f581d10">ATS</text>
+                    <view class="hex-input-wrapper data-v-7f581d10">
+                        <input bindblur="{{V}}" bindinput="{{U}}" class="{{['form-input','hex-input','data-v-7f581d10',T&&'error']}}" placeholder="请输入ATS (可选)" value="{{W}}"></input>
+                        <view bindtap="{{Z}}" class="copy-btn data-v-7f581d10" wx:if="{{X}}">
+                            <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-5" uP="{{Y}}" wx:if="{{Y}}"></uni-icons>
+                        </view>
+                    </view>
+                    <text class="error-text data-v-7f581d10" wx:if="{{aa}}">{{ab}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="section data-v-7f581d10" wx:if="{{ac}}">
+            <view class="section-header data-v-7f581d10">
+                <text class="section-title data-v-7f581d10">Mifare Classic 模拟器设置</text>
+            </view>
+            <view class="section-content data-v-7f581d10">
+                <view class="setting-row data-v-7f581d10">
+                    <view class="setting-info data-v-7f581d10">
+                        <text class="setting-label data-v-7f581d10">GEN1A模式</text>
+                        <text class="setting-desc data-v-7f581d10">启用GEN1A魔术卡模式</text>
+                    </view>
+                    <switch bindchange="{{ae}}" checked="{{ad}}" class="data-v-7f581d10" disabled="{{af}}"></switch>
+                </view>
+                <view class="setting-row data-v-7f581d10">
+                    <view class="setting-info data-v-7f581d10">
+                        <text class="setting-label data-v-7f581d10">GEN2模式</text>
+                        <text class="setting-desc data-v-7f581d10">启用GEN2魔术卡模式</text>
+                    </view>
+                    <switch bindchange="{{ah}}" checked="{{ag}}" class="data-v-7f581d10" disabled="{{ai}}"></switch>
+                </view>
+                <view class="setting-row data-v-7f581d10">
+                    <view class="setting-info data-v-7f581d10">
+                        <text class="setting-label data-v-7f581d10">使用Block 0数据</text>
+                        <text class="setting-desc data-v-7f581d10">从Block 0获取防冲突数据</text>
+                    </view>
+                    <switch bindchange="{{ak}}" checked="{{aj}}" class="data-v-7f581d10" disabled="{{al}}"></switch>
+                </view>
+                <view class="setting-row data-v-7f581d10">
+                    <view class="setting-info data-v-7f581d10">
+                        <text class="setting-label data-v-7f581d10">检测模式 (Mfkey32)</text>
+                        <text class="setting-desc data-v-7f581d10">收集nonces用于密钥恢复</text>
+                    </view>
+                    <switch bindchange="{{an}}" checked="{{am}}" class="data-v-7f581d10" disabled="{{ao}}"></switch>
+                </view>
+                <view class="form-row data-v-7f581d10">
+                    <text class="form-label data-v-7f581d10">写入模式</text>
+                    <picker bindchange="{{at}}" class="data-v-7f581d10" mode="selector" range="{{as}}" rangeKey="name" value="{{ar}}">
+                        <view class="picker-display data-v-7f581d10">
+                            <text class="picker-text data-v-7f581d10">{{ap}}</text>
+                            <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-6" uP="{{aq}}" wx:if="{{aq}}"></uni-icons>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+        <view class="danger-section data-v-7f581d10" wx:if="{{av}}">
+            <button bindtap="{{ax}}" class="action-btn danger data-v-7f581d10" disabled="{{ay}}">
+                <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-7" uP="{{aw}}" wx:if="{{aw}}"></uni-icons>
+                <text class="btn-text data-v-7f581d10">清空卡槽</text>
+            </button>
+        </view>
+    </view>
+    <view class="bottom-actions data-v-7f581d10">
+        <button bindtap="{{aB}}" class="{{['save-btn','data-v-7f581d10',aA&&'disabled']}}" disabled="{{aC}}">
+            <text class="save-btn-text data-v-7f581d10">{{az}}</text>
+        </button>
+    </view>
+    <view class="loading-overlay data-v-7f581d10" wx:if="{{aD}}">
+        <view class="loading-content data-v-7f581d10">
+            <uni-load-more bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-8" uP="{{aE}}" wx:if="{{aE}}"></uni-load-more>
+        </view>
+    </view>
+    <view class="success-toast data-v-7f581d10" wx:if="{{aF}}">
+        <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-9" uP="{{aG}}" wx:if="{{aG}}"></uni-icons>
+        <text class="success-text data-v-7f581d10">{{aH}}</text>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-7f581d10" uI="7f581d10-10" uP="{{aW}}" uR="cardPackagePopup" uS="{{['d']}}" wx:if="{{aW}}">
+        <view class="card-package-popup data-v-7f581d10">
+            <view class="popup-header data-v-7f581d10">
+                <text class="popup-title data-v-7f581d10">选择卡片</text>
+                <button bindtap="{{aJ}}" class="popup-close data-v-7f581d10">
+                    <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-11,7f581d10-10" uP="{{aI}}" wx:if="{{aI}}"></uni-icons>
+                </button>
+            </view>
+            <view class="popup-content data-v-7f581d10">
+                <view class="search-section data-v-7f581d10">
+                    <uni-search-bar bind:__l="__l" bindclear="{{aL}}" bindinput="{{aK}}" bindupdateModelValue="{{aM}}" class="data-v-7f581d10" uI="7f581d10-12,7f581d10-10" uP="{{aN}}" wx:if="{{aN}}"></uni-search-bar>
+                </view>
+                <view class="filter-section data-v-7f581d10">
+                    <scroll-view class="filter-scroll data-v-7f581d10" scrollX="true">
+                        <view class="filter-tags data-v-7f581d10">
+                            <view bindtap="{{filter.h}}" class="{{['data-v-7f581d10','filter-tag',filter.g]}}" wx:for="{{aO}}" wx:for-item="filter" wx:key="f">
+                                <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="{{filter.a}}" uP="{{filter.b}}" wx:if="{{filter.b}}"></uni-icons>
+                                <text class="filter-text data-v-7f581d10">{{filter.c}}</text>
+                                <text class="filter-count data-v-7f581d10" wx:if="{{filter.d}}">{{filter.e}}</text>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view class="cards-list data-v-7f581d10">
+                    <view class="empty-cards data-v-7f581d10" wx:if="{{aP}}">
+                        <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-14,7f581d10-10" uP="{{aQ}}" wx:if="{{aQ}}"></uni-icons>
+                        <text class="empty-text data-v-7f581d10">暂无卡片</text>
+                        <button bindtap="{{aS}}" class="empty-action data-v-7f581d10">
+                            <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-15,7f581d10-10" uP="{{aR}}" wx:if="{{aR}}"></uni-icons>去添加卡片</button>
+                    </view>
+                    <view class="cards-grid data-v-7f581d10" wx:else>
+                        <view bindlongpress="{{card.n}}" bindtap="{{card.m}}" class="card-item data-v-7f581d10" wx:for="{{aT}}" wx:for-item="card" wx:key="l">
+                            <view class="card-icon data-v-7f581d10" style="{{'background-color:'+card.c}}">
+                                <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="{{card.a}}" uP="{{card.b}}" wx:if="{{card.b}}"></uni-icons>
+                            </view>
+                            <view class="card-info data-v-7f581d10">
+                                <text class="card-name data-v-7f581d10">{{card.d}}</text>
+                                <text class="card-type data-v-7f581d10">{{card.e}}</text>
+                                <text class="card-uid data-v-7f581d10" wx:if="{{card.f}}">{{card.g}}</text>
+                            </view>
+                            <view class="card-actions data-v-7f581d10">
+                                <view class="{{['card-frequency','data-v-7f581d10',card.i]}}">{{card.h}}</view>
+                                <view catchtap="{{card.k}}" class="card-preview data-v-7f581d10">
+                                    <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="{{card.j}}" uP="{{aU}}" wx:if="{{aU}}"></uni-icons>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="r data-v-7f581d10" uI="7f581d10-18" uP="{{br}}" uR="cardDetailPopup" uS="{{['d']}}" wx:if="{{br}}">
+        <view class="card-detail-popup data-v-7f581d10" wx:if="{{aX}}">
+            <view class="detail-header data-v-7f581d10">
+                <text class="detail-title data-v-7f581d10">{{aY}}</text>
+                <button bindtap="{{ba}}" class="popup-close data-v-7f581d10">
+                    <uni-icons bind:__l="__l" class="data-v-7f581d10" uI="7f581d10-19,7f581d10-18" uP="{{aZ}}" wx:if="{{aZ}}"></uni-icons>
+                </button>
+            </view>
+            <view class="detail-content data-v-7f581d10">
+                <view class="detail-row data-v-7f581d10">
+                    <text class="detail-label data-v-7f581d10">类型</text>
+                    <text class="detail-value data-v-7f581d10">{{bb}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10" wx:if="{{bc}}">
+                    <text class="detail-label data-v-7f581d10">UID</text>
+                    <text class="detail-value data-v-7f581d10">{{bd}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10">
+                    <text class="detail-label data-v-7f581d10">频率</text>
+                    <text class="detail-value data-v-7f581d10">{{be}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10" wx:if="{{bf}}">
+                    <text class="detail-label data-v-7f581d10">SAK</text>
+                    <text class="detail-value data-v-7f581d10">{{bg}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10" wx:if="{{bh}}">
+                    <text class="detail-label data-v-7f581d10">ATQA</text>
+                    <text class="detail-value data-v-7f581d10">{{bi}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10" wx:if="{{bj}}">
+                    <text class="detail-label data-v-7f581d10">ATS</text>
+                    <text class="detail-value data-v-7f581d10">{{bk}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10">
+                    <text class="detail-label data-v-7f581d10">数据大小</text>
+                    <text class="detail-value data-v-7f581d10">{{bl}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10">
+                    <text class="detail-label data-v-7f581d10">创建时间</text>
+                    <text class="detail-value data-v-7f581d10">{{bm}}</text>
+                </view>
+                <view class="detail-row data-v-7f581d10">
+                    <text class="detail-label data-v-7f581d10">修改时间</text>
+                    <text class="detail-value data-v-7f581d10">{{bn}}</text>
+                </view>
+            </view>
+            <view class="detail-actions data-v-7f581d10">
+                <button bindtap="{{bo}}" class="detail-btn secondary data-v-7f581d10">取消</button>
+                <button bindtap="{{bp}}" class="detail-btn primary data-v-7f581d10">选择此卡片</button>
+            </view>
+        </view>
+    </uni-popup>
+</view>

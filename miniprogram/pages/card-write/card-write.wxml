@@ -1,0 +1,225 @@
+<view class="write-card-container data-v-64ca8dc1">
+    <view class="content data-v-64ca8dc1">
+        <view class="status-bar data-v-64ca8dc1">
+            <view class="{{['connection-status','data-v-64ca8dc1',c&&'connected']}}">
+                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-0" uP="{{a}}" wx:if="{{a}}"></uni-icons>
+                <text class="status-text data-v-64ca8dc1">{{b}}</text>
+            </view>
+            <view class="{{['reader-mode-status','data-v-64ca8dc1',f&&'active']}}">
+                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-1" uP="{{d}}" wx:if="{{d}}"></uni-icons>
+                <text class="status-text data-v-64ca8dc1">{{e}}</text>
+            </view>
+        </view>
+        <view class="write-wizard data-v-64ca8dc1">
+            <view class="step-indicator data-v-64ca8dc1">
+                <view class="{{['step-item','data-v-64ca8dc1',step.g&&'active',step.h&&'current',step.i&&'completed']}}" wx:for="{{g}}" wx:for-item="step" wx:key="f">
+                    <view class="step-circle data-v-64ca8dc1">
+                        <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="{{step.b}}" uP="{{step.c}}" wx:if="{{step.a}}"></uni-icons>
+                        <text class="step-number data-v-64ca8dc1" wx:else>{{step.d}}</text>
+                    </view>
+                    <text class="step-title data-v-64ca8dc1">{{step.e}}</text>
+                </view>
+            </view>
+            <view class="step-content data-v-64ca8dc1">
+                <view class="step-panel data-v-64ca8dc1" wx:if="{{h}}">
+                    <view class="panel-header data-v-64ca8dc1">
+                        <text class="panel-title data-v-64ca8dc1">{{i}}</text>
+                        <text class="panel-desc data-v-64ca8dc1">从卡包中选择要写入的卡片</text>
+                    </view>
+                    <view class="card-selector data-v-64ca8dc1">
+                        <view bindtap="{{p}}" class="selected-card-display data-v-64ca8dc1" wx:if="{{j}}">
+                            <view class="card-icon data-v-64ca8dc1">
+                                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-3" uP="{{k}}" wx:if="{{k}}"></uni-icons>
+                            </view>
+                            <view class="card-info data-v-64ca8dc1">
+                                <text class="card-name data-v-64ca8dc1">{{l}}</text>
+                                <text class="card-uid data-v-64ca8dc1">{{m}}</text>
+                                <text class="card-type data-v-64ca8dc1">{{n}}</text>
+                            </view>
+                            <view class="change-button data-v-64ca8dc1">
+                                <text class="change-text data-v-64ca8dc1">更换</text>
+                                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-4" uP="{{o}}" wx:if="{{o}}"></uni-icons>
+                            </view>
+                        </view>
+                        <view bindtap="{{r}}" class="card-selection-placeholder data-v-64ca8dc1" wx:else>
+                            <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-5" uP="{{q}}" wx:if="{{q}}"></uni-icons>
+                            <text class="placeholder-text data-v-64ca8dc1">点击选择卡片</text>
+                        </view>
+                    </view>
+                    <view class="empty-cards data-v-64ca8dc1" wx:if="{{s}}">
+                        <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-6" uP="{{t}}" wx:if="{{t}}"></uni-icons>
+                        <text class="empty-text data-v-64ca8dc1">卡包中没有可写入的卡片</text>
+                        <text class="empty-hint data-v-64ca8dc1">请先读取一些卡片保存到卡包</text>
+                    </view>
+                </view>
+                <view class="step-panel data-v-64ca8dc1" wx:if="{{v}}">
+                    <view class="panel-header data-v-64ca8dc1">
+                        <text class="panel-title data-v-64ca8dc1">{{w}}</text>
+                        <text class="panel-desc data-v-64ca8dc1">检测目标魔术卡的类型和特性</text>
+                    </view>
+                    <view class="magic-card-detector data-v-64ca8dc1">
+                        <view class="detection-area data-v-64ca8dc1" wx:if="{{x}}">
+                            <view class="detection-icon data-v-64ca8dc1">
+                                <uni-icons bind:__l="__l" class="{{['data-v-64ca8dc1',y&&'rotating']}}" uI="64ca8dc1-7" uP="{{z}}" wx:if="{{z}}"></uni-icons>
+                            </view>
+                            <text class="detection-title data-v-64ca8dc1">{{A}}</text>
+                            <text class="detection-desc data-v-64ca8dc1">{{B}}</text>
+                            <button bindtap="{{F}}" class="detect-button data-v-64ca8dc1" disabled="{{E}}">
+                                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-8" uP="{{C}}" wx:if="{{C}}"></uni-icons>
+                                <text class="button-text data-v-64ca8dc1">{{D}}</text>
+                            </button>
+                        </view>
+                        <view class="detected-card data-v-64ca8dc1" wx:else>
+                            <view class="detected-header data-v-64ca8dc1">
+                                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-9" uP="{{G}}" wx:if="{{G}}"></uni-icons>
+                                <text class="detected-title data-v-64ca8dc1">检测成功</text>
+                            </view>
+                            <view class="card-type-info data-v-64ca8dc1">
+                                <view class="type-badge data-v-64ca8dc1" style="{{'background-color:'+I}}">
+                                    <text class="type-text data-v-64ca8dc1">{{H}}</text>
+                                </view>
+                                <view class="type-details data-v-64ca8dc1">
+                                    <view class="detail-item data-v-64ca8dc1">
+                                        <text class="detail-label data-v-64ca8dc1">类型</text>
+                                        <text class="detail-value data-v-64ca8dc1">{{J}}</text>
+                                    </view>
+                                    <view class="detail-item data-v-64ca8dc1">
+                                        <text class="detail-label data-v-64ca8dc1">特性</text>
+                                        <text class="detail-value data-v-64ca8dc1">{{K}}</text>
+                                    </view>
+                                    <view class="detail-item data-v-64ca8dc1">
+                                        <text class="detail-label data-v-64ca8dc1">兼容性</text>
+                                        <text class="{{['detail-value','data-v-64ca8dc1',M&&'compatible',N&&'incompatible']}}">{{L}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="compatibility-warning data-v-64ca8dc1" wx:if="{{O}}">
+                                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-10" uP="{{P}}" wx:if="{{P}}"></uni-icons>
+                                <text class="warning-text data-v-64ca8dc1"> 目标卡片与选择的源卡片可能不完全兼容，写入可能失败或功能受限 </text>
+                            </view>
+                            <button bindtap="{{R}}" class="re-detect-button data-v-64ca8dc1">
+                                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-11" uP="{{Q}}" wx:if="{{Q}}"></uni-icons>
+                                <text class="button-text data-v-64ca8dc1">重新检测</text>
+                            </button>
+                        </view>
+                    </view>
+                </view>
+                <view class="step-panel data-v-64ca8dc1" wx:if="{{S}}">
+                    <view class="panel-header data-v-64ca8dc1">
+                        <text class="panel-title data-v-64ca8dc1">{{T}}</text>
+                        <text class="panel-desc data-v-64ca8dc1">将卡片数据写入到魔术卡</text>
+                    </view>
+                    <view class="write-operation data-v-64ca8dc1">
+                        <view class="write-ready data-v-64ca8dc1" wx:if="{{U}}">
+                            <view class="write-summary data-v-64ca8dc1">
+                                <view class="summary-header data-v-64ca8dc1">
+                                    <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-12" uP="{{V}}" wx:if="{{V}}"></uni-icons>
+                                    <text class="summary-title data-v-64ca8dc1">准备写入</text>
+                                </view>
+                                <view class="summary-content data-v-64ca8dc1">
+                                    <view class="summary-item data-v-64ca8dc1">
+                                        <text class="summary-label data-v-64ca8dc1">源卡片</text>
+                                        <text class="summary-value data-v-64ca8dc1">{{W}}</text>
+                                    </view>
+                                    <view class="summary-item data-v-64ca8dc1">
+                                        <text class="summary-label data-v-64ca8dc1">目标卡片</text>
+                                        <text class="summary-value data-v-64ca8dc1">{{X}}</text>
+                                    </view>
+                                    <view class="summary-item data-v-64ca8dc1">
+                                        <text class="summary-label data-v-64ca8dc1">数据块数</text>
+                                        <text class="summary-value data-v-64ca8dc1">{{Y}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="write-warnings data-v-64ca8dc1" wx:if="{{Z}}">
+                                <view class="warnings-header data-v-64ca8dc1">
+                                    <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-13" uP="{{aa}}" wx:if="{{aa}}"></uni-icons>
+                                    <text class="warnings-title data-v-64ca8dc1">写入提示</text>
+                                </view>
+                                <view class="warnings-list data-v-64ca8dc1">
+                                    <text class="warning-item data-v-64ca8dc1" wx:for="{{ab}}" wx:for-item="warning" wx:key="b"> • {{warning.a}}</text>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="writing-progress data-v-64ca8dc1" wx:elif="{{ac}}">
+                            <view class="progress-header data-v-64ca8dc1">
+                                <text class="progress-title data-v-64ca8dc1">正在写入数据...</text>
+                                <text class="progress-percentage data-v-64ca8dc1">{{ad}}%</text>
+                            </view>
+                            <view class="progress-bar data-v-64ca8dc1">
+                                <view class="progress-fill data-v-64ca8dc1" style="{{'width:'+ae}}"></view>
+                            </view>
+                            <view class="progress-details data-v-64ca8dc1">
+                                <text class="progress-detail data-v-64ca8dc1">{{af}}</text>
+                                <text class="progress-eta data-v-64ca8dc1" wx:if="{{ag}}">预计剩余: {{ah}}</text>
+                            </view>
+                            <view class="write-errors data-v-64ca8dc1" wx:if="{{ai}}">
+                                <text class="errors-title data-v-64ca8dc1">写入错误:</text>
+                                <text class="error-item data-v-64ca8dc1" wx:for="{{aj}}" wx:for-item="error" wx:key="c"> 块 {{error.a}}: {{error.b}}</text>
+                            </view>
+                        </view>
+                        <view class="write-complete data-v-64ca8dc1" wx:elif="{{ak}}">
+                            <view class="complete-icon data-v-64ca8dc1">
+                                <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-14" uP="{{al}}" wx:if="{{al}}"></uni-icons>
+                            </view>
+                            <text class="complete-title data-v-64ca8dc1">写入完成</text>
+                            <text class="complete-desc data-v-64ca8dc1">{{am}}</text>
+                            <view class="final-errors data-v-64ca8dc1" wx:if="{{an}}">
+                                <text class="errors-title data-v-64ca8dc1">失败的块:</text>
+                                <view class="error-blocks data-v-64ca8dc1">
+                                    <text class="error-block data-v-64ca8dc1" wx:for="{{ao}}" wx:for-item="error" wx:key="b">{{error.a}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="wizard-actions data-v-64ca8dc1">
+                <button bindtap="{{ar}}" class="action-button secondary data-v-64ca8dc1" wx:if="{{ap}}">
+                    <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-15" uP="{{aq}}" wx:if="{{aq}}"></uni-icons>
+                    <text class="button-text data-v-64ca8dc1">上一步</text>
+                </button>
+                <button bindtap="{{aw}}" class="action-button primary data-v-64ca8dc1" disabled="{{av}}" wx:if="{{as}}">
+                    <text class="button-text data-v-64ca8dc1">下一步</text>
+                    <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-16" uP="{{at}}" wx:if="{{at}}"></uni-icons>
+                </button>
+                <button bindtap="{{aA}}" class="action-button primary write-button data-v-64ca8dc1" disabled="{{az}}" wx:if="{{ax}}">
+                    <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-17" uP="{{ay}}" wx:if="{{ay}}"></uni-icons>
+                    <text class="button-text data-v-64ca8dc1">开始写入</text>
+                </button>
+                <button bindtap="{{aD}}" class="action-button primary data-v-64ca8dc1" wx:if="{{aB}}">
+                    <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-18" uP="{{aC}}" wx:if="{{aC}}"></uni-icons>
+                    <text class="button-text data-v-64ca8dc1">完成</text>
+                </button>
+                <button bindtap="{{aG}}" class="action-button secondary data-v-64ca8dc1" wx:if="{{aE}}">
+                    <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="64ca8dc1-19" uP="{{aF}}" wx:if="{{aF}}"></uni-icons>
+                    <text class="button-text data-v-64ca8dc1">再次写入</text>
+                </button>
+            </view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-64ca8dc1" uI="64ca8dc1-20" uP="{{aL}}" uR="cardSelectionPopup" uS="{{['d']}}" wx:if="{{aL}}">
+        <view class="card-selection-popup data-v-64ca8dc1">
+            <view class="popup-header data-v-64ca8dc1">
+                <text class="popup-title data-v-64ca8dc1">选择要写入的卡片</text>
+                <uni-icons bind:__l="__l" bindclick="{{aH}}" class="data-v-64ca8dc1" uI="64ca8dc1-21,64ca8dc1-20" uP="{{aI}}" wx:if="{{aI}}"></uni-icons>
+            </view>
+            <scroll-view class="cards-list data-v-64ca8dc1" scrollY="true">
+                <view bindtap="{{card.l}}" class="{{['card-item','data-v-64ca8dc1',card.k&&'selected']}}" wx:for="{{aJ}}" wx:for-item="card" wx:key="j">
+                    <view class="card-icon data-v-64ca8dc1">
+                        <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="{{card.a}}" uP="{{card.b}}" wx:if="{{card.b}}"></uni-icons>
+                    </view>
+                    <view class="card-content data-v-64ca8dc1">
+                        <text class="card-name data-v-64ca8dc1">{{card.c}}</text>
+                        <text class="card-uid data-v-64ca8dc1">{{card.d}}</text>
+                        <text class="card-type data-v-64ca8dc1">{{card.e}}</text>
+                    </view>
+                    <view class="card-meta data-v-64ca8dc1">
+                        <text class="card-size data-v-64ca8dc1">{{card.f}}</text>
+                        <uni-icons bind:__l="__l" class="data-v-64ca8dc1" uI="{{card.h}}" uP="{{card.i}}" wx:if="{{card.g}}"></uni-icons>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </uni-popup>
+</view>

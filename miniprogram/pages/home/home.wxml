@@ -1,0 +1,113 @@
+<view class="home-page data-v-971c2681">
+    <view class="content data-v-971c2681">
+        <view class="device-status-card data-v-971c2681">
+            <view class="status-header data-v-971c2681">
+                <view class="device-icon data-v-971c2681">
+                    <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-0" uP="{{a}}" wx:if="{{a}}"></uni-icons>
+                </view>
+                <view class="status-info data-v-971c2681">
+                    <text class="device-name data-v-971c2681">{{b}}</text>
+                    <text class="status-text data-v-971c2681" style="{{'color:'+d}}">{{c}}</text>
+                </view>
+                <view class="status-actions data-v-971c2681">
+                    <button bindtap="{{f}}" class="btn-connect data-v-971c2681" wx:if="{{e}}">连接设备</button>
+                    <uni-icons bind:__l="__l" bindclick="{{g}}" class="data-v-971c2681" uI="971c2681-1" uP="{{h||''}}" wx:else></uni-icons>
+                </view>
+            </view>
+            <view class="device-details data-v-971c2681" wx:if="{{i}}">
+                <view class="detail-row data-v-971c2681">
+                    <view class="detail-item data-v-971c2681">
+                        <text class="label data-v-971c2681">型号:</text>
+                        <text class="value data-v-971c2681">{{j}}</text>
+                    </view>
+                    <view class="detail-item data-v-971c2681">
+                        <text class="label data-v-971c2681">版本:</text>
+                        <text class="value data-v-971c2681">{{k}}</text>
+                    </view>
+                </view>
+                <view class="detail-row data-v-971c2681">
+                    <view class="detail-item data-v-971c2681">
+                        <text class="label data-v-971c2681">模式:</text>
+                        <text class="value data-v-971c2681">{{l}}</text>
+                    </view>
+                    <view class="detail-item data-v-971c2681">
+                        <text class="label data-v-971c2681">电量:</text>
+                        <text class="value data-v-971c2681">{{m}}</text>
+                    </view>
+                </view>
+                <view class="detail-row data-v-971c2681">
+                    <view class="detail-item data-v-971c2681">
+                        <text class="label data-v-971c2681">活动卡槽:</text>
+                        <text class="value data-v-971c2681">卡槽 {{n}}</text>
+                    </view>
+                    <view class="detail-item data-v-971c2681">
+                        <text class="label data-v-971c2681">信号:</text>
+                        <text class="value data-v-971c2681">{{o}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="connection-guide data-v-971c2681" wx:if="{{p}}">
+                <text class="guide-text data-v-971c2681">请先连接 Chameleon 设备以使用完整功能</text>
+                <view class="guide-steps data-v-971c2681">
+                    <text class="step data-v-971c2681">1. 确保设备已开启</text>
+                    <text class="step data-v-971c2681">2. 点击"连接设备"按钮</text>
+                    <text class="step data-v-971c2681">3. 在设备列表中选择您的设备</text>
+                </view>
+            </view>
+        </view>
+        <view class="function-cards data-v-971c2681">
+            <view class="section-header data-v-971c2681">
+                <text class="section-title data-v-971c2681">功能</text>
+            </view>
+            <view class="function-grid data-v-971c2681">
+                <view bindtap="{{v}}" class="{{['function-card','data-v-971c2681',t&&'disabled']}}">
+                    <view class="card-icon data-v-971c2681">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-2" uP="{{q}}" wx:if="{{q}}"></uni-icons>
+                    </view>
+                    <text class="card-title data-v-971c2681">卡槽管理</text>
+                    <text class="card-desc data-v-971c2681">管理16个卡槽</text>
+                    <view class="disabled-overlay data-v-971c2681" wx:if="{{r}}">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-3" uP="{{s}}" wx:if="{{s}}"></uni-icons>
+                    </view>
+                </view>
+                <view bindtap="{{A}}" class="{{['function-card','data-v-971c2681',z&&'disabled']}}">
+                    <view class="card-icon data-v-971c2681">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-4" uP="{{w}}" wx:if="{{w}}"></uni-icons>
+                    </view>
+                    <text class="card-title data-v-971c2681">卡包管理</text>
+                    <text class="card-desc data-v-971c2681">导入导出卡片</text>
+                    <view class="disabled-overlay data-v-971c2681" wx:if="{{x}}">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-5" uP="{{y}}" wx:if="{{y}}"></uni-icons>
+                    </view>
+                </view>
+                <view bindtap="{{F}}" class="{{['function-card','data-v-971c2681',E&&'disabled']}}">
+                    <view class="card-icon data-v-971c2681">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-6" uP="{{B}}" wx:if="{{B}}"></uni-icons>
+                    </view>
+                    <text class="card-title data-v-971c2681">读卡功能</text>
+                    <text class="card-desc data-v-971c2681">扫描和读取卡片</text>
+                    <view class="disabled-overlay data-v-971c2681" wx:if="{{C}}">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-7" uP="{{D}}" wx:if="{{D}}"></uni-icons>
+                    </view>
+                </view>
+                <view bindtap="{{K}}" class="{{['function-card','data-v-971c2681',J&&'disabled']}}">
+                    <view class="card-icon data-v-971c2681">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-8" uP="{{G}}" wx:if="{{G}}"></uni-icons>
+                    </view>
+                    <text class="card-title data-v-971c2681">电子围栏</text>
+                    <text class="card-desc data-v-971c2681">自动切换卡槽</text>
+                    <view class="disabled-overlay data-v-971c2681" wx:if="{{H}}">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-9" uP="{{I}}" wx:if="{{I}}"></uni-icons>
+                    </view>
+                </view>
+                <view bindtap="{{M}}" class="function-card data-v-971c2681">
+                    <view class="card-icon data-v-971c2681">
+                        <uni-icons bind:__l="__l" class="data-v-971c2681" uI="971c2681-10" uP="{{L}}" wx:if="{{L}}"></uni-icons>
+                    </view>
+                    <text class="card-title data-v-971c2681">设备设置</text>
+                    <text class="card-desc data-v-971c2681">配置和偏好</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

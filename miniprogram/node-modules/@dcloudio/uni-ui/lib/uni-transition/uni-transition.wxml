@@ -1,0 +1,3 @@
+<view animation="{{b}}" bindtap="{{e}}" class="{{c}}" hidden="{{!a}}" ref="ani" style="{{d}}">
+    <slot></slot>
+</view>

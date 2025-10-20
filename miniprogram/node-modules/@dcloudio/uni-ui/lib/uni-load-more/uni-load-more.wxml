@@ -1,0 +1,11 @@
+<view bindtap="{{q}}" class="uni-load-more">
+    <view class="uni-load-more__img uni-load-more__img--android-MP" style="{{'width:'+h+';'+'height:'+i}}" wx:if="{{a}}">
+        <view class="uni-load-more__img-icon" style="{{'border-top-color:'+b+';'+'border-top-width:'+c}}"></view>
+        <view class="uni-load-more__img-icon" style="{{'border-top-color:'+d+';'+'border-top-width:'+e}}"></view>
+        <view class="uni-load-more__img-icon" style="{{'border-top-color:'+f+';'+'border-top-width:'+g}}"></view>
+    </view>
+    <view class="uni-load-more__img uni-load-more__img--ios-H5" style="{{'width:'+l+';'+'height:'+m}}" wx:elif="{{j}}">
+        <image mode="widthFix" src="{{k}}"></image>
+    </view>
+    <text class="uni-load-more__text" style="{{'color:'+p}}" wx:if="{{n}}">{{o}}</text>
+</view>

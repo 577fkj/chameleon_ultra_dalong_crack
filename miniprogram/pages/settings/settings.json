@@ -1,0 +1,1 @@
+{"navigationBarTitleText":"设备设置","backgroundColor":"#f8f8f8","usingComponents":{"setting-item":"../../components/setting-item","uni-icons":"../../node-modules/@dcloudio/uni-ui/lib/uni-icons/uni-icons","uni-load-more":"../../node-modules/@dcloudio/uni-ui/lib/uni-load-more/uni-load-more"}}

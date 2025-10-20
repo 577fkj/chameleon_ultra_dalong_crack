@@ -1,0 +1,1 @@
+.uni-popup{position:fixed;z-index:99}.uni-popup.left,.uni-popup.right,.uni-popup.top{top:0}.uni-popup .uni-popup__wrapper{display:block;position:relative}.uni-popup .uni-popup__wrapper.left,.uni-popup .uni-popup__wrapper.right{flex:1;padding-top:0}.fixforpc-z-index{z-index:999}.fixforpc-top{top:0}

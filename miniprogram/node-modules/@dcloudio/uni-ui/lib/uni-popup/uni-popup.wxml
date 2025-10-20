@@ -1,0 +1,10 @@
+<view class="{{['uni-popup',k,l]}}" wx:if="{{a}}">
+    <view bindtouchstart="{{j}}">
+        <uni-transition bind:__l="__l" bindclick="{{c}}" key="1" uI="6083195e-0" uP="{{d}}" wx:if="{{b}}"></uni-transition>
+        <uni-transition bind:__l="__l" bindclick="{{h}}" key="2" uI="6083195e-1" uP="{{i}}" uS="{{['d']}}" wx:if="{{i}}">
+            <view bindtap="{{g}}" class="{{['uni-popup__wrapper',f]}}" style="{{e}}">
+                <slot></slot>
+            </view>
+        </uni-transition>
+    </view>
+</view>

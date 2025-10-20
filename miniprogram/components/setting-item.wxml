@@ -1,0 +1,11 @@
+<view class="setting-item data-v-a80667a0">
+    <text class="setting-label data-v-a80667a0">{{a}}</text>
+    <view class="setting-control data-v-a80667a0">
+        <picker bindchange="{{f}}" class="data-v-a80667a0" range="{{d}}" value="{{e}}">
+            <view class="picker-display data-v-a80667a0">
+                <text class="picker-text data-v-a80667a0">{{b}}</text>
+                <uni-icons bind:__l="__l" class="data-v-a80667a0" uI="a80667a0-0" uP="{{c}}" wx:if="{{c}}"></uni-icons>
+            </view>
+        </picker>
+    </view>
+</view>

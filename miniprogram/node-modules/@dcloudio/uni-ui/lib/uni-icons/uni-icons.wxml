@@ -1,0 +1,3 @@
+<text bindtap="{{e}}" class="{{['uni-icons',b,c,d]}}" style="{{a}}">
+    <slot></slot>
+</text>

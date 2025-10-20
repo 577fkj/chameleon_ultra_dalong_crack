@@ -1,0 +1,184 @@
+<view class="card-data-viewer data-v-b99b25cd">
+    <view class="mifare-classic-data data-v-b99b25cd" wx:if="{{a}}">
+        <view class="data-header data-v-b99b25cd" wx:if="{{b}}">
+            <view class="header-actions data-v-b99b25cd">
+                <button bindtap="{{e}}" class="quick-edit-btn data-v-b99b25cd" wx:if="{{c}}">
+                    <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-0" uP="{{d}}" wx:if="{{d}}"></uni-icons>
+                    <text class="data-v-b99b25cd">快速编辑</text>
+                </button>
+                <button bindtap="{{h}}" class="edit-btn data-v-b99b25cd" wx:if="{{f}}">
+                    <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-1" uP="{{g}}" wx:if="{{g}}"></uni-icons>
+                    <text class="data-v-b99b25cd">逐块编辑</text>
+                </button>
+                <view class="edit-actions data-v-b99b25cd" wx:else>
+                    <button bindtap="{{j}}" class="save-btn data-v-b99b25cd">
+                        <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-2" uP="{{i}}" wx:if="{{i}}"></uni-icons>
+                        <text class="data-v-b99b25cd">退出编辑</text>
+                    </button>
+                </view>
+            </view>
+        </view>
+        <view class="simple-table data-v-b99b25cd">
+            <view class="table-header data-v-b99b25cd">
+                <view class="table-cell sector-cell data-v-b99b25cd">扇区</view>
+                <view class="table-cell block-cell data-v-b99b25cd">块</view>
+                <view class="table-cell data-cell data-v-b99b25cd">数据</view>
+                <view class="table-cell action-cell data-v-b99b25cd" wx:if="{{k}}">操作</view>
+            </view>
+            <view class="data-v-b99b25cd" wx:for="{{l}}" wx:for-item="sector" wx:key="b">
+                <view class="{{['table-row','data-v-b99b25cd',block.i&&'trailer-block',block.j&&'data-block']}}" wx:for="{{sector.a}}" wx:for-item="block" wx:key="h">
+                    <view class="table-cell sector-cell data-v-b99b25cd" wx:if="{{block.a}}">{{block.b}}</view>
+                    <view class="table-cell sector-cell data-v-b99b25cd" wx:else></view>
+                    <view class="table-cell block-cell data-v-b99b25cd">{{block.c}}</view>
+                    <view class="table-cell data-cell data-v-b99b25cd">
+                        <text class="data-text data-v-b99b25cd">{{block.d}}</text>
+                    </view>
+                    <view class="table-cell action-cell data-v-b99b25cd" wx:if="{{m}}">
+                        <button bindtap="{{block.g}}" class="edit-block-btn data-v-b99b25cd">
+                            <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="{{block.e}}" uP="{{block.f}}" wx:if="{{block.f}}"></uni-icons>
+                        </button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="ntag-data data-v-b99b25cd" wx:elif="{{n}}">
+        <view class="data-header data-v-b99b25cd" wx:if="{{o}}">
+            <view class="header-actions data-v-b99b25cd">
+                <button bindtap="{{r}}" class="quick-edit-btn data-v-b99b25cd" wx:if="{{p}}">
+                    <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-4" uP="{{q}}" wx:if="{{q}}"></uni-icons>
+                    <text class="data-v-b99b25cd">快速编辑</text>
+                </button>
+                <button bindtap="{{v}}" class="edit-btn data-v-b99b25cd" wx:if="{{s}}">
+                    <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-5" uP="{{t}}" wx:if="{{t}}"></uni-icons>
+                    <text class="data-v-b99b25cd">逐页编辑</text>
+                </button>
+                <view class="edit-actions data-v-b99b25cd" wx:else>
+                    <button bindtap="{{x}}" class="save-btn data-v-b99b25cd">
+                        <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-6" uP="{{w}}" wx:if="{{w}}"></uni-icons>
+                        <text class="data-v-b99b25cd">退出编辑</text>
+                    </button>
+                </view>
+            </view>
+        </view>
+        <view class="simple-table data-v-b99b25cd">
+            <view class="table-header data-v-b99b25cd">
+                <view class="table-cell page-group-cell data-v-b99b25cd">分组</view>
+                <view class="table-cell page-cell data-v-b99b25cd">页面</view>
+                <view class="table-cell data-cell data-v-b99b25cd">数据</view>
+                <view class="table-cell action-cell data-v-b99b25cd" wx:if="{{y}}">操作</view>
+            </view>
+            <view class="{{['table-row','data-v-b99b25cd',page.m&&'header-page',page.n&&'user-page',page.o&&'config-page']}}" wx:for="{{z}}" wx:for-item="page" wx:key="l">
+                <view class="table-cell page-group-cell data-v-b99b25cd">
+                    <text class="data-v-b99b25cd" wx:if="{{page.a}}">头部</text>
+                    <text class="data-v-b99b25cd" wx:elif="{{page.b}}">用户</text>
+                    <text class="data-v-b99b25cd" wx:elif="{{page.c}}">配置</text>
+                </view>
+                <view class="table-cell page-cell data-v-b99b25cd">{{page.d}}</view>
+                <view class="table-cell data-cell data-v-b99b25cd">
+                    <text class="data-text data-v-b99b25cd">{{page.e}}</text>
+                    <view class="page-info data-v-b99b25cd" wx:if="{{page.f}}">
+                        <text class="info-text data-v-b99b25cd">UID: {{page.g}}</text>
+                    </view>
+                </view>
+                <view class="table-cell action-cell data-v-b99b25cd" wx:if="{{A}}">
+                    <button bindtap="{{page.k}}" class="edit-page-btn data-v-b99b25cd" wx:if="{{page.h}}">
+                        <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="{{page.i}}" uP="{{page.j}}" wx:if="{{page.j}}"></uni-icons>
+                    </button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="em410x-data data-v-b99b25cd" wx:elif="{{B}}">
+        <view class="data-header data-v-b99b25cd" wx:if="{{C}}">
+            <view class="header-actions data-v-b99b25cd">
+                <button bindtap="{{E}}" class="copy-btn data-v-b99b25cd">
+                    <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-8" uP="{{D}}" wx:if="{{D}}"></uni-icons>
+                    <text class="data-v-b99b25cd">复制数据</text>
+                </button>
+            </view>
+        </view>
+        <view class="simple-table data-v-b99b25cd">
+            <view class="table-header data-v-b99b25cd">
+                <view class="table-cell label-cell data-v-b99b25cd">标签</view>
+                <view class="table-cell data-cell data-v-b99b25cd">数据</view>
+            </view>
+            <view class="table-row data-v-b99b25cd">
+                <view class="table-cell label-cell data-v-b99b25cd">完整数据</view>
+                <view class="table-cell data-cell data-v-b99b25cd">
+                    <text class="data-text data-v-b99b25cd">{{F}}</text>
+                </view>
+            </view>
+            <view class="table-row data-v-b99b25cd">
+                <view class="table-cell label-cell data-v-b99b25cd">UID</view>
+                <view class="table-cell data-cell data-v-b99b25cd">
+                    <text class="data-text data-v-b99b25cd">{{G}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="generic-data data-v-b99b25cd" wx:else>
+        <view class="data-header data-v-b99b25cd" wx:if="{{H}}">
+            <view class="header-actions data-v-b99b25cd">
+                <button bindtap="{{J}}" class="copy-btn data-v-b99b25cd">
+                    <uni-icons bind:__l="__l" class="data-v-b99b25cd" uI="b99b25cd-9" uP="{{I}}" wx:if="{{I}}"></uni-icons>
+                    <text class="data-v-b99b25cd">复制全部</text>
+                </button>
+            </view>
+        </view>
+        <view class="simple-table data-v-b99b25cd">
+            <view class="table-header data-v-b99b25cd">
+                <view class="table-cell block-cell data-v-b99b25cd">块号</view>
+                <view class="table-cell data-cell data-v-b99b25cd">数据</view>
+            </view>
+            <view class="table-row data-v-b99b25cd" wx:for="{{K}}" wx:for-item="block" wx:key="c">
+                <view class="table-cell block-cell data-v-b99b25cd">{{block.a}}</view>
+                <view class="table-cell data-cell data-v-b99b25cd">
+                    <text class="data-text data-v-b99b25cd">{{block.b}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-b99b25cd" uI="b99b25cd-10" uP="{{X}}" uR="quickEditPopup" uS="{{['d']}}" wx:if="{{X}}">
+        <view class="quick-edit-dialog data-v-b99b25cd">
+            <view class="dialog-header data-v-b99b25cd">
+                <text class="dialog-title data-v-b99b25cd">快速编辑 - {{L}}</text>
+            </view>
+            <view class="dialog-content data-v-b99b25cd">
+                <view class="input-section data-v-b99b25cd">
+                    <text class="input-label data-v-b99b25cd">原始数据 (每行16字节，用空格分隔):</text>
+                    <textarea adjustPosition="{{false}}" autoHeight="{{false}}" bindinput="{{O}}" class="quick-edit-input data-v-b99b25cd" cursorSpacing="{{0}}" maxlength="{{5000}}" placeholder="{{M}}" showConfirmBar="{{false}}" value="{{N}}" wx:if="{{r0}}"></textarea>
+                    <text class="input-hint data-v-b99b25cd"> 每行代表一个{{P}}的数据（16字节）， 总共需要{{Q}}行数据 </text>
+                </view>
+                <view class="validation-info data-v-b99b25cd">
+                    <text class="{{['validation-text','data-v-b99b25cd',S&&'error']}}">{{R}}</text>
+                </view>
+            </view>
+            <view class="dialog-actions data-v-b99b25cd">
+                <button bindtap="{{T}}" class="dialog-btn cancel-btn data-v-b99b25cd">取消</button>
+                <button bindtap="{{V}}" class="dialog-btn confirm-btn data-v-b99b25cd" disabled="{{U}}">确认</button>
+            </view>
+        </view>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="r data-v-b99b25cd" uI="b99b25cd-11" uP="{{aj}}" uR="editPopup" uS="{{['d']}}" wx:if="{{aj}}">
+        <view class="edit-dialog data-v-b99b25cd">
+            <view class="dialog-header data-v-b99b25cd">
+                <text class="dialog-title data-v-b99b25cd">{{Y}}</text>
+            </view>
+            <view class="dialog-content data-v-b99b25cd">
+                <view class="input-section data-v-b99b25cd">
+                    <text class="input-label data-v-b99b25cd">十六进制数据 (用空格分隔):</text>
+                    <textarea bindinput="{{ab}}" class="hex-input data-v-b99b25cd" maxlength="{{Z}}" placeholder="请输入十六进制数据，如: FF FF FF FF FF FF" value="{{aa}}" wx:if="{{r0}}"></textarea>
+                    <text class="input-hint data-v-b99b25cd">{{ac}}</text>
+                </view>
+                <view class="validation-info data-v-b99b25cd">
+                    <text class="{{['validation-text','data-v-b99b25cd',ae&&'error']}}">{{ad}}</text>
+                </view>
+            </view>
+            <view class="dialog-actions data-v-b99b25cd">
+                <button bindtap="{{af}}" class="dialog-btn cancel-btn data-v-b99b25cd">取消</button>
+                <button bindtap="{{ah}}" class="dialog-btn confirm-btn data-v-b99b25cd" disabled="{{ag}}">确认</button>
+            </view>
+        </view>
+    </uni-popup>
+</view>

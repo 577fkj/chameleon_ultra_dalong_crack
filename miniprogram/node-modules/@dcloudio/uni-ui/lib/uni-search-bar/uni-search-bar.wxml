@@ -1,0 +1,19 @@
+<view class="uni-searchbar">
+    <view bindtap="{{s}}" class="uni-searchbar__box" style="{{'border-radius:'+q+';'+'background-color:'+r}}">
+        <view class="uni-searchbar__box-icon-search">
+            <slot name="searchIcon" wx:if="{{$slots.searchIcon}}"></slot>
+            <block wx:else>
+                <uni-icons bind:__l="__l" uI="16151c51-0" uP="{{a}}" wx:if="{{a}}"></uni-icons>
+            </block>
+        </view>
+        <input bindblur="{{i}}" bindconfirm="{{h}}" bindfocus="{{j}}" bindinput="{{l}}" class="uni-searchbar__box-search-input" confirmType="search" disabled="{{d}}" focus="{{c}}" maxlength="{{f}}" placeholder="{{e}}" style="{{'color:'+g}}" type="text" value="{{k}}" wx:if="{{b}}"></input>
+        <text class="uni-searchbar__text-placeholder" wx:else>{{m}}</text>
+        <view bindtap="{{p}}" class="uni-searchbar__box-icon-clear" wx:if="{{n}}">
+            <slot name="clearIcon" wx:if="{{$slots.clearIcon}}"></slot>
+            <block wx:else>
+                <uni-icons bind:__l="__l" uI="16151c51-1" uP="{{o}}" wx:if="{{o}}"></uni-icons>
+            </block>
+        </view>
+    </view>
+    <text bindtap="{{w}}" class="uni-searchbar__cancel" wx:if="{{t}}">{{v}}</text>
+</view>

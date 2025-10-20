@@ -1,0 +1,465 @@
+<view class="reader-container data-v-77ae6d1e">
+    <view class="content data-v-77ae6d1e">
+        <view class="status-bar data-v-77ae6d1e">
+            <view class="{{['connection-status','data-v-77ae6d1e',c&&'connected']}}">
+                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-0" uP="{{a}}" wx:if="{{a}}"></uni-icons>
+                <text class="status-text data-v-77ae6d1e">{{b}}</text>
+            </view>
+            <view class="{{['reader-mode-status','data-v-77ae6d1e',f&&'active']}}">
+                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-1" uP="{{d}}" wx:if="{{d}}"></uni-icons>
+                <text class="status-text data-v-77ae6d1e">{{e}}</text>
+            </view>
+        </view>
+        <view class="mode-selector data-v-77ae6d1e">
+            <view class="mode-tabs data-v-77ae6d1e">
+                <view bindtap="{{i}}" class="{{['mode-tab','data-v-77ae6d1e',h&&'active']}}">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-2" uP="{{g}}" wx:if="{{g}}"></uni-icons>
+                    <text class="mode-label data-v-77ae6d1e">高频 (HF)</text>
+                    <text class="mode-desc data-v-77ae6d1e">13.56MHz</text>
+                </view>
+                <view bindtap="{{l}}" class="{{['mode-tab','data-v-77ae6d1e',k&&'active']}}">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-3" uP="{{j}}" wx:if="{{j}}"></uni-icons>
+                    <text class="mode-label data-v-77ae6d1e">低频 (LF)</text>
+                    <text class="mode-desc data-v-77ae6d1e">125kHz</text>
+                </view>
+            </view>
+        </view>
+        <view class="supported-types data-v-77ae6d1e">
+            <view class="section-header data-v-77ae6d1e">
+                <text class="section-title data-v-77ae6d1e">支持的卡片类型</text>
+            </view>
+            <view class="type-grid data-v-77ae6d1e">
+                <view class="type-item data-v-77ae6d1e" wx:for="{{m}}" wx:for-item="cardType" wx:key="d">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="{{cardType.a}}" uP="{{cardType.b}}" wx:if="{{cardType.b}}"></uni-icons>
+                    <text class="type-name data-v-77ae6d1e">{{cardType.c}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="scan-area data-v-77ae6d1e">
+            <view class="{{['scan-card','data-v-77ae6d1e',D&&'scanning']}}">
+                <view class="scan-animation data-v-77ae6d1e" wx:if="{{n}}">
+                    <view class="scan-line data-v-77ae6d1e"></view>
+                </view>
+                <view class="scan-content data-v-77ae6d1e">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-5" uP="{{o}}" wx:if="{{o}}"></uni-icons>
+                    <text class="scan-title data-v-77ae6d1e">{{p}}</text>
+                    <text class="scan-desc data-v-77ae6d1e">{{q}}</text>
+                    <view class="progress-container data-v-77ae6d1e" wx:if="{{r}}">
+                        <view class="progress-header data-v-77ae6d1e">
+                            <text class="progress-title data-v-77ae6d1e">{{s}}</text>
+                            <text class="progress-percentage data-v-77ae6d1e">{{t}}%</text>
+                        </view>
+                        <view class="progress-bar data-v-77ae6d1e">
+                            <view class="progress-fill data-v-77ae6d1e" style="{{'width:'+v}}"></view>
+                        </view>
+                        <view class="progress-details data-v-77ae6d1e" wx:if="{{w}}">
+                            <text class="progress-detail data-v-77ae6d1e">{{x}}/{{y}}</text>
+                            <text class="progress-eta data-v-77ae6d1e" wx:if="{{z}}">预计剩余: {{A}}</text>
+                        </view>
+                        <view class="progress-log data-v-77ae6d1e" wx:if="{{B}}">
+                            <view class="{{['progress-log-item','data-v-77ae6d1e',detail.e&&'success',detail.f&&'error']}}" wx:for="{{C}}" wx:for-item="detail" wx:key="d">
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="{{detail.a}}" uP="{{detail.b}}" wx:if="{{detail.b}}"></uni-icons>
+                                <text class="log-text data-v-77ae6d1e">{{detail.c}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="control-buttons data-v-77ae6d1e">
+            <button bindtap="{{J}}" class="{{['scan-button','data-v-77ae6d1e',G&&'disabled',H&&'scanning']}}" disabled="{{I}}">
+                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-7" uP="{{E}}" wx:if="{{E}}"></uni-icons>
+                <text class="button-text data-v-77ae6d1e">{{F}}</text>
+            </button>
+            <button bindtap="{{N}}" class="init-button data-v-77ae6d1e" disabled="{{O}}" wx:if="{{K}}">
+                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-8" uP="{{L}}" wx:if="{{L}}"></uni-icons>
+                <text class="button-text data-v-77ae6d1e">{{M}}</text>
+            </button>
+        </view>
+        <view class="card-info data-v-77ae6d1e" wx:if="{{P}}">
+            <view class="section-header data-v-77ae6d1e">
+                <text class="section-title data-v-77ae6d1e">卡片信息</text>
+                <view class="card-type-badge data-v-77ae6d1e" style="{{'background-color:'+R}}">
+                    <text class="badge-text data-v-77ae6d1e">{{Q}}</text>
+                </view>
+            </view>
+            <view class="info-grid data-v-77ae6d1e">
+                <view class="info-item data-v-77ae6d1e">
+                    <text class="info-label data-v-77ae6d1e">UID</text>
+                    <text class="info-value uid-value data-v-77ae6d1e">{{S}}</text>
+                </view>
+                <view class="info-item data-v-77ae6d1e" wx:if="{{T}}">
+                    <text class="info-label data-v-77ae6d1e">SAK</text>
+                    <text class="info-value data-v-77ae6d1e">{{U}}</text>
+                </view>
+                <view class="info-item data-v-77ae6d1e" wx:if="{{V}}">
+                    <text class="info-label data-v-77ae6d1e">ATQA</text>
+                    <text class="info-value data-v-77ae6d1e">{{W}}</text>
+                </view>
+                <view class="info-item data-v-77ae6d1e" wx:if="{{X}}">
+                    <text class="info-label data-v-77ae6d1e">ATS</text>
+                    <text class="info-value data-v-77ae6d1e">{{Y}}</text>
+                </view>
+                <view class="info-item data-v-77ae6d1e">
+                    <text class="info-label data-v-77ae6d1e">协议</text>
+                    <text class="info-value data-v-77ae6d1e">{{Z}}</text>
+                </view>
+                <view class="info-item data-v-77ae6d1e">
+                    <text class="info-label data-v-77ae6d1e">读取时间</text>
+                    <text class="info-value data-v-77ae6d1e">{{aa}}</text>
+                </view>
+                <view class="info-item data-v-77ae6d1e" wx:if="{{ab}}">
+                    <text class="info-label data-v-77ae6d1e">可读扇区</text>
+                    <text class="info-value data-v-77ae6d1e">{{ac}}/{{ad}}</text>
+                </view>
+            </view>
+            <view class="data-status data-v-77ae6d1e">
+                <view class="{{['status-item','data-v-77ae6d1e',ag&&'complete',ah&&'error']}}">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-9" uP="{{ae}}" wx:if="{{ae}}"></uni-icons>
+                    <text class="status-label data-v-77ae6d1e">{{af}}</text>
+                </view>
+                <view class="error-message data-v-77ae6d1e" wx:if="{{ai}}">
+                    <text class="error-text data-v-77ae6d1e">{{aj}}</text>
+                </view>
+            </view>
+            <view class="card-actions data-v-77ae6d1e">
+                <button bindtap="{{al}}" class="action-button save-button data-v-77ae6d1e">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-10" uP="{{ak}}" wx:if="{{ak}}"></uni-icons>
+                    <text class="button-text data-v-77ae6d1e">保存到卡包</text>
+                </button>
+                <button bindtap="{{an}}" class="action-button write-button data-v-77ae6d1e">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-11" uP="{{am}}" wx:if="{{am}}"></uni-icons>
+                    <text class="button-text data-v-77ae6d1e">写卡</text>
+                </button>
+                <button bindtap="{{aq}}" class="action-button retry-button data-v-77ae6d1e" wx:if="{{ao}}">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-12" uP="{{ap}}" wx:if="{{ap}}"></uni-icons>
+                    <text class="button-text data-v-77ae6d1e">高级读取</text>
+                </button>
+                <button bindtap="{{at}}" class="action-button detail-button data-v-77ae6d1e" wx:if="{{ar}}">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-13" uP="{{as}}" wx:if="{{as}}"></uni-icons>
+                    <text class="button-text data-v-77ae6d1e">扇区详情</text>
+                </button>
+                <button bindtap="{{ax}}" class="action-button detail-button data-v-77ae6d1e" wx:if="{{av}}">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-14" uP="{{aw}}" wx:if="{{aw}}"></uni-icons>
+                    <text class="button-text data-v-77ae6d1e">页面详情</text>
+                </button>
+                <button bindtap="{{az}}" class="action-button export-button data-v-77ae6d1e">
+                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-15" uP="{{ay}}" wx:if="{{ay}}"></uni-icons>
+                    <text class="button-text data-v-77ae6d1e">复制数据</text>
+                </button>
+            </view>
+        </view>
+        <view class="read-history data-v-77ae6d1e" wx:if="{{aA}}">
+            <view class="section-header data-v-77ae6d1e">
+                <text class="section-title data-v-77ae6d1e">最近读取</text>
+                <text bindtap="{{aB}}" class="clear-button data-v-77ae6d1e">清空</text>
+            </view>
+            <view class="history-list data-v-77ae6d1e">
+                <view bindtap="{{item.g}}" class="history-item data-v-77ae6d1e" wx:for="{{aC}}" wx:key="f">
+                    <view class="history-icon data-v-77ae6d1e">
+                        <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="{{item.a}}" uP="{{item.b}}" wx:if="{{item.b}}"></uni-icons>
+                    </view>
+                    <view class="history-content data-v-77ae6d1e">
+                        <text class="history-uid data-v-77ae6d1e">{{item.c}}</text>
+                        <text class="history-type data-v-77ae6d1e">{{item.d}}</text>
+                    </view>
+                    <view class="history-time data-v-77ae6d1e">
+                        <text class="time-text data-v-77ae6d1e">{{item.e}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="statistics data-v-77ae6d1e">
+            <view class="section-header data-v-77ae6d1e">
+                <text class="section-title data-v-77ae6d1e">读取统计</text>
+            </view>
+            <view class="stats-grid data-v-77ae6d1e">
+                <view class="stat-item data-v-77ae6d1e">
+                    <text class="stat-value data-v-77ae6d1e">{{aD}}</text>
+                    <text class="stat-label data-v-77ae6d1e">总读取</text>
+                </view>
+                <view class="stat-item data-v-77ae6d1e">
+                    <text class="stat-value data-v-77ae6d1e">{{aE}}</text>
+                    <text class="stat-label data-v-77ae6d1e">成功</text>
+                </view>
+                <view class="stat-item data-v-77ae6d1e">
+                    <text class="stat-value data-v-77ae6d1e">{{aF}}%</text>
+                    <text class="stat-label data-v-77ae6d1e">成功率</text>
+                </view>
+                <view class="stat-item data-v-77ae6d1e">
+                    <text class="stat-value data-v-77ae6d1e">{{aG}}</text>
+                    <text class="stat-label data-v-77ae6d1e">高频</text>
+                </view>
+                <view class="stat-item data-v-77ae6d1e">
+                    <text class="stat-value data-v-77ae6d1e">{{aH}}</text>
+                    <text class="stat-label data-v-77ae6d1e">低频</text>
+                </view>
+            </view>
+        </view>
+        <uni-popup bind:__l="__l" class="r data-v-77ae6d1e" uI="77ae6d1e-17" uP="{{bI}}" uR="advancedReadPopup" uS="{{['d']}}" wx:if="{{bI}}">
+            <view class="advanced-read-popup data-v-77ae6d1e">
+                <view class="popup-header data-v-77ae6d1e">
+                    <text class="popup-title data-v-77ae6d1e">高级读取选项</text>
+                    <view class="header-actions data-v-77ae6d1e">
+                        <button bindtap="{{aJ}}" class="preset-button data-v-77ae6d1e">
+                            <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-18,77ae6d1e-17" uP="{{aI}}" wx:if="{{aI}}"></uni-icons>
+                            <text class="preset-text data-v-77ae6d1e">预设</text>
+                        </button>
+                        <uni-icons bind:__l="__l" bindclick="{{aK}}" class="data-v-77ae6d1e" uI="77ae6d1e-19,77ae6d1e-17" uP="{{aL}}" wx:if="{{aL}}"></uni-icons>
+                    </view>
+                </view>
+                <view class="popup-content data-v-77ae6d1e">
+                    <view class="option-section data-v-77ae6d1e">
+                        <view class="section-header-with-help data-v-77ae6d1e">
+                            <text class="section-title data-v-77ae6d1e">密钥字典</text>
+                            <button bindtap="{{aN}}" class="help-button data-v-77ae6d1e">
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-20,77ae6d1e-17" uP="{{aM}}" wx:if="{{aM}}"></uni-icons>
+                            </button>
+                        </view>
+                        <view class="key-dictionary-section data-v-77ae6d1e">
+                            <view class="dictionary-header data-v-77ae6d1e">
+                                <text class="dictionary-info data-v-77ae6d1e">共 {{aO}} 个预定义密钥</text>
+                                <button bindtap="{{aQ}}" class="toggle-dictionary-button data-v-77ae6d1e">{{aP}}</button>
+                            </view>
+                            <view class="dictionary-list data-v-77ae6d1e" wx:if="{{aR}}">
+                                <view bindtap="{{keyName.g}}" class="{{['dictionary-item','data-v-77ae6d1e',keyName.f&&'selected']}}" wx:for="{{aS}}" wx:for-item="keyName" wx:key="e">
+                                    <view class="key-info data-v-77ae6d1e">
+                                        <text class="key-name data-v-77ae6d1e">{{keyName.a}}</text>
+                                        <text class="key-value data-v-77ae6d1e">{{keyName.b}}</text>
+                                    </view>
+                                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="{{keyName.c}}" uP="{{keyName.d}}" wx:if="{{keyName.d}}"></uni-icons>
+                                </view>
+                            </view>
+                            <view class="dictionary-actions data-v-77ae6d1e">
+                                <button bindtap="{{aT}}" class="dict-action-button data-v-77ae6d1e">全选</button>
+                                <button bindtap="{{aU}}" class="dict-action-button data-v-77ae6d1e">清空</button>
+                                <button bindtap="{{aV}}" class="dict-action-button data-v-77ae6d1e">常用</button>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="option-section data-v-77ae6d1e">
+                        <text class="section-title data-v-77ae6d1e">自定义密钥</text>
+                        <view class="key-input-group data-v-77ae6d1e">
+                            <input bindinput="{{aW}}" class="key-input data-v-77ae6d1e" maxlength="12" placeholder="输入6字节密钥 (如: FFFFFFFFFFFF)" value="{{aX}}"></input>
+                            <button bindtap="{{aY}}" class="add-key-button data-v-77ae6d1e">添加</button>
+                        </view>
+                        <view class="custom-keys-list data-v-77ae6d1e" wx:if="{{aZ}}">
+                            <view class="custom-keys-header data-v-77ae6d1e">
+                                <text class="keys-count data-v-77ae6d1e">已添加 {{ba}} 个自定义密钥</text>
+                                <button bindtap="{{bb}}" class="clear-keys-button data-v-77ae6d1e">清空</button>
+                            </view>
+                            <view class="keys-grid data-v-77ae6d1e">
+                                <view class="key-item data-v-77ae6d1e" wx:for="{{bc}}" wx:for-item="key" wx:key="d">
+                                    <text class="key-text data-v-77ae6d1e">{{key.a}}</text>
+                                    <uni-icons bind:__l="__l" bindclick="{{key.b}}" class="data-v-77ae6d1e" uI="{{key.c}}" uP="{{bd}}" wx:if="{{bd}}"></uni-icons>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="option-section data-v-77ae6d1e">
+                        <text class="section-title data-v-77ae6d1e">读取策略</text>
+                        <view class="strategy-selector data-v-77ae6d1e">
+                            <view bindtap="{{bh}}" class="{{['strategy-item','data-v-77ae6d1e',bg&&'active']}}">
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-23,77ae6d1e-17" uP="{{be}}" wx:if="{{be}}"></uni-icons>
+                                <view class="strategy-info data-v-77ae6d1e">
+                                    <text class="strategy-name data-v-77ae6d1e">快速读取</text>
+                                    <text class="strategy-desc data-v-77ae6d1e">仅使用常用密钥，快速获取基本信息</text>
+                                </view>
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-24,77ae6d1e-17" uP="{{bf}}" wx:if="{{bf}}"></uni-icons>
+                            </view>
+                            <view bindtap="{{bl}}" class="{{['strategy-item','data-v-77ae6d1e',bk&&'active']}}">
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-25,77ae6d1e-17" uP="{{bi}}" wx:if="{{bi}}"></uni-icons>
+                                <view class="strategy-info data-v-77ae6d1e">
+                                    <text class="strategy-name data-v-77ae6d1e">标准读取</text>
+                                    <text class="strategy-desc data-v-77ae6d1e">使用完整密钥库，平衡速度与完整性</text>
+                                </view>
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-26,77ae6d1e-17" uP="{{bj}}" wx:if="{{bj}}"></uni-icons>
+                            </view>
+                            <view bindtap="{{bp}}" class="{{['strategy-item','data-v-77ae6d1e',bo&&'active']}}">
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-27,77ae6d1e-17" uP="{{bm}}" wx:if="{{bm}}"></uni-icons>
+                                <view class="strategy-info data-v-77ae6d1e">
+                                    <text class="strategy-name data-v-77ae6d1e">深度读取</text>
+                                    <text class="strategy-desc data-v-77ae6d1e">使用所有可用技术，最大化读取成功率</text>
+                                </view>
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-28,77ae6d1e-17" uP="{{bn}}" wx:if="{{bn}}"></uni-icons>
+                            </view>
+                            <view bindtap="{{bt}}" class="{{['strategy-item','data-v-77ae6d1e',bs&&'active']}}">
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-29,77ae6d1e-17" uP="{{bq}}" wx:if="{{bq}}"></uni-icons>
+                                <view class="strategy-info data-v-77ae6d1e">
+                                    <text class="strategy-name data-v-77ae6d1e">智能恢复 ⭐</text>
+                                    <text class="strategy-desc data-v-77ae6d1e">自动选择最佳攻击方式，支持后门攻击</text>
+                                </view>
+                                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-30,77ae6d1e-17" uP="{{br}}" wx:if="{{br}}"></uni-icons>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="option-section data-v-77ae6d1e">
+                        <text class="section-title data-v-77ae6d1e">读取选项</text>
+                        <view class="option-item data-v-77ae6d1e">
+                            <text class="option-label data-v-77ae6d1e">使用默认密钥库</text>
+                            <switch bindchange="{{bw}}" checked="{{bv}}" class="data-v-77ae6d1e"></switch>
+                        </view>
+                        <view class="option-item data-v-77ae6d1e">
+                            <text class="option-label data-v-77ae6d1e">检测并使用后门攻击</text>
+                            <switch bindchange="{{by}}" checked="{{bx}}" class="data-v-77ae6d1e"></switch>
+                        </view>
+                        <view class="option-item data-v-77ae6d1e">
+                            <text class="option-label data-v-77ae6d1e">尝试嵌套攻击</text>
+                            <switch bindchange="{{bA}}" checked="{{bz}}" class="data-v-77ae6d1e"></switch>
+                        </view>
+                        <view class="option-item data-v-77ae6d1e">
+                            <text class="option-label data-v-77ae6d1e">详细进度显示</text>
+                            <switch bindchange="{{bC}}" checked="{{bB}}" class="data-v-77ae6d1e"></switch>
+                        </view>
+                        <view class="option-item data-v-77ae6d1e">
+                            <text class="option-label data-v-77ae6d1e">自动重试失败扇区</text>
+                            <switch bindchange="{{bE}}" checked="{{bD}}" class="data-v-77ae6d1e"></switch>
+                        </view>
+                    </view>
+                </view>
+                <view class="popup-actions data-v-77ae6d1e">
+                    <button bindtap="{{bF}}" class="popup-button cancel-button data-v-77ae6d1e">取消</button>
+                    <button bindtap="{{bG}}" class="popup-button confirm-button data-v-77ae6d1e">开始读取</button>
+                </view>
+            </view>
+        </uni-popup>
+        <uni-popup bind:__l="__l" class="r data-v-77ae6d1e" uI="77ae6d1e-31" uP="{{bP}}" uR="pageDetailsPopup" uS="{{['d']}}" wx:if="{{bP}}">
+            <view class="page-details-popup data-v-77ae6d1e">
+                <view class="popup-header data-v-77ae6d1e">
+                    <text class="popup-title data-v-77ae6d1e">页面详情</text>
+                    <uni-icons bind:__l="__l" bindclick="{{bJ}}" class="data-v-77ae6d1e" uI="77ae6d1e-32,77ae6d1e-31" uP="{{bK}}" wx:if="{{bK}}"></uni-icons>
+                </view>
+                <scroll-view class="page-details-content data-v-77ae6d1e" scrollY="true">
+                    <view class="pages-list data-v-77ae6d1e" wx:if="{{bL}}">
+                        <view class="{{['page-item','data-v-77ae6d1e',page.i&&'special-page',page.j&&'user-page']}}" wx:for="{{bM}}" wx:for-item="page" wx:key="h">
+                            <view class="page-header data-v-77ae6d1e">
+                                <text class="page-title data-v-77ae6d1e">页面 {{page.a}}</text>
+                                <view class="page-type data-v-77ae6d1e">
+                                    <text class="page-type-text data-v-77ae6d1e">{{page.b}}</text>
+                                </view>
+                            </view>
+                            <view class="page-data-container data-v-77ae6d1e">
+                                <text class="page-data data-v-77ae6d1e">{{page.c}}</text>
+                                <button bindtap="{{page.e}}" class="copy-page-button data-v-77ae6d1e">
+                                    <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="{{page.d}}" uP="{{bN}}" wx:if="{{bN}}"></uni-icons>
+                                </button>
+                            </view>
+                            <view class="page-info data-v-77ae6d1e" wx:if="{{page.f}}">
+                                <text class="page-info-title data-v-77ae6d1e">页面信息:</text>
+                                <text class="page-info-text data-v-77ae6d1e">{{page.g}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </uni-popup>
+        <uni-popup bind:__l="__l" class="r data-v-77ae6d1e" uI="77ae6d1e-34" uP="{{ce}}" uR="errorDetailsPopup" uS="{{['d']}}" wx:if="{{ce}}">
+            <view class="error-details-popup data-v-77ae6d1e">
+                <view class="popup-header data-v-77ae6d1e">
+                    <text class="popup-title data-v-77ae6d1e">错误详情</text>
+                    <uni-icons bind:__l="__l" bindclick="{{bQ}}" class="data-v-77ae6d1e" uI="77ae6d1e-35,77ae6d1e-34" uP="{{bR}}" wx:if="{{bR}}"></uni-icons>
+                </view>
+                <scroll-view class="error-details-content data-v-77ae6d1e" scrollY="true">
+                    <view class="error-info data-v-77ae6d1e" wx:if="{{bS}}">
+                        <view class="error-main data-v-77ae6d1e">
+                            <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-36,77ae6d1e-34" uP="{{bT}}" wx:if="{{bT}}"></uni-icons>
+                            <text class="error-title data-v-77ae6d1e">{{bU}}</text>
+                        </view>
+                        <view class="error-description data-v-77ae6d1e">
+                            <text class="error-text data-v-77ae6d1e">{{bV}}</text>
+                        </view>
+                        <view class="error-technical data-v-77ae6d1e" wx:if="{{bW}}">
+                            <text class="technical-title data-v-77ae6d1e">技术详情:</text>
+                            <text class="technical-text data-v-77ae6d1e">{{bX}}</text>
+                        </view>
+                        <view class="error-suggestions data-v-77ae6d1e" wx:if="{{bY}}">
+                            <text class="suggestions-title data-v-77ae6d1e">建议解决方案:</text>
+                            <view class="suggestion-item data-v-77ae6d1e" wx:for="{{bZ}}" wx:for-item="suggestion" wx:key="c">
+                                <text class="suggestion-text data-v-77ae6d1e">{{suggestion.a}}. {{suggestion.b}}</text>
+                            </view>
+                        </view>
+                        <view class="error-timestamp data-v-77ae6d1e">
+                            <text class="timestamp-text data-v-77ae6d1e">发生时间: {{ca}}</text>
+                        </view>
+                    </view>
+                </scroll-view>
+                <view class="error-actions data-v-77ae6d1e">
+                    <button bindtap="{{cb}}" class="error-action-button retry-button data-v-77ae6d1e">重试</button>
+                    <button bindtap="{{cc}}" class="error-action-button close-button data-v-77ae6d1e">关闭</button>
+                </view>
+            </view>
+        </uni-popup>
+        <uni-popup bind:__l="__l" class="r data-v-77ae6d1e" uI="77ae6d1e-37" uP="{{cD}}" uR="saveOptionsPopup" uS="{{['d']}}" wx:if="{{cD}}">
+            <view class="save-options-popup data-v-77ae6d1e">
+                <view class="popup-header data-v-77ae6d1e">
+                    <text class="popup-title data-v-77ae6d1e">保存到卡包</text>
+                    <uni-icons bind:__l="__l" bindclick="{{cf}}" class="data-v-77ae6d1e" uI="77ae6d1e-38,77ae6d1e-37" uP="{{cg}}" wx:if="{{cg}}"></uni-icons>
+                </view>
+                <view class="popup-content data-v-77ae6d1e">
+                    <view class="card-preview data-v-77ae6d1e">
+                        <view class="preview-header data-v-77ae6d1e">
+                            <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-39,77ae6d1e-37" uP="{{ch}}" wx:if="{{ch}}"></uni-icons>
+                            <view class="preview-info data-v-77ae6d1e">
+                                <text class="preview-name data-v-77ae6d1e">{{ci}}</text>
+                                <text class="preview-uid data-v-77ae6d1e">{{cj}}</text>
+                            </view>
+                        </view>
+                        <view class="preview-details data-v-77ae6d1e">
+                            <view class="detail-item data-v-77ae6d1e">
+                                <text class="detail-label data-v-77ae6d1e">UID</text>
+                                <text class="detail-value data-v-77ae6d1e">{{ck}}</text>
+                            </view>
+                            <view class="detail-item data-v-77ae6d1e" wx:if="{{cl}}">
+                                <text class="detail-label data-v-77ae6d1e">SAK</text>
+                                <text class="detail-value data-v-77ae6d1e">{{cm}}</text>
+                            </view>
+                            <view class="detail-item data-v-77ae6d1e" wx:if="{{cn}}">
+                                <text class="detail-label data-v-77ae6d1e">ATQA</text>
+                                <text class="detail-value data-v-77ae6d1e">{{co}}</text>
+                            </view>
+                            <view class="detail-item data-v-77ae6d1e">
+                                <text class="detail-label data-v-77ae6d1e">读取时间</text>
+                                <text class="detail-value data-v-77ae6d1e">{{cp}}</text>
+                            </view>
+                            <view class="detail-item data-v-77ae6d1e" wx:if="{{cq}}">
+                                <text class="detail-label data-v-77ae6d1e">可读扇区</text>
+                                <text class="detail-value data-v-77ae6d1e">{{cr}}/{{cs}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="save-form data-v-77ae6d1e">
+                        <view class="form-item data-v-77ae6d1e">
+                            <text class="form-label data-v-77ae6d1e">卡片名称</text>
+                            <input bindinput="{{cv}}" class="form-input data-v-77ae6d1e" maxlength="50" placeholder="请输入卡片名称" value="{{ct}}"></input>
+                        </view>
+                        <view class="form-item data-v-77ae6d1e">
+                            <text class="form-label data-v-77ae6d1e">保存选项</text>
+                            <view class="save-options data-v-77ae6d1e">
+                                <view class="option-item data-v-77ae6d1e">
+                                    <text class="option-label data-v-77ae6d1e">包含完整数据</text>
+                                    <switch bindchange="{{cx}}" checked="{{cw}}" class="data-v-77ae6d1e"></switch>
+                                </view>
+                                <view class="option-item data-v-77ae6d1e">
+                                    <text class="option-label data-v-77ae6d1e">包含读取时间</text>
+                                    <switch bindchange="{{cz}}" checked="{{cy}}" class="data-v-77ae6d1e"></switch>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="popup-actions data-v-77ae6d1e">
+                    <button bindtap="{{cA}}" class="popup-button cancel-button data-v-77ae6d1e">取消</button>
+                    <button bindtap="{{cB}}" class="popup-button confirm-button data-v-77ae6d1e">保存</button>
+                </view>
+            </view>
+        </uni-popup>
+        <view class="error-banner data-v-77ae6d1e" wx:if="{{cE}}">
+            <view bindtap="{{cH}}" class="error-content data-v-77ae6d1e">
+                <uni-icons bind:__l="__l" class="data-v-77ae6d1e" uI="77ae6d1e-40" uP="{{cF}}" wx:if="{{cF}}"></uni-icons>
+                <text class="error-message data-v-77ae6d1e">{{cG}}</text>
+                <text class="error-detail-hint data-v-77ae6d1e">点击查看详情</text>
+            </view>
+            <text bindtap="{{cI}}" class="dismiss-button data-v-77ae6d1e">✕</text>
+        </view>
+    </view>
+</view>

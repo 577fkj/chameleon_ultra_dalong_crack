@@ -1,0 +1,87 @@
+<view class="firmware-page data-v-2926a4f6">
+    <view class="content data-v-2926a4f6">
+        <view class="connection-required data-v-2926a4f6" wx:if="{{a}}">
+            <view class="icon-container data-v-2926a4f6">
+                <uni-icons bind:__l="__l" class="data-v-2926a4f6" uI="2926a4f6-0" uP="{{b}}" wx:if="{{b}}"></uni-icons>
+            </view>
+            <text class="title data-v-2926a4f6">需要连接设备</text>
+            <text class="desc data-v-2926a4f6">请先连接 Chameleon 设备才能进行固件更新</text>
+            <button bindtap="{{c}}" class="btn-connect data-v-2926a4f6">连接设备</button>
+        </view>
+        <view class="firmware-container data-v-2926a4f6" wx:else>
+            <view class="info-card data-v-2926a4f6">
+                <view class="card-header data-v-2926a4f6">
+                    <uni-icons bind:__l="__l" class="data-v-2926a4f6" uI="2926a4f6-1" uP="{{d}}" wx:if="{{d}}"></uni-icons>
+                    <text class="card-title data-v-2926a4f6">设备信息</text>
+                </view>
+                <view class="info-row data-v-2926a4f6">
+                    <text class="info-label data-v-2926a4f6">设备型号:</text>
+                    <text class="info-value data-v-2926a4f6">{{e}}</text>
+                </view>
+                <view class="info-row data-v-2926a4f6">
+                    <text class="info-label data-v-2926a4f6">固件版本:</text>
+                    <text class="info-value data-v-2926a4f6">{{f}}</text>
+                </view>
+                <view class="info-row data-v-2926a4f6">
+                    <text class="info-label data-v-2926a4f6">设备ID:</text>
+                    <text class="info-value data-v-2926a4f6">{{g}}</text>
+                </view>
+            </view>
+            <view class="firmware-card data-v-2926a4f6">
+                <view class="card-header data-v-2926a4f6">
+                    <uni-icons bind:__l="__l" class="data-v-2926a4f6" uI="2926a4f6-2" uP="{{h}}" wx:if="{{h}}"></uni-icons>
+                    <text class="card-title data-v-2926a4f6">固件更新</text>
+                </view>
+                <view class="update-status data-v-2926a4f6">
+                    <text class="status-text data-v-2926a4f6">{{i}}</text>
+                </view>
+                <view class="progress-container data-v-2926a4f6" wx:if="{{j}}">
+                    <view class="progress-bar data-v-2926a4f6">
+                        <view class="progress-fill data-v-2926a4f6" style="{{'width:'+k}}"></view>
+                    </view>
+                    <text class="progress-text data-v-2926a4f6">{{l}}%</text>
+                </view>
+                <view class="firmware-actions data-v-2926a4f6">
+                    <button bindtap="{{o}}" class="btn-check-update data-v-2926a4f6" disabled="{{p}}">
+                        <uni-icons bind:__l="__l" class="data-v-2926a4f6" uI="2926a4f6-3" uP="{{m}}" wx:if="{{m}}"></uni-icons>
+                        <text class="data-v-2926a4f6">{{n}}</text>
+                    </button>
+                    <button bindtap="{{s}}" class="btn-update data-v-2926a4f6" disabled="{{t}}">
+                        <uni-icons bind:__l="__l" class="data-v-2926a4f6" uI="2926a4f6-4" uP="{{q}}" wx:if="{{q}}"></uni-icons>
+                        <text class="data-v-2926a4f6">{{r}}</text>
+                    </button>
+                </view>
+                <view class="update-info data-v-2926a4f6" wx:if="{{v}}">
+                    <view class="info-header data-v-2926a4f6">
+                        <text class="info-title data-v-2926a4f6">更新信息</text>
+                    </view>
+                    <view class="info-content data-v-2926a4f6">
+                        <view class="info-item data-v-2926a4f6">
+                            <text class="info-label data-v-2926a4f6">版本:</text>
+                            <text class="info-value data-v-2926a4f6">{{w}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="tips-card data-v-2926a4f6">
+                <view class="card-header data-v-2926a4f6">
+                    <uni-icons bind:__l="__l" class="data-v-2926a4f6" uI="2926a4f6-5" uP="{{x}}" wx:if="{{x}}"></uni-icons>
+                    <text class="card-title data-v-2926a4f6">更新提示</text>
+                </view>
+                <view class="tips-content data-v-2926a4f6">
+                    <text class="tip-item data-v-2926a4f6">• 更新过程中请勿断开设备连接</text>
+                    <text class="tip-item data-v-2926a4f6">• 更新完成后设备会自动重启</text>
+                    <text class="tip-item data-v-2926a4f6">• 如果更新失败，请尝试重新连接设备后再次更新</text>
+                    <text class="tip-item data-v-2926a4f6">• 更新过程中设备可能会进入 DFU 模式</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-2926a4f6" uI="2926a4f6-6" uP="{{C}}" uR="resultPopup" uS="{{['d']}}" wx:if="{{C}}">
+        <uni-popup-dialog bind:__l="__l" bindconfirm="{{z}}" class="data-v-2926a4f6" uI="2926a4f6-7,2926a4f6-6" uP="{{A}}" uS="{{['d']}}" wx:if="{{A}}">
+            <view class="result-dialog-content data-v-2926a4f6">
+                <text class="data-v-2926a4f6">{{y}}</text>
+            </view>
+        </uni-popup-dialog>
+    </uni-popup>
+</view>

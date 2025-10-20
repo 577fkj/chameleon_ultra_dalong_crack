@@ -1,0 +1,184 @@
+<view class="geofence-page data-v-5cad4b6b">
+    <view class="status-header data-v-5cad4b6b">
+        <view class="status-row data-v-5cad4b6b">
+            <view class="status-indicators data-v-5cad4b6b">
+                <view class="{{['status-item','data-v-5cad4b6b',c&&'connected']}}">
+                    <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-0" uP="{{a}}" wx:if="{{a}}"></uni-icons>
+                    <text class="status-text data-v-5cad4b6b">{{b}}</text>
+                </view>
+                <view class="status-divider data-v-5cad4b6b"></view>
+                <view class="{{['status-item','data-v-5cad4b6b',f&&'watching']}}">
+                    <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-1" uP="{{d}}" wx:if="{{d}}"></uni-icons>
+                    <text class="status-text data-v-5cad4b6b">{{e}}</text>
+                </view>
+                <view class="status-divider data-v-5cad4b6b"></view>
+                <view class="status-item data-v-5cad4b6b">
+                    <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-2" uP="{{g}}" wx:if="{{g}}"></uni-icons>
+                    <text class="status-text data-v-5cad4b6b">{{h}}/{{i}}</text>
+                </view>
+            </view>
+            <button bindtap="{{n}}" class="{{['btn-toggle-compact','data-v-5cad4b6b',l&&'active',m&&'disabled']}}" disabled="{{o}}">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-3" uP="{{j}}" wx:if="{{j}}"></uni-icons>
+                <text class="toggle-text data-v-5cad4b6b">{{k}}</text>
+            </button>
+        </view>
+    </view>
+    <view class="map-container data-v-5cad4b6b">
+        <map bindmarkertap="{{w}}" bindregionchange="{{v}}" bindtap="{{x}}" class="geofence-map data-v-5cad4b6b" enable3D="{{false}}" enableOverlooking="{{false}}" enableRotate="{{false}}" enableScroll="{{true}}" enableZoom="{{true}}" includePoints="{{y}}" latitude="{{p}}" longitude="{{q}}" markers="{{s}}" maxScale="{{20}}" minScale="{{10}}" polygons="{{t}}" scale="{{r}}" showCompass="{{true}}" showLocation="{{true}}"></map>
+        <view class="map-toolbar data-v-5cad4b6b">
+            <button bindtap="{{A}}" class="tool-btn-compact location-btn data-v-5cad4b6b" disabled="{{B}}">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-4" uP="{{z}}" wx:if="{{z}}"></uni-icons>
+            </button>
+            <button bindtap="{{E}}" class="tool-btn-compact add-btn data-v-5cad4b6b" disabled="{{F}}" wx:if="{{C}}">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-5" uP="{{D}}" wx:if="{{D}}"></uni-icons>
+            </button>
+            <button bindtap="{{I}}" class="tool-btn-compact finish-btn data-v-5cad4b6b" disabled="{{J}}" wx:if="{{G}}">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-6" uP="{{H}}" wx:if="{{H}}"></uni-icons>
+            </button>
+            <button bindtap="{{M}}" class="tool-btn-compact check-btn data-v-5cad4b6b" wx:if="{{K}}">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-7" uP="{{L}}" wx:if="{{L}}"></uni-icons>
+            </button>
+        </view>
+        <view class="drawing-tips data-v-5cad4b6b" wx:if="{{N}}">
+            <view class="tip-content data-v-5cad4b6b">
+                <text class="tip-text data-v-5cad4b6b">点击地图添加点，已添加 {{O}} 个点</text>
+                <view class="tip-buttons data-v-5cad4b6b">
+                    <button bindtap="{{P}}" class="tip-btn cancel data-v-5cad4b6b">取消</button>
+                    <button bindtap="{{Q}}" class="tip-btn finish data-v-5cad4b6b" disabled="{{R}}">完成</button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="geofence-list data-v-5cad4b6b">
+        <view class="list-header data-v-5cad4b6b">
+            <view class="header-content data-v-5cad4b6b">
+                <text class="list-title data-v-5cad4b6b">围栏管理</text>
+                <view class="stats-badge data-v-5cad4b6b">
+                    <text class="stats-text data-v-5cad4b6b">{{S}}/{{T}}</text>
+                </view>
+            </view>
+            <button bindtap="{{W}}" class="btn-add-mini data-v-5cad4b6b" disabled="{{X}}" wx:if="{{U}}">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-8" uP="{{V}}" wx:if="{{V}}"></uni-icons>
+            </button>
+        </view>
+        <scroll-view class="list-content data-v-5cad4b6b" scrollY="true" wx:if="{{Y}}">
+            <view bindtap="{{geofence.z}}" class="{{['geofence-card','data-v-5cad4b6b',geofence.x&&'enabled',geofence.y&&'current']}}" wx:for="{{Z}}" wx:for-item="geofence" wx:key="w">
+                <view class="card-header data-v-5cad4b6b">
+                    <view class="geofence-info data-v-5cad4b6b">
+                        <text class="geofence-name data-v-5cad4b6b">{{geofence.a}}</text>
+                        <view class="geofence-meta data-v-5cad4b6b">
+                            <view class="meta-item data-v-5cad4b6b">
+                                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="{{geofence.b}}" uP="{{aa}}" wx:if="{{aa}}"></uni-icons>
+                                <text class="meta-text data-v-5cad4b6b">卡槽{{geofence.c}}</text>
+                            </view>
+                            <view class="meta-item data-v-5cad4b6b">
+                                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="{{geofence.d}}" uP="{{ab}}" wx:if="{{ab}}"></uni-icons>
+                                <text class="meta-text data-v-5cad4b6b">{{geofence.e}}个点</text>
+                            </view>
+                            <view class="meta-item data-v-5cad4b6b" wx:if="{{geofence.f}}">
+                                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="{{geofence.g}}" uP="{{geofence.h}}" wx:if="{{geofence.h}}"></uni-icons>
+                                <text class="meta-text data-v-5cad4b6b">{{geofence.i}}次触发</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="geofence-status data-v-5cad4b6b">
+                        <view class="{{['status-dot','data-v-5cad4b6b',geofence.j&&'active']}}"></view>
+                        <text class="status-text data-v-5cad4b6b">{{geofence.k}}</text>
+                    </view>
+                </view>
+                <view catchtap="{{geofence.t}}" class="card-actions data-v-5cad4b6b">
+                    <button bindtap="{{geofence.m}}" class="action-btn edit-btn data-v-5cad4b6b">
+                        <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="{{geofence.l}}" uP="{{ac}}" wx:if="{{ac}}"></uni-icons>
+                        <text class="action-text data-v-5cad4b6b">编辑</text>
+                    </button>
+                    <button bindtap="{{geofence.q}}" class="action-btn toggle-btn data-v-5cad4b6b">
+                        <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="{{geofence.n}}" uP="{{geofence.o}}" wx:if="{{geofence.o}}"></uni-icons>
+                        <text class="action-text data-v-5cad4b6b">{{geofence.p}}</text>
+                    </button>
+                    <button bindtap="{{geofence.s}}" class="action-btn delete-btn data-v-5cad4b6b">
+                        <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="{{geofence.r}}" uP="{{ad}}" wx:if="{{ad}}"></uni-icons>
+                        <text class="action-text data-v-5cad4b6b">删除</text>
+                    </button>
+                </view>
+                <view class="current-indicator data-v-5cad4b6b" wx:if="{{geofence.v}}">
+                    <text class="current-text data-v-5cad4b6b">当前位置</text>
+                </view>
+            </view>
+        </scroll-view>
+        <view class="empty-state data-v-5cad4b6b" wx:else>
+            <view class="empty-icon data-v-5cad4b6b">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-15" uP="{{ae}}" wx:if="{{ae}}"></uni-icons>
+            </view>
+            <text class="empty-title data-v-5cad4b6b">还没有围栏</text>
+            <text class="empty-desc data-v-5cad4b6b">创建您的第一个电子围栏，实现自动卡槽切换</text>
+            <button bindtap="{{ag}}" class="btn-create data-v-5cad4b6b" disabled="{{ah}}">
+                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-16" uP="{{af}}" wx:if="{{af}}"></uni-icons>
+                <text class="data-v-5cad4b6b">创建围栏</text>
+            </button>
+        </view>
+    </view>
+    <view class="position-info data-v-5cad4b6b" wx:if="{{ai}}">
+        <text class="position-text data-v-5cad4b6b"> 当前位置: {{aj}}, {{ak}}</text>
+        <text class="current-geofence data-v-5cad4b6b" wx:if="{{al}}"> 在围栏: {{am}} (卡槽{{an}}) </text>
+        <text class="no-geofence data-v-5cad4b6b" wx:elif="{{ao}}"> 当前不在任何围栏内 </text>
+        <view class="debug-info data-v-5cad4b6b" wx:if="{{ap}}">
+            <text class="debug-text data-v-5cad4b6b">监听状态: 已启用 | 围栏数量: {{aq}}</text>
+        </view>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-5cad4b6b" uI="5cad4b6b-17" uP="{{aw}}" uR="addDialog" uS="{{['d']}}" wx:if="{{aw}}">
+        <uni-popup-dialog bind:__l="__l" bindclose="{{as}}" bindconfirm="{{ar}}" class="data-v-5cad4b6b" uI="5cad4b6b-18,5cad4b6b-17" uP="{{at}}" wx:if="{{at}}"></uni-popup-dialog>
+    </uni-popup>
+    <uni-popup bind:__l="__l" class="r data-v-5cad4b6b" uI="5cad4b6b-19" uP="{{aW}}" uR="configDialog" uS="{{['d']}}" wx:if="{{aW}}">
+        <view class="config-dialog data-v-5cad4b6b">
+            <view class="dialog-header data-v-5cad4b6b">
+                <text class="dialog-title data-v-5cad4b6b">围栏配置</text>
+                <button bindtap="{{ay}}" class="btn-close data-v-5cad4b6b">
+                    <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-20,5cad4b6b-19" uP="{{ax}}" wx:if="{{ax}}"></uni-icons>
+                </button>
+            </view>
+            <view class="dialog-content data-v-5cad4b6b">
+                <view class="form-item data-v-5cad4b6b">
+                    <text class="form-label data-v-5cad4b6b">围栏名称:</text>
+                    <input bindinput="{{aA}}" class="form-input data-v-5cad4b6b" placeholder="请输入围栏名称" value="{{az}}"></input>
+                </view>
+                <view class="form-item data-v-5cad4b6b">
+                    <view class="form-label-row data-v-5cad4b6b">
+                        <text class="form-label data-v-5cad4b6b">目标卡槽:</text>
+                        <button bindtap="{{aC}}" class="btn-refresh-slots data-v-5cad4b6b" disabled="{{aD}}">
+                            <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-21,5cad4b6b-19" uP="{{aB}}" wx:if="{{aB}}"></uni-icons>
+                            <text class="refresh-text data-v-5cad4b6b">刷新</text>
+                        </button>
+                    </view>
+                    <picker bindchange="{{aH}}" class="data-v-5cad4b6b" range="{{aG}}" rangeKey="label">
+                        <view class="picker-display data-v-5cad4b6b">{{aE}}<uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-22,5cad4b6b-19" uP="{{aF}}" wx:if="{{aF}}"></uni-icons>
+                        </view>
+                    </picker>
+                </view>
+                <view class="form-hint data-v-5cad4b6b">
+                    <text class="hint-text data-v-5cad4b6b">围栏区域: {{aI}} 个点</text>
+                    <view class="slot-info data-v-5cad4b6b" wx:if="{{aJ}}">
+                        <text class="slot-info-title data-v-5cad4b6b">选中卡槽信息:</text>
+                        <view class="slot-cards data-v-5cad4b6b">
+                            <view class="card-info hf-card data-v-5cad4b6b" wx:if="{{aK}}">
+                                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-23,5cad4b6b-19" uP="{{aL}}" wx:if="{{aL}}"></uni-icons>
+                                <text class="card-text data-v-5cad4b6b">HF: {{aM}}</text>
+                            </view>
+                            <view class="card-info lf-card data-v-5cad4b6b" wx:if="{{aN}}">
+                                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-24,5cad4b6b-19" uP="{{aO}}" wx:if="{{aO}}"></uni-icons>
+                                <text class="card-text data-v-5cad4b6b">LF: {{aP}}</text>
+                            </view>
+                            <view class="card-info empty-card data-v-5cad4b6b" wx:if="{{aQ}}">
+                                <uni-icons bind:__l="__l" class="data-v-5cad4b6b" uI="5cad4b6b-25,5cad4b6b-19" uP="{{aR}}" wx:if="{{aR}}"></uni-icons>
+                                <text class="card-text data-v-5cad4b6b">此卡槽为空，无法用于围栏</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="dialog-actions data-v-5cad4b6b">
+                <button bindtap="{{aS}}" class="btn-cancel data-v-5cad4b6b">取消</button>
+                <button bindtap="{{aT}}" class="btn-confirm data-v-5cad4b6b" disabled="{{aU}}">保存围栏</button>
+            </view>
+        </view>
+    </uni-popup>
+</view>

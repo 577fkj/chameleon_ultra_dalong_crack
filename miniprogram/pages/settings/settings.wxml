@@ -1,0 +1,176 @@
+<view class="settings-page data-v-3baa783e">
+    <view class="content data-v-3baa783e">
+        <view class="connection-required data-v-3baa783e" wx:if="{{a}}">
+            <view class="icon-container data-v-3baa783e">
+                <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-0" uP="{{b}}" wx:if="{{b}}"></uni-icons>
+            </view>
+            <text class="title data-v-3baa783e">需要连接设备</text>
+            <text class="desc data-v-3baa783e">请先连接 Chameleon 设备才能进行设置</text>
+            <button bindtap="{{c}}" class="btn-connect data-v-3baa783e">连接设备</button>
+        </view>
+        <view class="settings-container data-v-3baa783e" wx:else>
+            <view class="loading-container data-v-3baa783e" wx:if="{{d}}">
+                <uni-load-more bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-1" uP="{{e}}" wx:if="{{e}}"></uni-load-more>
+            </view>
+            <view class="data-v-3baa783e" wx:elif="{{f}}">
+                <view class="info-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-2" uP="{{g}}" wx:if="{{g}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">设备信息</text>
+                    </view>
+                    <view class="info-row data-v-3baa783e">
+                        <text class="info-label data-v-3baa783e">设备型号:</text>
+                        <text class="info-value data-v-3baa783e">{{h}}</text>
+                    </view>
+                    <view class="info-row data-v-3baa783e">
+                        <text class="info-label data-v-3baa783e">固件版本:</text>
+                        <text class="info-value data-v-3baa783e">{{i}}</text>
+                    </view>
+                    <view class="info-row data-v-3baa783e">
+                        <text class="info-label data-v-3baa783e">当前模式:</text>
+                        <text class="info-value data-v-3baa783e">{{j}}</text>
+                    </view>
+                    <view class="info-row data-v-3baa783e">
+                        <text class="info-label data-v-3baa783e">电池电量:</text>
+                        <text class="info-value data-v-3baa783e">{{k}}</text>
+                    </view>
+                </view>
+                <view class="setting-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-3" uP="{{l}}" wx:if="{{l}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">动画设置</text>
+                    </view>
+                    <view class="setting-item data-v-3baa783e">
+                        <text class="setting-label data-v-3baa783e">LED动画模式</text>
+                        <view class="toggle-group data-v-3baa783e">
+                            <button bindtap="{{option.d}}" class="{{['toggle-btn','data-v-3baa783e',option.c&&'active']}}" wx:for="{{m}}" wx:for-item="option" wx:key="b">{{option.a}}</button>
+                        </view>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">{{n}}</view>
+                </view>
+                <view class="setting-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-4" uP="{{o}}" wx:if="{{o}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">按钮配置</text>
+                    </view>
+                    <setting-item bind:__l="__l" bindchange="{{p}}" class="data-v-3baa783e" uI="3baa783e-5" uP="{{q}}" wx:if="{{q}}"></setting-item>
+                    <setting-item bind:__l="__l" bindchange="{{r}}" class="data-v-3baa783e" uI="3baa783e-6" uP="{{s}}" wx:if="{{s}}"></setting-item>
+                    <setting-item bind:__l="__l" bindchange="{{t}}" class="data-v-3baa783e" uI="3baa783e-7" uP="{{v}}" wx:if="{{v}}"></setting-item>
+                    <setting-item bind:__l="__l" bindchange="{{w}}" class="data-v-3baa783e" uI="3baa783e-8" uP="{{x}}" wx:if="{{x}}"></setting-item>
+                </view>
+                <view class="setting-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-9" uP="{{y}}" wx:if="{{y}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">蓝牙设置</text>
+                    </view>
+                    <view class="setting-item data-v-3baa783e">
+                        <text class="setting-label data-v-3baa783e">BLE配对模式</text>
+                        <switch bindchange="{{A}}" checked="{{z}}" class="data-v-3baa783e" color="#667eea"></switch>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">启用后需要配对才能连接设备</view>
+                    <view class="setting-item data-v-3baa783e" wx:if="{{B}}">
+                        <text class="setting-label data-v-3baa783e">BLE连接密钥</text>
+                        <button bindtap="{{C}}" class="btn-ble-key data-v-3baa783e">设置密钥</button>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e" wx:if="{{D}}">设置6位数字密钥用于BLE连接认证</view>
+                </view>
+                <view class="setting-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-10" uP="{{E}}" wx:if="{{E}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">轮询设置</text>
+                    </view>
+                    <view class="setting-item data-v-3baa783e">
+                        <text class="setting-label data-v-3baa783e">刷卡自动轮询</text>
+                        <switch bindchange="{{G}}" checked="{{F}}" class="data-v-3baa783e" color="#667eea"></switch>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">轮询功能总开关，如果关闭则所有轮询方式都关闭</view>
+                    <view class="setting-item data-v-3baa783e">
+                        <text class="setting-label data-v-3baa783e">IC自适应轮询</text>
+                        <switch bindchange="{{I}}" checked="{{H}}" class="data-v-3baa783e" color="#667eea"></switch>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">根据读卡器的读卡逻辑，自动切换卡，更智能，建议开启，然后测试下根据自己使用情况选择是否开启</view>
+                    <view class="setting-item data-v-3baa783e">
+                        <text class="setting-label data-v-3baa783e">ID自适应轮询</text>
+                        <switch bindchange="{{K}}" checked="{{J}}" class="data-v-3baa783e" color="#667eea"></switch>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">ID自适应轮询，强烈建议开启，基本没啥问题</view>
+                    <view class="setting-item data-v-3baa783e">
+                        <text class="setting-label data-v-3baa783e">轮询延迟</text>
+                        <text class="setting-value data-v-3baa783e">{{L}}ms</text>
+                    </view>
+                    <view class="slider-container data-v-3baa783e">
+                        <slider activeColor="#667eea" backgroundColor="#f0f0f0" bindchange="{{O}}" bindinput="{{N}}" blockSize="20" class="data-v-3baa783e" max="{{10000}}" min="{{100}}" step="{{50}}" value="{{M}}"></slider>
+                        <view class="slider-labels data-v-3baa783e">
+                            <text class="slider-min data-v-3baa783e">100ms</text>
+                            <text class="slider-max data-v-3baa783e">10000ms</text>
+                        </view>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">延迟设置作用于未开启自适应延迟的情况，以及开启了自适应轮询的时候，读卡器连续读卡的时候的切卡间隔时间</view>
+                </view>
+                <view class="setting-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-11" uP="{{P}}" wx:if="{{P}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">卡槽轮询配置</text>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">选择要参与轮询的卡槽（绿色表示启用）</view>
+                    <view class="slot-polling-grid data-v-3baa783e">
+                        <view bindtap="{{enabled.e}}" class="{{['slot-item','data-v-3baa783e',enabled.d&&'active']}}" wx:for="{{Q}}" wx:for-item="enabled" wx:key="c">
+                            <text class="slot-number data-v-3baa783e">{{enabled.a}}</text>
+                            <view class="{{['slot-indicator','data-v-3baa783e',enabled.b&&'enabled']}}"></view>
+                        </view>
+                    </view>
+                    <view class="slot-polling-actions data-v-3baa783e" wx:if="{{R}}">
+                        <button bindtap="{{T}}" class="btn-save-slot data-v-3baa783e">
+                            <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-12" uP="{{S}}" wx:if="{{S}}"></uni-icons>
+                            <text class="data-v-3baa783e">保存卡槽配置</text>
+                        </button>
+                        <button bindtap="{{V}}" class="btn-reset-slot data-v-3baa783e">
+                            <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-13" uP="{{U}}" wx:if="{{U}}"></uni-icons>
+                            <text class="data-v-3baa783e">重置</text>
+                        </button>
+                    </view>
+                </view>
+                <view class="setting-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-14" uP="{{W}}" wx:if="{{W}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">高级设置</text>
+                    </view>
+                    <view class="setting-item data-v-3baa783e">
+                        <text class="setting-label data-v-3baa783e">8卡槽兼容模式</text>
+                        <switch bindchange="{{Y}}" checked="{{X}}" class="data-v-3baa783e" color="#667eea"></switch>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">启用后仅显示前8个卡槽，兼容旧版固件</view>
+                </view>
+                <view class="setting-card data-v-3baa783e">
+                    <view class="card-header data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-15" uP="{{Z}}" wx:if="{{Z}}"></uni-icons>
+                        <text class="card-title data-v-3baa783e">固件管理</text>
+                    </view>
+                    <view class="setting-desc data-v-3baa783e">更新设备固件或进入DFU模式</view>
+                    <view class="firmware-actions data-v-3baa783e">
+                        <button bindtap="{{ab}}" class="btn-firmware data-v-3baa783e">
+                            <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-16" uP="{{aa}}" wx:if="{{aa}}"></uni-icons>
+                            <text class="data-v-3baa783e">检查固件更新</text>
+                        </button>
+                        <button bindtap="{{ad}}" class="btn-dfu data-v-3baa783e">
+                            <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-17" uP="{{ac}}" wx:if="{{ac}}"></uni-icons>
+                            <text class="data-v-3baa783e">进入DFU模式</text>
+                        </button>
+                    </view>
+                </view>
+                <view class="action-buttons data-v-3baa783e">
+                    <button bindtap="{{af}}" class="btn-refresh data-v-3baa783e">
+                        <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-18" uP="{{ae}}" wx:if="{{ae}}"></uni-icons>
+                        <text class="data-v-3baa783e">刷新设置</text>
+                    </button>
+                </view>
+            </view>
+            <view class="error-container data-v-3baa783e" wx:else>
+                <uni-icons bind:__l="__l" class="data-v-3baa783e" uI="3baa783e-19" uP="{{ag}}" wx:if="{{ag}}"></uni-icons>
+                <text class="error-title data-v-3baa783e">加载失败</text>
+                <text class="error-desc data-v-3baa783e">无法获取设备设置信息</text>
+                <button bindtap="{{ah}}" class="btn-retry data-v-3baa783e">重试</button>
+            </view>
+        </view>
+    </view>
+</view>

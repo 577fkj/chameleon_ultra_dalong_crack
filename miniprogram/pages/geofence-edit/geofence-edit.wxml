@@ -1,0 +1,95 @@
+<view class="edit-page data-v-b20df31c">
+    <view class="form-section data-v-b20df31c">
+        <view class="section-title data-v-b20df31c">基本信息</view>
+        <view class="form-item data-v-b20df31c">
+            <text class="form-label data-v-b20df31c">围栏名称</text>
+            <input bindinput="{{b}}" class="form-input data-v-b20df31c" placeholder="请输入围栏名称" value="{{a}}"></input>
+        </view>
+        <view class="form-item data-v-b20df31c">
+            <text class="form-label data-v-b20df31c">目标卡槽</text>
+            <picker bindchange="{{g}}" class="data-v-b20df31c" range="{{e}}" rangeKey="label" value="{{f}}">
+                <view class="picker-display data-v-b20df31c">{{c}}<uni-icons bind:__l="__l" class="data-v-b20df31c" uI="b20df31c-0" uP="{{d}}" wx:if="{{d}}"></uni-icons>
+                </view>
+            </picker>
+        </view>
+        <view class="form-item data-v-b20df31c">
+            <text class="form-label data-v-b20df31c">启用状态</text>
+            <switch bindchange="{{i}}" checked="{{h}}" class="data-v-b20df31c"></switch>
+        </view>
+    </view>
+    <view class="form-section data-v-b20df31c">
+        <view class="section-title data-v-b20df31c">围栏区域 ({{j}}个点)</view>
+        <view class="polygon-list data-v-b20df31c" wx:if="{{k}}">
+            <view class="polygon-item data-v-b20df31c" wx:for="{{l}}" wx:for-item="point" wx:key="f">
+                <text class="point-index data-v-b20df31c">{{point.a}}</text>
+                <view class="point-coords data-v-b20df31c">
+                    <text class="coord-text data-v-b20df31c">{{point.b}}</text>
+                    <text class="coord-text data-v-b20df31c">{{point.c}}</text>
+                </view>
+                <button bindtap="{{point.e}}" class="btn-remove data-v-b20df31c">
+                    <uni-icons bind:__l="__l" class="data-v-b20df31c" uI="{{point.d}}" uP="{{m}}" wx:if="{{m}}"></uni-icons>
+                </button>
+            </view>
+        </view>
+        <view class="polygon-actions data-v-b20df31c">
+            <button bindtap="{{n}}" class="btn-secondary data-v-b20df31c">清空点位</button>
+            <button bindtap="{{o}}" class="btn-primary data-v-b20df31c">在地图上编辑</button>
+        </view>
+    </view>
+    <view class="form-section data-v-b20df31c" wx:if="{{p}}">
+        <view class="section-title data-v-b20df31c">统计信息</view>
+        <view class="stats-grid data-v-b20df31c">
+            <view class="stats-item data-v-b20df31c">
+                <text class="stats-label data-v-b20df31c">创建时间</text>
+                <text class="stats-value data-v-b20df31c">{{q}}</text>
+            </view>
+            <view class="stats-item data-v-b20df31c">
+                <text class="stats-label data-v-b20df31c">更新时间</text>
+                <text class="stats-value data-v-b20df31c">{{r}}</text>
+            </view>
+            <view class="stats-item data-v-b20df31c">
+                <text class="stats-label data-v-b20df31c">触发次数</text>
+                <text class="stats-value data-v-b20df31c">{{s}}</text>
+            </view>
+            <view class="stats-item data-v-b20df31c">
+                <text class="stats-label data-v-b20df31c">最后触发</text>
+                <text class="stats-value data-v-b20df31c">{{t}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="action-section data-v-b20df31c">
+        <button bindtap="{{v}}" class="btn-cancel data-v-b20df31c">取消</button>
+        <button bindtap="{{w}}" class="btn-save data-v-b20df31c" disabled="{{x}}">保存</button>
+    </view>
+    <uni-popup bind:__l="__l" class="r data-v-b20df31c" uI="b20df31c-2" uP="{{V}}" uR="mapDialog" uS="{{['d']}}" wx:if="{{V}}">
+        <view class="map-dialog data-v-b20df31c">
+            <view class="dialog-header data-v-b20df31c">
+                <text class="dialog-title data-v-b20df31c">编辑围栏区域</text>
+                <button bindtap="{{z}}" class="btn-close data-v-b20df31c">
+                    <uni-icons bind:__l="__l" class="data-v-b20df31c" uI="b20df31c-3,b20df31c-2" uP="{{y}}" wx:if="{{y}}"></uni-icons>
+                </button>
+            </view>
+            <view class="dialog-map-container data-v-b20df31c">
+                <map bindmarkertap="{{G}}" bindtap="{{F}}" class="dialog-map data-v-b20df31c" enable3D="{{false}}" includePoints="{{E}}" latitude="{{A}}" longitude="{{B}}" markers="{{C}}" maxScale="{{20}}" minScale="{{10}}" polygons="{{D}}" scale="{{16}}" showCompass="{{true}}" showLocation="{{true}}"></map>
+                <view class="map-toolbar data-v-b20df31c">
+                    <button bindtap="{{I}}" class="map-tool-btn data-v-b20df31c">
+                        <uni-icons bind:__l="__l" class="data-v-b20df31c" uI="b20df31c-4,b20df31c-2" uP="{{H}}" wx:if="{{H}}"></uni-icons>
+                    </button>
+                    <button bindtap="{{K}}" class="map-tool-btn data-v-b20df31c">
+                        <uni-icons bind:__l="__l" class="data-v-b20df31c" uI="b20df31c-5,b20df31c-2" uP="{{J}}" wx:if="{{J}}"></uni-icons>
+                    </button>
+                    <button bindtap="{{N}}" class="map-tool-btn data-v-b20df31c" wx:if="{{L}}">
+                        <uni-icons bind:__l="__l" class="data-v-b20df31c" uI="b20df31c-6,b20df31c-2" uP="{{M}}" wx:if="{{M}}"></uni-icons>
+                    </button>
+                </view>
+                <view class="map-tips data-v-b20df31c" wx:if="{{O}}">
+                    <text class="tips-text data-v-b20df31c">已添加 {{P}} 个点，点击标记可删除</text>
+                </view>
+            </view>
+            <view class="dialog-actions data-v-b20df31c">
+                <button bindtap="{{Q}}" class="btn-secondary data-v-b20df31c">清空</button>
+                <button bindtap="{{S}}" class="btn-primary data-v-b20df31c" disabled="{{T}}">确认 ({{R}}个点)</button>
+            </view>
+        </view>
+    </uni-popup>
+</view>
