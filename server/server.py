@@ -77,7 +77,7 @@ def register():
     firmware_version = data.get("firmware_version")
     if not chip_id or not license_key or len(chip_id) != 16 or len(license_key) != 12:
         return (
-            jsonify({"code": 400, "message": "请求参数无效", "need_update": False}),
+            jsonify({"code": 400, "message": "请求参数无效"}),
             400,
         )
 
