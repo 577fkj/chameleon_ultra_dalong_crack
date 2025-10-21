@@ -4,12 +4,16 @@ import os
 import time
 from flask import Flask, request, jsonify, send_file
 from threading import Thread
+from pathlib import Path
 
 app = Flask(__name__)
 
 version_info = None
 version_file_mtime = None
 VERSION_FILE_PATH = "version.json"
+FIRMWARE_DIR = "firmware"
+
+firmware_base_path = Path(FIRMWARE_DIR).resolve()
 
 
 def load_version_info():
@@ -151,49 +155,47 @@ def check_firmware():
     )
 
 
-@app.route("/ultra/api/v1/firmware/download/v3.1/<filename>", methods=["GET"])
+@app.route("/ultra/api/v1/firmware/download/v3.1/<path:filename>", methods=["GET"])
 def download_firmware(filename):
-    try:
-        firmware_path = os.path.join("firmware", filename)
+    target = (firmware_base_path / filename).resolve()
 
-        if not os.path.exists(firmware_path):
-            return jsonify({"code": 404, "message": "固件文件不存在"}), 404
+    if not str(target).startswith(str(firmware_base_path) + os.sep):
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
 
-        return send_file(
-            firmware_path,
-            as_attachment=True,
-            download_name=filename,
-            mimetype="application/zip",
-        )
-    except Exception as e:
-        print(f"Error downloading firmware: {e}")
-        return jsonify({"code": 500, "message": f"下载失败: {str(e)}"}), 500
+    if target.suffix.lower() != ".zip":
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    if not target.exists():
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    return send_file(
+        str(target),
+        as_attachment=True,
+        download_name=target.name,
+        mimetype="application/zip",
+    )
 
 
 @app.route("/ultra/api/v1/firmware/download/lastest.zip", methods=["GET"])
 def download_latest_firmware():
     check_and_reload_version()
 
-    try:
-        latest_version = version_info.get("version", "")
-        commit_hash = version_info.get("commit_hash", "")
-        full_version = f"v{latest_version}-{commit_hash}"
-        filename = f"{full_version}.zip"
+    latest_version = version_info.get("version", "")
+    commit_hash = version_info.get("commit_hash", "")
+    full_version = f"v{latest_version}-{commit_hash}"
+    filename = f"{full_version}.zip"
 
-        firmware_path = os.path.join("firmware", filename)
+    firmware_path = os.path.join("firmware", filename)
 
-        if not os.path.exists(firmware_path):
-            return jsonify({"code": 404, "message": "最新固件文件不存在"}), 404
+    if not os.path.exists(firmware_path):
+        return jsonify({"code": 404, "message": "最新固件文件不存在"}), 404
 
-        return send_file(
-            firmware_path,
-            as_attachment=True,
-            download_name=filename,
-            mimetype="application/zip",
-        )
-    except Exception as e:
-        print(f"Error downloading latest firmware: {e}")
-        return jsonify({"code": 500, "message": f"下载失败: {str(e)}"}), 500
+    return send_file(
+        firmware_path,
+        as_attachment=True,
+        download_name=filename,
+        mimetype="application/zip",
+    )
 
 
 if __name__ == "__main__":
