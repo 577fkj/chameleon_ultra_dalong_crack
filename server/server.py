@@ -59,23 +59,41 @@ def get_secret_key(chip_id: str, license_key: str) -> str:
     return digest.hex()[:16]
 
 
+def get_address_key(chip_id: str, license_key: str) -> str:
+    m = hashlib.sha256()
+    m.update(chip_id.encode("utf-8"))
+    m.update(license_key.encode("utf-8"))
+    m.update(license_key.encode("utf-8"))
+    m.update(chip_id.encode("utf-8"))
+    digest = m.digest()
+    return digest.hex()[-16:]
+
+
 @app.route("/ultra/api/v1/device/register", methods=["POST"])
 def register():
     data = request.get_json()
     chip_id = data.get("chip_id")
     license_key = data.get("activation_code")
     firmware_version = data.get("firmware_version")
-    if not chip_id or not license_key:
+    if not chip_id or not license_key or len(chip_id) != 16 or len(license_key) != 12:
         return (
             jsonify({"code": 400, "message": "请求参数无效", "need_update": False}),
             400,
         )
 
     secret_key = get_secret_key(chip_id, license_key)
+    address_key = get_address_key(chip_id, license_key)
     print(
-        f"Register device: chip_id={chip_id}, license_key={license_key}, firmware_version={firmware_version}, secret_key={secret_key}"
+        f"Register device: chip_id={chip_id}, license_key={license_key}, firmware_version={firmware_version}, secret_key={secret_key}, address_key={address_key}"
     )
-    return jsonify({"code": 200, "message": "激活成功", "secret_key": secret_key})
+    return jsonify(
+        {
+            "code": 200,
+            "message": "激活成功",
+            "secret_key": secret_key,
+            "address_key": address_key,
+        }
+    )
 
 
 @app.route("/ultra/api/v1/firmware/check", methods=["POST"])
