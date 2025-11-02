@@ -100,6 +100,23 @@ def register():
     )
 
 
+def get_firmware_name(version_prefix: str):
+    if version_prefix not in version_info:
+        return None, None
+    version = version_info[version_prefix].get("version", "")
+    sub_version = version_info[version_prefix].get("sub_version", "")
+    commit_hash = version_info[version_prefix].get("commit_hash", "")
+
+    update_time = version_info[version_prefix].get("update_time", "")
+    return f"v{version_prefix}.{version}-{sub_version}-{commit_hash}", update_time
+
+
+def get_version(version: str):
+    if version.startswith("v"):
+        return version.split(".")[0][1:]
+    return version.split(".")[0]
+
+
 @app.route("/ultra/api/v1/firmware/check", methods=["POST"])
 def check_firmware():
     check_and_reload_version()
@@ -115,11 +132,13 @@ def check_firmware():
 
     print(f"Check firmware: chip_id={chip_id}, version={client_version}")
 
-    latest_version = version_info.get("version", "")
-    commit_hash = version_info.get("commit_hash", "")
-    update_time = version_info.get("update_time", "")
+    full_version, update_time = get_firmware_name(get_version(client_version))
+    if not full_version:
+        return (
+            jsonify({"code": 400, "message": "请求参数无效", "need_update": False}),
+            400,
+        )
 
-    full_version = f"v{latest_version}-{commit_hash}"
     filename = f"{full_version}.zip"
 
     file_size = 0
@@ -132,7 +151,7 @@ def check_firmware():
     need_update = client_version != full_version
 
     download_url = (
-        f"http://{request.host}/ultra/api/v1/firmware/download/v3.1/{filename}"
+        f"http://{request.host}/ultra/api/v1/firmware/download/{full_version.split("-")[0]}/{filename}"
     )
 
     firmware_info = {
@@ -155,8 +174,8 @@ def check_firmware():
     )
 
 
-@app.route("/ultra/api/v1/firmware/download/v3.1/<path:filename>", methods=["GET"])
-def download_firmware(filename):
+@app.route("/ultra/api/v1/firmware/download/<version>/<path:filename>", methods=["GET"])
+def download_firmware(version, filename):
     target = (firmware_base_path / filename).resolve()
 
     if not str(target).startswith(str(firmware_base_path) + os.sep):
@@ -180,9 +199,58 @@ def download_firmware(filename):
 def download_latest_firmware():
     check_and_reload_version()
 
-    latest_version = version_info.get("version", "")
-    commit_hash = version_info.get("commit_hash", "")
-    full_version = f"v{latest_version}-{commit_hash}"
+    full_version, _ = get_firmware_name("3")
+    if not full_version:
+        return jsonify({"code": 404, "message": "最新固件文件不存在"}), 404
+
+    filename = f"{full_version}.zip"
+
+    firmware_path = os.path.join("firmware", filename)
+
+    if not os.path.exists(firmware_path):
+        return jsonify({"code": 404, "message": "最新固件文件不存在"}), 404
+
+    return send_file(
+        firmware_path,
+        as_attachment=True,
+        download_name=filename,
+        mimetype="application/zip",
+    )
+
+
+# 16 灯固件 4.0 下载接口
+@app.route("/ultra/api/v1/firmware/download/lastest4.zip", methods=["GET"])
+def download_latest_firmware4():
+    check_and_reload_version()
+
+    full_version, _ = get_firmware_name("4")
+    if not full_version:
+        return jsonify({"code": 404, "message": "最新固件文件不存在"}), 404
+
+    filename = f"{full_version}.zip"
+
+    firmware_path = os.path.join("firmware", filename)
+
+    if not os.path.exists(firmware_path):
+        return jsonify({"code": 404, "message": "最新固件文件不存在"}), 404
+
+    return send_file(
+        firmware_path,
+        as_attachment=True,
+        download_name=filename,
+        mimetype="application/zip",
+    )
+
+
+# 16 灯固件 5.0 下载接口
+@app.route("/ultra/api/v1/firmware/download/lastest5.zip", methods=["GET"])
+def download_latest_firmware5():
+    check_and_reload_version()
+
+    full_version, _ = get_firmware_name("5")
+    if not full_version:
+        return jsonify({"code": 404, "message": "最新固件文件不存在"}), 404
+
     filename = f"{full_version}.zip"
 
     firmware_path = os.path.join("firmware", filename)
