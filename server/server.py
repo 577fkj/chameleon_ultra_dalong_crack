@@ -5,6 +5,8 @@ import time
 from flask import Flask, request, jsonify, send_file
 from threading import Thread
 from pathlib import Path
+import uuid
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -12,9 +14,10 @@ version_info = None
 version_file_mtime = None
 VERSION_FILE_PATH = "version.json"
 FIRMWARE_DIR = "../firmware"
+GEOFENCE_DATABASE_PATH = "geofence.json"
 
 firmware_base_path = Path(FIRMWARE_DIR).resolve()
-
+geofence_data = {}
 
 def load_version_info():
     global version_info, version_file_mtime
@@ -46,13 +49,6 @@ def version_monitor():
     while True:
         time.sleep(5)
         check_and_reload_version()
-
-
-load_version_info()
-
-monitor_thread = Thread(target=version_monitor, daemon=True)
-monitor_thread.start()
-
 
 def get_secret_key(chip_id: str, license_key: str) -> str:
     m = hashlib.sha256()
@@ -264,6 +260,348 @@ def download_latest_firmware5():
         mimetype="application/zip",
     )
 
+def get_iso_8601_timestamp():
+    now_with_tz = datetime.now().astimezone()
+    return now_with_tz.isoformat()
+
+def load_geofence_database():
+    global geofence_data
+    try:
+        with open(GEOFENCE_DATABASE_PATH, "r", encoding="utf-8") as f:
+            geofence_data = json.load(f)
+        print(f"Loaded geofence database: {geofence_data}")
+        return geofence_data
+    except Exception as e:
+        print(f"Error loading geofence database: {e}")
+        return {}
+
+def save_geofence_database():
+    try:
+        with open(GEOFENCE_DATABASE_PATH, "w", encoding="utf-8") as f:
+            json.dump(geofence_data, f, indent=4, ensure_ascii=False)
+        print(f"Saved geofence database: {geofence_data}")
+    except Exception as e:
+        print(f"Error saving geofence database: {e}")
+
+@app.route("/ultra/api/v1/geofence/subscription/create", methods=["POST"])
+def create_geofence_subscription():
+    data = request.get_json()
+    encryptedData = data.get("encryptedData")
+    adminPassword = data.get("adminPassword")
+    deviceId = data.get("deviceId")
+
+    if not encryptedData or not adminPassword or not deviceId:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    subid = str(uuid.uuid4())
+
+    geofence_data[subid] = {
+        "encryptedData": encryptedData,
+        "adminPassword": adminPassword,
+        "deviceId": deviceId,
+        "subscriptionDevice": {},
+        "createAt": get_iso_8601_timestamp(),
+        "updateAt": get_iso_8601_timestamp(),
+    }
+
+    save_geofence_database()
+
+    return jsonify(
+        {
+            "success": True,
+            "subscriptionId": subid,
+            "subscriptionUrl": f"http://{request.host}/ultra/api/v1/geofence/subscription/{subid}",
+        }
+    )
+
+@app.route("/ultra/api/v1/geofence/subscription/update", methods=["POST"])
+def update_geofence_subscription():
+    data = request.get_json()
+    subscriptionId = data.get("subscriptionId")
+    encryptedData = data.get("encryptedData")
+    adminPassword = data.get("adminPassword")
+    deviceId = data.get("deviceId")
+
+    if not subscriptionId or not encryptedData or not adminPassword or not deviceId:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    if subscriptionId not in geofence_data:
+        return (
+            jsonify({"success": False, "error": "订阅ID不存在"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["adminPassword"] != adminPassword:
+        return (
+            jsonify({"success": False, "error": "管理密码错误"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["deviceId"] != deviceId:
+        return (
+            jsonify({"success": False, "error": "设备ID不匹配"}),
+            200,
+        )
+
+    geofence_data[subscriptionId]["encryptedData"] = encryptedData
+    geofence_data[subscriptionId]["updateAt"] = get_iso_8601_timestamp()
+
+    save_geofence_database()
+
+    return jsonify(
+        {
+            "success": True,
+        }
+    )
+
+@app.route("/ultra/api/v1/geofence/subscription/delete", methods=["POST"])
+def delete_geofence_subscription():
+    data = request.get_json()
+    subscriptionId = data.get("subscriptionId")
+    adminPassword = data.get("adminPassword")
+    deviceId = data.get("deviceId")
+
+    if not subscriptionId or not adminPassword or not deviceId:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    if subscriptionId not in geofence_data:
+        return jsonify(
+            {
+                "success": True,
+            }
+        )
+    
+    if geofence_data[subscriptionId]["adminPassword"] != adminPassword:
+        return (
+            jsonify({"success": False, "error": "管理密码错误"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["deviceId"] != deviceId:
+        return (
+            jsonify({"success": False, "error": "设备ID不匹配"}),
+            200,
+        )
+
+    del geofence_data[subscriptionId]
+
+    save_geofence_database()
+
+    return jsonify(
+        {
+            "success": True,
+        }
+    )
+
+@app.route("/ultra/api/v1/geofence/subscription/<subscriptionId>", methods=["GET", "POST"])
+def get_geofence_subscription(subscriptionId):
+    deviceId = request.args.get("deviceId")
+    if not deviceId:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    if subscriptionId not in geofence_data:
+        return (
+            jsonify({"success": False, "error": "订阅ID不存在"}),
+            200,
+        )
+    
+    if deviceId not in geofence_data[subscriptionId]["subscriptionDevice"]:
+        geofence_data[subscriptionId]["subscriptionDevice"][deviceId] = {
+            "name": "",
+            "enabled": True,
+            "createdAt": get_iso_8601_timestamp(),
+            "lastAccessAt": get_iso_8601_timestamp()
+        }
+    else:
+        geofence_data[subscriptionId]["subscriptionDevice"][deviceId]["lastAccessAt"] = get_iso_8601_timestamp()
+    
+    if not geofence_data[subscriptionId]["subscriptionDevice"][deviceId]["enabled"]:
+        return (
+            jsonify({"success": False, "error": "该设备已被禁用，无法获取订阅数据"}),
+            200,
+        )
+
+    save_geofence_database()
+
+    return jsonify(
+        {
+            "success": True,
+            "encryptedData": geofence_data[subscriptionId]["encryptedData"],
+        }
+    )
+
+@app.route("/ultra/api/v1/geofence/subscription/device/name", methods=["POST"])
+def name_geofence_subscription_device():
+    data = request.get_json()
+    subscriptionId = data.get("subscriptionId")
+    targetDeviceId = data.get("targetDeviceId")
+    deviceName = data.get("deviceName")
+    adminPassword = data.get("adminPassword")
+    deviceId = data.get("deviceId")
+
+    if not subscriptionId or not targetDeviceId or not deviceName or not adminPassword or not deviceId:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    if subscriptionId not in geofence_data:
+        return (
+            jsonify({"success": False, "error": "订阅ID不存在"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["adminPassword"] != adminPassword:
+        return (
+            jsonify({"success": False, "error": "管理密码错误"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["deviceId"] != deviceId:
+        return (
+            jsonify({"success": False, "error": "设备ID不匹配"}),
+            200,
+        )
+    
+    if targetDeviceId not in geofence_data[subscriptionId]["subscriptionDevice"]:
+        return (
+            jsonify({"success": False, "error": "目标设备ID不存在"}),
+            200,
+        )
+    
+    geofence_data[subscriptionId]["subscriptionDevice"][targetDeviceId]["name"] = deviceName
+
+    save_geofence_database()
+
+    return jsonify(
+        {
+            "success": True,
+        }
+    )
+
+@app.route("/ultra/api/v1/geofence/subscription/device/<mode>", methods=["POST"])
+def set_geofence_subscription_device_mode(mode):
+    data = request.get_json()
+    subscriptionId = data.get("subscriptionId")
+    targetDeviceId = data.get("targetDeviceId")
+    adminPassword = data.get("adminPassword")
+    deviceId = data.get("deviceId")
+
+    if not subscriptionId or not targetDeviceId or not adminPassword or not deviceId:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    if subscriptionId not in geofence_data:
+        return (
+            jsonify({"success": False, "error": "订阅ID不存在"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["adminPassword"] != adminPassword:
+        return (
+            jsonify({"success": False, "error": "管理密码错误"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["deviceId"] != deviceId:
+        return (
+            jsonify({"success": False, "error": "设备ID不匹配"}),
+            200,
+        )
+    
+    if targetDeviceId not in geofence_data[subscriptionId]["subscriptionDevice"]:
+        return (
+            jsonify({"success": False, "error": "目标设备ID不存在"}),
+            200,
+        )
+    
+    if mode == "disable":
+        geofence_data[subscriptionId]["subscriptionDevice"][targetDeviceId]["enabled"] = False
+    elif mode == "enable":
+        geofence_data[subscriptionId]["subscriptionDevice"][targetDeviceId]["enabled"] = True
+    else:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    save_geofence_database()
+
+    return jsonify(
+        {
+            "success": True,
+        }
+    )
+
+@app.route("/ultra/api/v1/geofence/subscription/devices", methods=["POST"])
+def list_geofence_subscription_devices():
+    data = request.get_json()
+    subscriptionId = data.get("subscriptionId")
+    adminPassword = data.get("adminPassword")
+    deviceId = data.get("deviceId")
+
+    if not subscriptionId or not adminPassword or not deviceId:
+        return (
+            jsonify({"success": False, "error": "请求参数无效"}),
+            200,
+        )
+
+    if subscriptionId not in geofence_data:
+        return (
+            jsonify({"success": False, "error": "订阅ID不存在"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["adminPassword"] != adminPassword:
+        return (
+            jsonify({"success": False, "error": "管理密码错误"}),
+            200,
+        )
+    
+    if geofence_data[subscriptionId]["deviceId"] != deviceId:
+        return (
+            jsonify({"success": False, "error": "设备ID不匹配"}),
+            200,
+        )
+
+    devices = []
+    for dev_id, dev_info in geofence_data[subscriptionId]["subscriptionDevice"].items():
+        devices.append(
+            {
+                "deviceId": dev_id,
+                "deviceName": dev_info["name"],
+                "enabled": dev_info["enabled"],
+                "lastAccessAt": dev_info["lastAccessAt"],
+                "createdAt": dev_info["createdAt"]
+            }
+        )
+
+    return jsonify(
+        {
+            "success": True,
+            "devices": devices
+        }
+    )
 
 if __name__ == "__main__":
+    load_version_info()
+    load_geofence_database()
+
+    monitor_thread = Thread(target=version_monitor, daemon=True)
+    monitor_thread.start()
+
     app.run(host="0.0.0.0", port=8080)
