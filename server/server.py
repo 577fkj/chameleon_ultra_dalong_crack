@@ -149,10 +149,9 @@ def check_firmware():
     else:
         print(f"Firmware file not found: {firmware_path}")
     need_update = client_version != full_version
+    version = full_version.split("-")[0]
 
-    download_url = (
-        f"http://{request.host}/ultra/api/v1/firmware/download/{full_version.split("-")[0]}/{filename}"
-    )
+    download_url = f"http://{request.host}/ultra/api/v1/firmware/download/{version}/{filename}"
 
     firmware_info = {
         "version": full_version,
