@@ -11,7 +11,7 @@ app = Flask(__name__)
 version_info = None
 version_file_mtime = None
 VERSION_FILE_PATH = "version.json"
-FIRMWARE_DIR = "firmware"
+FIRMWARE_DIR = "../firmware"
 
 firmware_base_path = Path(FIRMWARE_DIR).resolve()
 
