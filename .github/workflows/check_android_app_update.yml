@@ -78,8 +78,9 @@ jobs:
             cat current_release_notes.txt
             echo EOF
           } >> $GITHUB_OUTPUT
-          # Delete the temporary file to avoid committing it
+          # Delete the temporary file and remove it from git staging area
           rm current_release_notes.txt
+          git reset HEAD current_release_notes.txt 2>/dev/null || true
         else
           echo "update_message=No update notes available" >> $GITHUB_OUTPUT
         fi

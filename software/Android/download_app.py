@@ -116,14 +116,21 @@ def download():
 
         update_message = app_info.get("update_message", "").split('\n')
         
-        # Write to README.md for history
-        with open('README.md', 'a', encoding='utf-8') as changelog_file:
-            changelog_file.write(f"# App Version {new_version} Build {new_build_number} Download url {download_url}\n\n")
-            for line in update_message:
-                if line.strip() and line.strip() in ignore_commit:
-                    continue
-                changelog_file.write(f"- {line}\n")
-            changelog_file.write("\n")
+        # Write to README.md for history (prepend to the beginning)
+        new_content = f"# App Version {new_version} Build {new_build_number} Download url {download_url}\n\n"
+        for line in update_message:
+            if line.strip() and line.strip() not in ignore_commit:
+                new_content += f"- {line}\n"
+        new_content += "\n"
+        
+        # Read existing content and prepend new content
+        existing_content = ""
+        if os.path.exists('README.md'):
+            with open('README.md', 'r', encoding='utf-8') as f:
+                existing_content = f.read()
+        
+        with open('README.md', 'w', encoding='utf-8') as changelog_file:
+            changelog_file.write(new_content + existing_content)
         
         # Write current version update to separate file for GitHub release
         with open('current_release_notes.txt', 'w', encoding='utf-8') as release_file:
