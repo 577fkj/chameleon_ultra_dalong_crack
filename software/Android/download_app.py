@@ -115,6 +115,8 @@ def download():
         os.rename(app_path, final_app_path)
 
         update_message = app_info.get("update_message", "").split('\n')
+        
+        # Write to README.md for history
         with open('README.md', 'a', encoding='utf-8') as changelog_file:
             changelog_file.write(f"# App Version {new_version} Build {new_build_number} Download url {download_url}\n\n")
             for line in update_message:
@@ -122,6 +124,12 @@ def download():
                     continue
                 changelog_file.write(f"- {line}\n")
             changelog_file.write("\n")
+        
+        # Write current version update to separate file for GitHub release
+        with open('current_release_notes.txt', 'w', encoding='utf-8') as release_file:
+            for line in update_message:
+                if line.strip() and line.strip() not in ignore_commit:
+                    release_file.write(f"- {line}\n")
 
         print(f"  app downloaded and saved to: {app_path}")
     except Exception as e:

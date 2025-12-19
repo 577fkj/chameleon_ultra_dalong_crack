@@ -67,16 +67,22 @@ jobs:
           exit 1
         fi
 
-    - name: Extract update message from README
+    - name: Read current release notes
       if: steps.check_changes.outputs.changes_detected == 'true'
       id: get_update_message
       run: |
         cd software/Android
-        {
-          echo 'update_message<<EOF'
-          head -n 50 README.md
-          echo EOF
-        } >> $GITHUB_OUTPUT
+        if [ -f current_release_notes.txt ]; then
+          {
+            echo 'update_message<<EOF'
+            cat current_release_notes.txt
+            echo EOF
+          } >> $GITHUB_OUTPUT
+          # Delete the temporary file to avoid committing it
+          rm current_release_notes.txt
+        else
+          echo "update_message=No update notes available" >> $GITHUB_OUTPUT
+        fi
 
     - name: Commit changes
       if: steps.check_changes.outputs.changes_detected == 'true'
