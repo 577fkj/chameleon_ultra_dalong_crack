@@ -7,6 +7,7 @@ from threading import Thread
 from pathlib import Path
 import uuid
 from datetime import datetime
+from androguard.core.apk import APK
 
 app = Flask(__name__)
 
@@ -15,9 +16,15 @@ version_file_mtime = None
 VERSION_FILE_PATH = "version.json"
 FIRMWARE_DIR = "../firmware"
 GEOFENCE_DATABASE_PATH = "geofence.json"
+ANDROID_APP_DIR = "../software/Android"
+ANDROID_README_PATH = "../software/Android/README.md"
 
 firmware_base_path = Path(FIRMWARE_DIR).resolve()
+android_app_base_path = Path(ANDROID_APP_DIR).resolve()
+
 geofence_data = {}
+apk_info_cache = None
+apk_dir_mtime = None
 
 def load_version_info():
     global version_info, version_file_mtime
@@ -49,6 +56,7 @@ def version_monitor():
     while True:
         time.sleep(5)
         check_and_reload_version()
+        check_and_reload_apk_info()
 
 def get_secret_key(chip_id: str, license_key: str) -> str:
     m = hashlib.sha256()
@@ -597,9 +605,196 @@ def list_geofence_subscription_devices():
         }
     )
 
+def load_apk_info():
+    """Load APK information from Android directory"""
+    global apk_info_cache, apk_dir_mtime
+    try:
+        apk_files = [f for f in os.listdir(ANDROID_APP_DIR) if f.endswith(".apk")]
+        if not apk_files:
+            apk_info_cache = None
+            apk_dir_mtime = None
+            print("No APK files found in Android directory")
+            return
+        
+        latest_apk = max(apk_files, key=lambda f: os.path.getmtime(os.path.join(ANDROID_APP_DIR, f)))
+        apk_path = os.path.join(ANDROID_APP_DIR, latest_apk)
+        
+        a = APK(apk_path)
+        version = a.get_androidversion_name()
+        build_number = str(a.get_androidversion_code())
+        file_size = os.path.getsize(apk_path)
+        file_mtime = os.path.getmtime(apk_path)
+        
+        apk_info_cache = {
+            "version": version,
+            "build_number": build_number,
+            "file_name": latest_apk,
+            "file_size": file_size,
+            "file_path": apk_path
+        }
+        apk_dir_mtime = file_mtime
+        
+        print(f"Loaded APK info: {apk_info_cache}")
+    except Exception as e:
+        print(f"Error loading APK info: {e}")
+        apk_info_cache = None
+        apk_dir_mtime = None
+
+def check_and_reload_apk_info():
+    """Check if APK directory has been modified and reload if needed"""
+    global apk_dir_mtime
+    try:
+        apk_files = [f for f in os.listdir(ANDROID_APP_DIR) if f.endswith(".apk")]
+        if not apk_files:
+            if apk_info_cache is not None:
+                load_apk_info()
+            return False
+        
+        latest_apk = max(apk_files, key=lambda f: os.path.getmtime(os.path.join(ANDROID_APP_DIR, f)))
+        current_mtime = os.path.getmtime(os.path.join(ANDROID_APP_DIR, latest_apk))
+        
+        if apk_dir_mtime is None or current_mtime != apk_dir_mtime:
+            print("APK directory has been modified, reloading...")
+            load_apk_info()
+            return True
+    except Exception as e:
+        print(f"Error checking APK directory: {e}")
+    return False
+
+def parse_update_message_from_readme(version: str, build_number: str) -> str:
+    """Parse update message for specific version from README.md"""
+    try:
+        if not os.path.exists(ANDROID_README_PATH):
+            return ""
+        
+        with open(ANDROID_README_PATH, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Find the section for this version
+        lines = content.split('\n')
+        capturing = False
+        update_lines = []
+        
+        target_header = f"# App Version {version} Build {build_number}"
+        
+        for line in lines:
+            if line.startswith(target_header):
+                capturing = True
+                continue
+            
+            if capturing:
+                # Stop when we hit another version header
+                if line.startswith("# App Version"):
+                    break
+                
+                # Capture non-empty lines that start with '-'
+                if line.strip() and line.strip().startswith('-'):
+                    # Remove the leading '- '
+                    update_lines.append(line.strip()[2:])
+        
+        return '\n'.join(update_lines) if update_lines else ""
+    except Exception as e:
+        print(f"Error parsing README: {e}")
+        return ""
+
+@app.route("/ultra/api/v1/app/version/check", methods=["POST"])
+def check_app_version():
+    check_and_reload_apk_info()
+    
+    data = request.get_json()
+    client_version = data.get("version")
+    client_build_number = str(data.get("build_number", ""))
+    platform = data.get("platform")
+
+    if not client_version or not client_build_number or platform != "android":
+        return (
+            jsonify({"code": 400, "message": "请求参数无效", "need_update": False}),
+            400,
+        )
+
+    print(f"Check app version: version={client_version}, build_number={client_build_number}, platform={platform}")
+
+    # Check if we have APK info
+    if not apk_info_cache:
+        return jsonify(
+            {
+                "code": 200,
+                "message": "当前版本已是最新版本",
+                "need_update": False,
+                "force_update": False
+            }
+        )
+    
+    latest_version = apk_info_cache.get("version")
+    latest_build_number = apk_info_cache.get("build_number")
+    
+    # Compare build numbers
+    try:
+        client_build = int(client_build_number)
+        latest_build = int(latest_build_number)
+        need_update = latest_build > client_build
+    except ValueError:
+        need_update = False
+    
+    if need_update:
+        # Parse update message from README
+        update_message = parse_update_message_from_readme(latest_version, latest_build_number)
+        
+        download_url = f"http://{request.host}/ultra/api/v1/app/download/{apk_info_cache.get('file_name')}"
+        
+        version_info = {
+            "version": latest_version,
+            "download_url": download_url,
+            "force_update": False,
+            "update_message": update_message
+        }
+        
+        return jsonify(
+            {
+                "code": 200,
+                "message": "发现新版本，建议更新",
+                "need_update": True,
+                "force_update": False,
+                "version_info": version_info,
+            }
+        )
+    else:
+        return jsonify(
+            {
+                "code": 200,
+                "message": "当前版本已是最新版本",
+                "need_update": False,
+                "force_update": False
+            }
+        )
+
+@app.route("/ultra/api/v1/app/download/<path:filename>", methods=["GET"])
+def download_app(filename):
+    """Download Android APK file"""
+    target = (android_app_base_path / filename).resolve()
+
+    # Security check: ensure the file is within the Android app directory
+    if not str(target).startswith(str(android_app_base_path) + os.sep):
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    # Only allow APK files
+    if target.suffix.lower() != ".apk":
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    if not target.exists():
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    return send_file(
+        str(target),
+        as_attachment=True,
+        download_name=target.name,
+        mimetype="application/vnd.android.package-archive",
+    )
+
 if __name__ == "__main__":
     load_version_info()
     load_geofence_database()
+    load_apk_info()
 
     monitor_thread = Thread(target=version_monitor, daemon=True)
     monitor_thread.start()
