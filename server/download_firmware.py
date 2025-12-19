@@ -32,7 +32,7 @@ with open(VERSION_FILE_PATH, "r", encoding="utf-8") as f:
     version_info = json.load(f)
 
 headers = {
-    "User-agent": "Dart/3.9 (dart:io)"
+    "User-agent": "Dart/3.10 (dart:io)"
 }
 
 check = "https://i.tlq520.cn/ultra/api/v1/firmware/check"

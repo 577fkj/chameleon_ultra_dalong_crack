@@ -1,0 +1,136 @@
+name: Update Android App
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:                # Job-level permissions configuration starts here
+      contents: write           # 'write' access to repository contents
+      pull-requests: write      # 'write' access to pull requests
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests androguard
+
+    - name: Run download app script
+      run: |
+        cd software/Android
+        python download_app.py
+
+    - name: Check for changes
+      id: check_changes
+      run: |
+        cd software/Android
+        git add .
+        if git diff-index --quiet HEAD --; then
+          echo "No changes detected"
+          echo "changes_detected=false" >> $GITHUB_OUTPUT
+        else
+          echo "Changes detected"
+          echo "changes_detected=true" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Get new APK file and version info
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      id: get_apk_info
+      run: |
+        cd software/Android
+        APK_FILE=$(ls -t *.apk 2>/dev/null | head -n1)
+        if [ -n "$APK_FILE" ]; then
+          echo "apk_file=$APK_FILE" >> $GITHUB_OUTPUT
+          echo "apk_path=software/Android/$APK_FILE" >> $GITHUB_OUTPUT
+          VERSION=$(echo $APK_FILE | sed -n 's/app_v\(.*\)_b.*/\1/p')
+          BUILD=$(echo $APK_FILE | sed -n 's/.*_b\([0-9]*\).*/\1/p')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "build=$BUILD" >> $GITHUB_OUTPUT
+          echo "Found APK: $APK_FILE (Version: $VERSION, Build: $BUILD)"
+        else
+          echo "No APK file found"
+          exit 1
+        fi
+
+    - name: Extract update message from README
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      id: get_update_message
+      run: |
+        cd software/Android
+        {
+          echo 'update_message<<EOF'
+          head -n 50 README.md
+          echo EOF
+        } >> $GITHUB_OUTPUT
+
+    - name: Commit changes
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      run: |
+        cd software/Android
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git commit -m "Update Android app to v${{ steps.get_apk_info.outputs.version }} build ${{ steps.get_apk_info.outputs.build }}"
+
+    - name: Push changes
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+
+    - name: Calculate MD5 for APK
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      id: generate_md5
+      run: |
+        cd software/Android
+        md5sum ${{ steps.get_apk_info.outputs.apk_file }} > md5sum.txt
+        MD5=$(cat md5sum.txt | awk '{print $1}')
+        echo "md5=$MD5" >> $GITHUB_OUTPUT
+        echo "APK MD5: $MD5"
+
+    - name: Create release notes
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      id: create_notes
+      run: |
+        cd software/Android
+        cat > release_notes.md << 'EOFNOTES'
+        # Android App v${{ steps.get_apk_info.outputs.version }} Build ${{ steps.get_apk_info.outputs.build }}
+        
+        ## 📦 文件信息
+        - 文件名: ${{ steps.get_apk_info.outputs.apk_file }}
+        - MD5: ${{ steps.generate_md5.outputs.md5 }}
+        
+        ## 📝 更新内容
+        ${{ steps.get_update_message.outputs.update_message }}
+        EOFNOTES
+
+    - name: Get timestamp
+      id: timestamp
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      run: echo "timestamp=$(date +'%Y-%m-%d')-$(date +'%H_%M_%S')" >> $GITHUB_OUTPUT
+  
+    - name: Create GitHub release
+      if: steps.check_changes.outputs.changes_detected == 'true'
+      uses: softprops/action-gh-release@v2
+      with:
+          tag_name: Android-v${{ steps.get_apk_info.outputs.version }}-b${{ steps.get_apk_info.outputs.build }}-${{ steps.timestamp.outputs.timestamp }}
+          name: Android App v${{ steps.get_apk_info.outputs.version }} (Build ${{ steps.get_apk_info.outputs.build }})
+          files: ${{ steps.get_apk_info.outputs.apk_path }}
+          body_path: software/Android/release_notes.md
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
