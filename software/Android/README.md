@@ -1,3 +1,7 @@
+# App Version 5.2.5 Build 25123611 Download url http://223.111.251.197:54/files/v5.2.5.apk
+
+- 新增围栏定位模式3支持，满足不同设备需求
+
 # App Version 5.2.4 Build 253201 Renamed 安卓-5.2.4-支持双频卡片正式版本.apk to app_v5.2.4_b253201.apk
 
 - 支持双频卡片正式版本
