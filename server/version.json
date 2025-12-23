@@ -1,9 +1,9 @@
 {
     "3": {
         "version": "1",
-        "sub_version": "52",
-        "update_time": "2025-11-13T06:44:02.775872603Z",
-        "commit_hash": "g0d0dbae"
+        "sub_version": "54",
+        "commit_hash": "g4777edf",
+        "update_time": "2025-11-13T06:44:02.775872603Z"
     },
     "4": {
         "version": "1",
