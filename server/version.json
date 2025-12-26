@@ -1,20 +1,20 @@
 {
     "3": {
         "version": "1",
-        "sub_version": "54",
-        "commit_hash": "g4777edf",
+        "sub_version": "57",
+        "commit_hash": "g007fb9f",
         "update_time": "2025-11-13T06:44:02.775872603Z"
     },
     "4": {
         "version": "1",
-        "sub_version": "62",
-        "commit_hash": "gfc5420e",
+        "sub_version": "69",
+        "commit_hash": "g57a3477",
         "update_time": "2025-10-22T03:26:09.853237739Z"
     },
     "5": {
         "version": "1",
-        "sub_version": "59",
-        "commit_hash": "g13325d3",
+        "sub_version": "65",
+        "commit_hash": "ga829a95",
         "update_time": "2025-10-22T03:26:18.669593072Z"
     }
 }
