@@ -1,3 +1,7 @@
+# App Version 5.2.5 Build 26012400 Download url http://223.111.251.197:54/files/v5.2.5-pro.apk
+
+- 请点击检查更新最新的固件，新增智能轮询功能，提高轮询效率
+
 # App Version 5.2.5 Build 25124610 Download url http://223.111.251.197:54/files/v5.2.5-1226.apk
 
 - 请点击检查更新最新的固件，新增智能轮询功能，提高轮询效率
