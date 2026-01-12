@@ -3,7 +3,6 @@ import os
 from androguard.core.apk import APK
 import time
 
-VERSION_FILE_PATH = "version.json"
 APP_DIR = "./"
 OLD_APP_DIR = "./Old"
 

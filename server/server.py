@@ -23,11 +23,14 @@ FIRMWARE_DIR = "../firmware"
 GEOFENCE_DATABASE_PATH = "geofence.json"
 ANDROID_APP_DIR = "../software/Android"
 ANDROID_README_PATH = "../software/Android/README.md"
+GEOFENCE_APP_DIR = "../software/GeoFence/Android"
+GEOFENCE_README_PATH = "../software/GeoFence/Android/README.md"
 MONITOR_INTERVAL = 5  # seconds
 
 # Resolve paths
 firmware_base_path = Path(FIRMWARE_DIR).resolve()
 android_app_base_path = Path(ANDROID_APP_DIR).resolve()
+geofence_app_base_path = Path(GEOFENCE_APP_DIR).resolve()
 
 # Global state with locks for thread safety
 version_info = {}
@@ -40,6 +43,10 @@ geofence_lock = Lock()
 apk_info_cache = None
 apk_dir_mtime = None
 apk_lock = Lock()
+
+geofence_apk_info_cache = None
+geofence_apk_dir_mtime = None
+geofence_apk_lock = Lock()
 
 
 # ============================================================================
@@ -179,13 +186,13 @@ def check_and_reload_apk_info():
     return False
 
 
-def parse_update_message_from_readme(version: str, build_number: str):
+def parse_update_message_from_readme(path: str, version: str, build_number: str):
     """Parse update message for specific version from README.md"""
     try:
-        if not os.path.exists(ANDROID_README_PATH):
+        if not os.path.exists(path):
             return ""
         
-        with open(ANDROID_README_PATH, 'r', encoding='utf-8') as f:
+        with open(path, 'r', encoding='utf-8') as f:
             content = f.read()
         
         lines = content.split('\n')
@@ -208,6 +215,88 @@ def parse_update_message_from_readme(version: str, build_number: str):
     except Exception as e:
         print(f"[APK] Error parsing README: {e}")
         return ""
+
+
+# ============================================================================
+# GeoFence APK Management
+# ============================================================================
+
+def load_geofence_apk_info():
+    """Load GeoFence APK information from GeoFence/Android directory"""
+    global geofence_apk_info_cache, geofence_apk_dir_mtime
+    try:
+        if not os.path.exists(GEOFENCE_APP_DIR):
+            print(f"[GeoFence APK] Warning: {GEOFENCE_APP_DIR} not found")
+            geofence_apk_info_cache = None
+            geofence_apk_dir_mtime = None
+            return
+            
+        apk_files = [f for f in os.listdir(GEOFENCE_APP_DIR) if f.endswith(".apk")]
+        if not apk_files:
+            geofence_apk_info_cache = None
+            geofence_apk_dir_mtime = None
+            print("[GeoFence APK] No APK files found")
+            return
+        
+        latest_apk = max(apk_files, key=lambda f: os.path.getmtime(os.path.join(GEOFENCE_APP_DIR, f)))
+        apk_path = os.path.join(GEOFENCE_APP_DIR, latest_apk)
+        
+        # Parse filename: geofence_v1.0.0_888.apk
+        # Format: geofence_v{version}_{build_number}.apk
+        import re
+        match = re.match(r'geofence_v([\d.]+)_(\d+)\.apk', latest_apk)
+        if not match:
+            print(f"[GeoFence APK] Warning: Filename format not recognized: {latest_apk}")
+            geofence_apk_info_cache = None
+            geofence_apk_dir_mtime = None
+            return
+        
+        version = match.group(1)
+        build_number = match.group(2)
+        file_size = os.path.getsize(apk_path)
+        file_mtime = os.path.getmtime(apk_path)
+        
+        geofence_apk_info_cache = {
+            "version": version,
+            "build_number": build_number,
+            "file_name": latest_apk,
+            "file_size": file_size,
+            "file_path": apk_path
+        }
+        geofence_apk_dir_mtime = file_mtime
+        
+        print(f"[GeoFence APK] Loaded: {latest_apk} v{version} build {build_number}")
+    except Exception as e:
+        print(f"[GeoFence APK] Error loading APK info: {e}")
+        geofence_apk_info_cache = None
+        geofence_apk_dir_mtime = None
+
+
+def check_and_reload_geofence_apk_info():
+    """Check if GeoFence APK directory has been modified and reload if needed"""
+    global geofence_apk_dir_mtime
+    try:
+        if not os.path.exists(GEOFENCE_APP_DIR):
+            return False
+            
+        apk_files = [f for f in os.listdir(GEOFENCE_APP_DIR) if f.endswith(".apk")]
+        if not apk_files:
+            if geofence_apk_info_cache is not None:
+                with geofence_apk_lock:
+                    load_geofence_apk_info()
+            return False
+        
+        latest_apk = max(apk_files, key=lambda f: os.path.getmtime(os.path.join(GEOFENCE_APP_DIR, f)))
+        current_mtime = os.path.getmtime(os.path.join(GEOFENCE_APP_DIR, latest_apk))
+        
+        if geofence_apk_dir_mtime is None or current_mtime != geofence_apk_dir_mtime:
+            with geofence_apk_lock:
+                print("[GeoFence APK] Directory modified, reloading...")
+                load_geofence_apk_info()
+            return True
+    except Exception as e:
+        print(f"[GeoFence APK] Error checking directory: {e}")
+    return False
 
 
 # ============================================================================
@@ -279,6 +368,7 @@ def background_monitor():
         time.sleep(MONITOR_INTERVAL)
         check_and_reload_version()
         check_and_reload_apk_info()
+        check_and_reload_geofence_apk_info()
 
 
 # ============================================================================
@@ -472,12 +562,11 @@ def download_latest_firmware5():
 @app.route("/ultra/api/v1/app/version/check", methods=["POST"])
 def check_app_version():
     """Check for app updates"""
-    check_and_reload_apk_info()
-    
     data = request.get_json()
     client_version = data.get("version")
     client_build_number = str(data.get("build_number", ""))
     platform = data.get("platform")
+    package_name = data.get("package_name", "")
 
     if not client_version or not client_build_number or platform != "android":
         return jsonify({
@@ -486,10 +575,20 @@ def check_app_version():
             "need_update": False
         }), 400
 
-    print(f"[App] Check: version={client_version}, build={client_build_number}")
+    print(f"[App] Check: version={client_version}, build={client_build_number}, package={package_name}")
+
+    # Determine which APK to check based on package_name
+    if package_name == "geofence":
+        check_and_reload_geofence_apk_info()
+        apk_cache = geofence_apk_info_cache
+        download_base_url = "/ultra/api/v1/geofence/app/download"
+    else:
+        check_and_reload_apk_info()
+        apk_cache = apk_info_cache
+        download_base_url = "/ultra/api/v1/app/download"
 
     # Check if we have APK info
-    if not apk_info_cache:
+    if not apk_cache:
         return jsonify({
             "code": 200,
             "message": "当前版本已是最新版本",
@@ -497,8 +596,8 @@ def check_app_version():
             "force_update": False
         })
     
-    latest_version = apk_info_cache.get("version")
-    latest_build_number = apk_info_cache.get("build_number")
+    latest_version = apk_cache.get("version")
+    latest_build_number = apk_cache.get("build_number")
     
     # Compare build numbers
     try:
@@ -509,9 +608,14 @@ def check_app_version():
         need_update = False
     
     if need_update:
-        # Parse update message from README
-        update_message = parse_update_message_from_readme(latest_version, latest_build_number)
-        download_url = f"http://{request.host}/ultra/api/v1/app/download/{apk_info_cache.get('file_name')}"
+        # Parse update message from README (only for main app)
+        update_message = ""
+        if package_name == "geofence":
+            update_message = parse_update_message_from_readme(GEOFENCE_README_PATH, latest_version, latest_build_number)
+        else:
+            update_message = parse_update_message_from_readme(ANDROID_README_PATH, latest_version, latest_build_number)
+        
+        download_url = f"http://{request.host}{download_base_url}/{apk_cache.get('file_name')}"
         
         version_info_data = {
             "version": latest_version,
@@ -543,6 +647,29 @@ def download_app(filename):
 
     # Security checks
     if not str(target).startswith(str(android_app_base_path) + os.sep):
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    if target.suffix.lower() != ".apk":
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    if not target.exists():
+        return jsonify({"code": 404, "message": "文件不存在"}), 404
+
+    return send_file(
+        str(target),
+        as_attachment=True,
+        download_name=target.name,
+        mimetype="application/vnd.android.package-archive",
+    )
+
+
+@app.route("/ultra/api/v1/geofence/app/download/<path:filename>", methods=["GET"])
+def download_geofence_app(filename):
+    """Download GeoFence APK file"""
+    target = (geofence_app_base_path / filename).resolve()
+
+    # Security checks
+    if not str(target).startswith(str(geofence_app_base_path) + os.sep):
         return jsonify({"code": 404, "message": "文件不存在"}), 404
 
     if target.suffix.lower() != ".apk":
@@ -814,6 +941,7 @@ if __name__ == "__main__":
     load_version_info()
     load_geofence_database()
     load_apk_info()
+    load_geofence_apk_info()
     
     # Start background monitor thread
     monitor_thread = Thread(target=background_monitor, daemon=True, name="MonitorThread")
