@@ -1,1 +1,3 @@
 server/geofence.json
+*.pyc
+__pycache__/

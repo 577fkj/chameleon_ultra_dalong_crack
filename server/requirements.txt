@@ -1,0 +1,3 @@
+Flask>=3.0.0
+androguard>=4.1.0
+pathlib>=1.0.1
