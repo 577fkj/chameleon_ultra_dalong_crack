@@ -45,7 +45,7 @@ def get_last_apk_info() -> tuple[str, int]:
 def get_apk_info(apk_path: str) -> tuple[str, int]:
     apk_name = os.path.basename(apk_path)
     apk_name = apk_name.split('.apk')[0]
-    apk_name = apk_name.split('-')
+    apk_name = apk_name.split('_')
     version = apk_name[1].lstrip('v')
     build_number = apk_name[2]
     return version, int(build_number)
