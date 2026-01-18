@@ -58,7 +58,7 @@ jobs:
           echo "apk_file=$APK_FILE" >> $GITHUB_OUTPUT
           echo "apk_path=software/GeoFence/Android/$APK_FILE" >> $GITHUB_OUTPUT
           VERSION=$(echo "$APK_FILE" | sed -n 's/geofence_v\([0-9.]*\)_\([0-9]*\)\.apk/\1/p')
-          BUILD=$(echo "$APK_FILE" | sed -n 's/geofence_v[0-9.]*_\([0-9]*\)\.apk/\1/p')
+          BUILD=$(echo "$APK_FILE" | sed -n 's/geofence_v[0-9.]*_b\([0-9]*\)\.apk/\1/p')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "build=$BUILD" >> $GITHUB_OUTPUT
           echo "Found APK: $APK_FILE (Version: $VERSION, Build: $BUILD)"

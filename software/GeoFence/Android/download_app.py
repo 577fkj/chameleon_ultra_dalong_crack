@@ -46,8 +46,15 @@ def get_apk_info(apk_path: str) -> tuple[str, int]:
     apk_name = os.path.basename(apk_path)
     apk_name = apk_name.split('.apk')[0]
     apk_name = apk_name.split('_')
-    version = apk_name[1].lstrip('v')
-    build_number = apk_name[2]
+    version = ""
+    build_number = ""
+    for part in apk_name:
+        if part.startswith('v'):
+            version = part[1:]
+        elif part.startswith('b'):
+            build_number = part[1:]
+    if version == "" or build_number == "":
+        return "", 0
     return version, int(build_number)
 
 def download_file(url, save_path, chunk_size=8192, timeout=(5, 60)):
@@ -122,7 +129,12 @@ def download():
         app_filename = "apk.tmp"
         app_path = os.path.join(APP_DIR, app_filename)
         new_version, new_build_number = get_apk_info(download_file_name)
-        final_app_filename = f"geofence_v{new_version}_{new_build_number}.apk"
+
+        if new_version == "" or new_build_number == 0:
+            print(f"  Failed to get new version/build number from downloaded file: {download_file_name}")
+            return
+
+        final_app_filename = f"geofence_v{new_version}_b{new_build_number}.apk"
         final_app_path = os.path.join(APP_DIR, final_app_filename)
         os.rename(app_path, final_app_path)
 
