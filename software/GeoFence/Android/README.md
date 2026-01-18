@@ -1,3 +1,7 @@
+# App Version 1.0.1 Build 1183710 Download url http://223.111.251.197:54/files/v1.0.1_b1183710_arm64-v8a_release.apk
+
+- 请养成经常导出备份围栏、卡包的好习惯～ 支持激活、支持固件刷入、版本号展示、卡槽展示卡片名称、订阅页面优化、首页可手动执行围栏、首页支持按距离排序动态围栏、主题支持跟随系统等等等
+
 # App Version 1.0.0 Build 888 Download url http://223.111.251.197:54/files/g-v1.0.0-888.apk
 
 
