@@ -13,6 +13,7 @@ from pathlib import Path
 from config import get_config
 from api import device_bp, firmware_bp, app_version_bp, geofence_bp
 from utils import FileMonitor
+from utils.response_signer import register_response_signer
 
 
 def create_app():
@@ -33,6 +34,9 @@ def create_app():
     app.register_blueprint(firmware_bp, url_prefix=api_prefix)
     app.register_blueprint(app_version_bp, url_prefix=api_prefix)
     app.register_blueprint(geofence_bp, url_prefix=api_prefix)
+
+    # Register global response signer to add timestamp and signature
+    register_response_signer(app)
     
     # Setup file monitoring
     setup_file_monitor(config)

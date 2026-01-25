@@ -6,7 +6,7 @@ Handles Android app version check and download
 
 from flask import Blueprint, request, jsonify, send_file
 
-from services.apk_service import APKService, GeofenceAPKService
+from services.apk_service import APKService
 from config import get_config
 
 app_version_bp = Blueprint('app_version', __name__)
@@ -18,9 +18,10 @@ main_apk_service = APKService(
     config.ANDROID_README_PATH,
     "Main"
 )
-geofence_apk_service = GeofenceAPKService(
+geofence_apk_service = APKService(
     config.GEOFENCE_APP_DIR,
-    config.GEOFENCE_README_PATH
+    config.GEOFENCE_README_PATH,
+    "GeoFence"
 )
 
 

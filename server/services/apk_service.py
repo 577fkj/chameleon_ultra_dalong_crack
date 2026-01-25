@@ -10,7 +10,10 @@ from threading import Lock
 from pathlib import Path
 from typing import Optional
 from androguard.core.apk import APK
+from loguru import logger
 
+logger.remove()
+logger.add(lambda msg: None, level="ERROR")
 
 class APKService:
     """Service for APK management"""
@@ -218,130 +221,4 @@ class APKService:
             return target
         except Exception as e:
             print(f"[APKService-{self.name}] Error getting APK path: {e}")
-            return None
-
-
-class GeofenceAPKService:
-    """Service for GeoFence APK management (filename-based version parsing)"""
-    
-    def __init__(self, apk_dir: Path, readme_path: Path):
-        """
-        Initialize GeoFence APK service
-        
-        Args:
-            apk_dir: Directory containing GeoFence APK files
-            readme_path: Path to README.md for update messages
-        """
-        self.apk_dir = apk_dir
-        self.readme_path = readme_path
-        self.apk_info_cache = None
-        self.apk_dir_mtime = None
-        self.lock = Lock()
-        
-        # Load initial data
-        self.load_apk_info()
-    
-    def load_apk_info(self):
-        """Load GeoFence APK information from directory"""
-        try:
-            if not self.apk_dir.exists():
-                print(f"[GeofenceAPKService] Warning: {self.apk_dir} not found")
-                self.apk_info_cache = None
-                self.apk_dir_mtime = None
-                return
-            
-            apk_files = [f for f in os.listdir(self.apk_dir) if f.endswith(".apk")]
-            if not apk_files:
-                self.apk_info_cache = None
-                self.apk_dir_mtime = None
-                print("[GeofenceAPKService] No APK files found")
-                return
-            
-            latest_apk = max(apk_files, key=lambda f: os.path.getmtime(self.apk_dir / f))
-            apk_path = self.apk_dir / latest_apk
-            
-            # Parse filename: geofence_v1.0.0_888.apk
-            # Format: geofence_v{version}_{build_number}.apk
-            match = re.match(r'geofence_v([\d.]+)_(\d+)\.apk', latest_apk)
-            if not match:
-                print(f"[GeofenceAPKService] Warning: Filename format not recognized: {latest_apk}")
-                self.apk_info_cache = None
-                self.apk_dir_mtime = None
-                return
-            
-            version = match.group(1)
-            build_number = match.group(2)
-            file_size = apk_path.stat().st_size
-            file_mtime = os.path.getmtime(apk_path)
-            
-            self.apk_info_cache = {
-                "version": version,
-                "build_number": build_number,
-                "file_name": latest_apk,
-                "file_size": file_size,
-                "file_path": str(apk_path)
-            }
-            self.apk_dir_mtime = file_mtime
-            
-            print(f"[GeofenceAPKService] Loaded: {latest_apk} v{version} build {build_number}")
-        except Exception as e:
-            print(f"[GeofenceAPKService] Error loading APK info: {e}")
-            self.apk_info_cache = None
-            self.apk_dir_mtime = None
-    
-    def check_and_reload(self) -> bool:
-        """Check if GeoFence APK directory has been modified and reload if needed"""
-        try:
-            if not self.apk_dir.exists():
-                return False
-            
-            apk_files = [f for f in os.listdir(self.apk_dir) if f.endswith(".apk")]
-            if not apk_files:
-                if self.apk_info_cache is not None:
-                    with self.lock:
-                        self.load_apk_info()
-                return False
-            
-            latest_apk = max(apk_files, key=lambda f: os.path.getmtime(self.apk_dir / f))
-            current_mtime = os.path.getmtime(self.apk_dir / latest_apk)
-            
-            if self.apk_dir_mtime is None or current_mtime != self.apk_dir_mtime:
-                with self.lock:
-                    print("[GeofenceAPKService] Directory modified, reloading...")
-                    self.load_apk_info()
-                return True
-        except Exception as e:
-            print(f"[GeofenceAPKService] Error checking directory: {e}")
-        return False
-    
-    def get_apk_info(self) -> Optional[dict]:
-        """Get cached APK info"""
-        return self.apk_info_cache
-    
-    def get_apk_path(self, filename: str) -> Optional[Path]:
-        """
-        Get GeoFence APK file path with security validation
-        
-        Args:
-            filename: APK filename
-            
-        Returns:
-            Path object if valid, None otherwise
-        """
-        try:
-            target = (self.apk_dir / filename).resolve()
-            
-            # Security checks
-            if not str(target).startswith(str(self.apk_dir.resolve()) + os.sep):
-                return None
-            
-            if target.suffix.lower() != ".apk":
-                return None
-            
-            if not target.exists():
-                return None
-            
-            return target
-        except Exception as e:
-            print(f"[GeofenceAPKService] Error getting APK path: {e}")
             return None
