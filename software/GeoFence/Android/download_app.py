@@ -2,6 +2,7 @@ import requests
 import os
 import time
 import traceback
+from androguard.core.apk import APK
 
 APP_DIR = "./"
 OLD_APP_DIR = "./Old"
@@ -43,18 +44,9 @@ def get_last_apk_info() -> tuple[str, int]:
     return get_apk_info(apk_path)
 
 def get_apk_info(apk_path: str) -> tuple[str, int]:
-    apk_name = os.path.basename(apk_path)
-    apk_name = apk_name.split('.apk')[0]
-    apk_name = apk_name.split('_')
-    version = ""
-    build_number = ""
-    for part in apk_name:
-        if part.startswith('v'):
-            version = part[1:]
-        elif part.startswith('b'):
-            build_number = part[1:]
-    if version == "" or build_number == "":
-        return "", 0
+    a = APK(apk_path)
+    version = a.get_androidversion_name()
+    build_number = a.get_androidversion_code()
     return version, int(build_number)
 
 def download_file(url, save_path, chunk_size=8192, timeout=(5, 60)):
@@ -101,6 +93,7 @@ def download_file(url, save_path, chunk_size=8192, timeout=(5, 60)):
 
 def download():
     version, build_number = get_last_apk_info()
+    print("Current Version:", version, "Build Number:", build_number)
     payload = {
         "version": version,
         "build_number": str(build_number),
