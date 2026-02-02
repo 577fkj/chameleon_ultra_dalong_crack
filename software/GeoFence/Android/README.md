@@ -1,3 +1,10 @@
+# App Version 1.0.2 Build 20262202 Download url http://223.111.251.197:54/files/v1.0.2_b20260202_arm64-v8a_release.apk
+
+- 1、支持接近围栏阈值设置
+- 2、提升围栏稳定性
+- 必须安装最新版固件，否则围栏将不可用。
+- 请尽快更新新版，晚上将强制更新
+
 # App Version 1.0.1 Build 1220001 Download url http://223.111.251.197:54/files/v1.0.1_b1220001_arm64-v8a_release.apk
 
 - 1、围栏支持拼音模糊搜索
