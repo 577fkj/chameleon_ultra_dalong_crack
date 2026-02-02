@@ -115,16 +115,15 @@ def download():
         
         download_url = app_info.get("download_url")
 
-        download_file_name = download_file(download_url, "apk.tmp", chunk_size=8192, timeout=(5, 60))
+        download_file(download_url, "apk.tmp", chunk_size=8192, timeout=(5, 60))
 
         move_all_to_old()
 
         app_filename = "apk.tmp"
         app_path = os.path.join(APP_DIR, app_filename)
-        new_version, new_build_number = get_apk_info(download_file_name)
-
+        new_version, new_build_number = get_apk_info(app_path)
         if new_version == "" or new_build_number == 0:
-            print(f"  Failed to get new version/build number from downloaded file: {download_file_name}")
+            print(f"  Failed to get new version/build number from downloaded file: {app_path}")
             return
 
         final_app_filename = f"geofence_v{new_version}_b{new_build_number}.apk"
