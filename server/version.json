@@ -16,5 +16,11 @@
         "sub_version": "76",
         "commit_hash": "ga158941",
         "update_time": "2025-10-22T03:26:18.669593072Z"
+    },
+    "6": {
+        "version": "0",
+        "sub_version": "10",
+        "commit_hash": "g412dbf9",
+        "update_time": "2025-10-22T03:26:18.669593072Z"
     }
 }
