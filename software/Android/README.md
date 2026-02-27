@@ -1,3 +1,7 @@
+# App Version 6.0.1 Build 26024715 Download url http://223.111.251.197:54/files/6.0.1-app-arm64-v8a-release.apk
+
+- 围栏功能即将下架，请完成围栏数据迁移
+
 # App Version 5.2.5 Build 26012400 Download url http://223.111.251.197:54/files/v5.2.5-pro.apk
 
 - 请点击检查更新最新的固件，新增智能轮询功能，提高轮询效率
