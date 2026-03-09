@@ -1,3 +1,11 @@
+# App Version 1.0.4 Build 20262309 Download url http://223.111.251.197:54/files/v1.0.4_b20260309_arm64-v8a_release.apk
+
+- 1、优化围栏执行速度
+- 2、必须在线检查更新升级最新固件
+- 3、支持共创模式，所有人都可以对地图创建标记功能
+- 必须安装最新版固件，否则围栏将不可用。
+- 请尽快更新新版，晚上将强制更新
+
 # App Version 1.0.3 Build 20262304 Download url http://223.111.251.197:54/files/v1.0.3_b20260304_arm64-v8a_release.apk
 
 - 1、优化围栏执行速度
