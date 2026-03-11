@@ -1,3 +1,9 @@
+# App Version 1.0.5 Build 20262310 Download url http://223.111.251.197:54/files/v1.0.5_b20260310_arm64-v8a_release.apk
+
+- 1、优化标记功能
+- 必须安装最新版固件，否则围栏将不可用。
+- 请尽快更新新版，晚上将强制更新
+
 # App Version 1.0.4 Build 20262309 Download url http://223.111.251.197:54/files/v1.0.4_b20260309_arm64-v8a_release.apk
 
 - 1、优化围栏执行速度
