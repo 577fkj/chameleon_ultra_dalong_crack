@@ -1,3 +1,7 @@
+# App Version 6.0.2 Build 26034400 Download url http://223.111.251.197:54/files/v6.0.2.apk
+
+- 围栏功能已下架，安装更新前请完成围栏数据迁移
+
 # App Version 6.0.1 Build 26024715 Download url http://223.111.251.197:54/files/6.0.1-app-arm64-v8a-release.apk
 
 - 围栏功能即将下架，请完成围栏数据迁移
