@@ -1,3 +1,8 @@
+# App Version 1.1.0 Build 20262406 Download url http://223.111.251.197:54/files/v1.1.0_b20260406_arm64-v8a_release.apk
+
+- 1. 修复接近围栏阈值不生效问题
+- 请尽快更新新版，近期将强制更新
+
 # App Version 1.0.5 Build 20262325 Download url http://223.111.251.197:54/files/v1.0.5_b20260325_arm64-v8a_release.apk
 
 - 1. 优化部分场景
