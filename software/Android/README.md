@@ -1,3 +1,7 @@
+# App Version 6.0.3 Build 26053316 Download url http://223.111.251.197:54/files/v6.0.3.apk
+
+- 优化固件刷入稳定性
+
 # App Version 6.0.2 Build 26034400 Download url http://223.111.251.197:54/files/v6.0.2.apk
 
 - 围栏功能已下架，安装更新前请完成围栏数据迁移
