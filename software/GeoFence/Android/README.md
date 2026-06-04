@@ -1,3 +1,9 @@
+# App Version 1.1.1 Build 20262604 Download url http://223.111.251.197:54/files/v1.1.1_b20260604_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+- 1.请先更新APP后再更新设备固件
+- 请尽快更新新版，近期将强制更新
+
 # App Version 1.1.0 Build 20262426 Download url http://223.111.251.197:54/files/v1.1.0_b20260426_arm64-v8a_release.apk
 
 - 请养成经常导出围栏配置的好习惯～
