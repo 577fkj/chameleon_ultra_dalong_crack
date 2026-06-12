@@ -1,3 +1,7 @@
+# App Version 6.0.4 Build 26063216 Download url http://223.111.251.197:54/files/v6.0.4.apk
+
+- 支持32卡槽固件，升级固件前 请确保已备份好卡槽数据
+
 # App Version 6.0.3 Build 26053409 Download url http://223.111.251.197:54/files/v6.0.3-26053409.apk
 
 - 优化固件刷入稳定性
