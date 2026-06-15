@@ -1,3 +1,8 @@
+# App Version 1.1.2 Build 20262616 Download url http://223.111.251.197:54/files/v1.1.2_b20260616_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+- 1.新增支持32卡槽设备，新增预览围栏开关
+
 # App Version 1.1.1 Build 20262604 Download url http://223.111.251.197:54/files/v1.1.1_b20260604_arm64-v8a_release.apk
 
 - 请养成备份的好习惯～
