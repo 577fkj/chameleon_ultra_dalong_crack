@@ -1,3 +1,8 @@
+# App Version 1.1.3 Build 20262708 Download url http://223.111.251.197:54/files/v1.1.3_b20260708_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+- 1. 新增设备轻提醒开关
+
 # App Version 1.1.2 Build 20262616 Download url http://223.111.251.197:54/files/v1.1.2_b20260616_arm64-v8a_release.apk
 
 - 请养成备份的好习惯～
