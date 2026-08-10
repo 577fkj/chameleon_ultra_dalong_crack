@@ -1,3 +1,13 @@
+# App Version 1.1.4 Build 20262810 Download url http://223.111.251.197:54/files/v1.1.4_b20260810_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+-   - 新增围栏订阅配额展示，方便查看可用围栏数量。
+-   - 支持订阅者自主选择可使用的围栏权限。
+-   - 支持将围栏关联的卡片分享给订阅者。
+-   - 新增滚动码低频卡支持，并支持订阅用户离线迁移相关卡槽数据。
+-   - 卡包支持分享卡片，并新增 MIFARE Classic 卡写入功能。
+-   - 支持导入外部卡片文件，包括 MCT 文本 Dump 和部分非标准 MIFARE Dump 文件。
+
 # App Version 1.1.3 Build 20262708 Download url http://223.111.251.197:54/files/v1.1.3_b20260708_arm64-v8a_release.apk
 
 - 请养成备份的好习惯～
