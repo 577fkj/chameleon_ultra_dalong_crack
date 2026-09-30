@@ -1,3 +1,7 @@
+# App Version 7.0.0 Build 29847537 Download url http://223.111.251.197:54/files/v7.0.0+202609300937-arm64-v8a.apk
+
+- 全新重构的APP，体验更好，请先备份好APP的卡包、字典数据 并且 配套完成固件升级
+
 # App Version 6.0.4 Build 26063216 Download url http://223.111.251.197:54/files/v6.0.4.apk
 
 - 支持32卡槽固件，升级固件前 请确保已备份好卡槽数据
