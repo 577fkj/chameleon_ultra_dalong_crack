@@ -1,3 +1,8 @@
+# App Version 1.1.6 Build 20263009 Download url http://223.111.251.197:54/files/v1.1.6_b20261009_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+-   - 新增设备丢失提醒功能
+
 # App Version 1.1.5 Build 20262908 Download url http://223.111.251.197:54/files/v1.1.5_b20260908_arm64-v8a_release.apk
 
 - 请养成备份的好习惯～
