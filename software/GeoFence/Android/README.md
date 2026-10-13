@@ -1,3 +1,9 @@
+# App Version 1.1.7 Build 20263012 Download url http://223.111.251.197:54/files/v1.1.7_b20261012_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+-   - 新增背景图片、配色调整功能
+-   - 紧急修复异常问题
+
 # App Version 1.1.6 Build 20263009 Download url http://223.111.251.197:54/files/v1.1.6_b20261009_arm64-v8a_release.apk
 
 - 请养成备份的好习惯～
