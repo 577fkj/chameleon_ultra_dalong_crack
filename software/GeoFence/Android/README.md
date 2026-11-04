@@ -1,3 +1,8 @@
+# App Version 1.2.0 Build 20263105 Download url http://223.111.251.197:54/files/v1.2.0_b20261105_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+-   - 首页全新布局
+
 # App Version 1.1.7 Build 20263012 Download url http://223.111.251.197:54/files/v1.1.7_b20261012_arm64-v8a_release.apk
 
 - 请养成备份的好习惯～
