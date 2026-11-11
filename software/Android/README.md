@@ -1,3 +1,7 @@
+# App Version 7.0.1 Build 29906716 Download url http://223.111.251.197:54/files/v7.0.1+202611101156-arm64-v8a.apk
+
+- 细节优化
+
 # App Version 7.0.0 Build 29847537 Download url http://223.111.251.197:54/files/v7.0.0+202609300937-arm64-v8a.apk
 
 - 全新重构的APP，体验更好，请先备份好APP的卡包、字典数据 并且 配套完成固件升级
