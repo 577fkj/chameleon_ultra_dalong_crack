@@ -1,3 +1,8 @@
+# App Version 1.2.3 Build 20263127 Download url http://223.111.251.197:54/files/v1.2.3_b20261127_arm64-v8a_release.apk
+
+- 请养成备份的好习惯～
+-   - 移除百度地图，请尽快更新或者切换至其他地图。后续百度地图将不可用
+
 # App Version 1.2.0 Build 20263105 Download url http://223.111.251.197:54/files/v1.2.0_b20261105_arm64-v8a_release.apk
 
 - 请养成备份的好习惯～
